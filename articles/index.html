@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles | t3ch.b3rt.dev</title>
+    <title>Articles | b3rt.dev</title>
     <link rel="stylesheet" href="/design-system.css">
     <style>
         .hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-secondary) 100%); }
         .hero h1 { font-size: 3em; margin-bottom: 20px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { font-size: 1.2em; opacity: 0.8; max-width: 600px; margin: 0 auto; }
-        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 40px; }
-        .stat { text-align: center; }
-        .stat-number { font-size: 2.5em; font-weight: bold; color: var(--accent-primary); }
-        .stat-label { font-size: 0.9em; opacity: 0.7; }
         .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; padding: 40px; }
         .article-card { padding: 28px; transition: all 0.3s ease; }
         .article-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
@@ -25,47 +21,76 @@
         .category-ai { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
         .category-journey { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
         .category-tutorial { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+        .category-comparison { background: rgba(239, 68, 68, 0.2); color: #f87171; }
     </style>
 </head>
 <body>
     <nav class="glass-nav">
         <div class="nav-container">
-            <a href="/" class="nav-logo">🦞 t3ch</a>
+            <a href="/" class="nav-logo">🦞 b3rt</a>
             <div class="nav-links">
                 <a href="/articles" class="active">Articles</a>
                 <a href="/templates">Templates</a>
                 <a href="/journey">Journey</a>
+                <a href="/hierarchy">Hierarchy</a>
             </div>
         </div>
     </nav>
 
     <main>
         <section class="hero">
-            <h1>📚 50 World-Class Articles</h1>
-            <p>Comprehensive guides on AI, automation, productivity, and building your personal operating system</p>
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">50</div>
-                    <div class="stat-label">Articles</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Categories</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Actionable</div>
-                </div>
-            </div>
+            <h1>📚 Articles</h1>
+            <p>High-quality guides on AI, automation, and building your personal operating system</p>
         </section>
 
         <section class="article-grid">
-            <!-- Featured Articles -->
+            <!-- Quality Articles 16-20 -->
+            <article class="article-card glass-card">
+                <span class="category-badge category-life">Life OS</span>
+                <h3>Quick Start Guide: Your First Steps with Life OS</h3>
+                <p class="article-meta">8 min read</p>
+                <p>Get your Life OS running in minutes. Installation, configuration, and your first agent deployment.</p>
+                <a href="/content/articles/article-16-quick-start.html" class="btn-primary">Read Article →</a>
+            </article>
+
+            <article class="article-card glass-card">
+                <span class="category-badge category-technical">Technical</span>
+                <h3>Understanding Agent Communication Protocols</h3>
+                <p class="article-meta">10 min read</p>
+                <p>How Life OS agents communicate through message buses, topics, and event-driven architecture.</p>
+                <a href="/content/articles/article-17-agent-communication.html" class="btn-primary">Read Article →</a>
+            </article>
+
+            <article class="article-card glass-card">
+                <span class="category-badge category-tutorial">Tutorial</span>
+                <h3>Building Your First Automated Workflow</h3>
+                <p class="article-meta">12 min read</p>
+                <p>Create a complete automated research workflow from start to finish. YAML configurations and Python code.</p>
+                <a href="/content/articles/article-18-automated-workflows.html" class="btn-primary">Read Article →</a>
+            </article>
+
+            <article class="article-card glass-card">
+                <span class="category-badge category-technical">Technical</span>
+                <h3>Voice Interface Setup and Configuration</h3>
+                <p class="article-meta">15 min read</p>
+                <p>Configure Whisper STT, ElevenLabs TTS, wake words, and natural voice conversations.</p>
+                <a href="/content/articles/article-19-voice-setup.html" class="btn-primary">Read Article →</a>
+            </article>
+
+            <article class="article-card glass-card">
+                <span class="category-badge category-technical">Technical</span>
+                <h3>Memory Management Across Sessions</h3>
+                <p class="article-meta">12 min read</p>
+                <p>Multi-layered memory architecture: working, short-term, long-term, and semantic memory systems.</p>
+                <a href="/content/articles/article-20-memory-management.html" class="btn-primary">Read Article →</a>
+            </article>
+
+            <!-- Core Articles -->
             <article class="article-card glass-card">
                 <span class="category-badge category-life">Life OS</span>
                 <h3>How to Build Your Personal AI Assistant</h3>
                 <p class="article-meta">12 min read</p>
-                <p>A comprehensive guide to building your own AI-powered operating system. Learn infrastructure, deployment, and scaling strategies.</p>
+                <p>A comprehensive guide to building your own AI-powered operating system.</p>
                 <a href="/content/articles/ai-personal-assistant.html" class="btn-primary">Read Article →</a>
             </article>
 
@@ -73,7 +98,7 @@
                 <span class="category-badge category-technical">Technical</span>
                 <h3>OpenClaw Setup Complete Guide</h3>
                 <p class="article-meta">15 min read</p>
-                <p>Step-by-step installation and configuration of OpenClaw. From prerequisites through production deployment.</p>
+                <p>Complete installation and configuration of OpenClaw from prerequisites to production deployment.</p>
                 <a href="/content/articles/openclaw-setup-guide.html" class="btn-primary">Read Article →</a>
             </article>
 
@@ -81,7 +106,7 @@
                 <span class="category-badge category-ai">AI Trends</span>
                 <h3>The Future of Personal AI Assistants</h3>
                 <p class="article-meta">10 min read</p>
-                <p>Where is AI assistance heading? Emerging trends, capabilities, and the transformation of knowledge work.</p>
+                <p>Where AI assistance is heading: trends, capabilities, and the transformation of knowledge work.</p>
                 <a href="/content/articles/future-personal-ai.html" class="btn-primary">Read Article →</a>
             </article>
 
@@ -89,7 +114,7 @@
                 <span class="category-badge category-life">Life OS</span>
                 <h3>Building Your Chief of Staff AI</h3>
                 <p class="article-meta">10 min read</p>
-                <p>Transform your AI assistant into a strategic coordinator that anticipates needs and manages priorities.</p>
+                <p>Transform your AI into a strategic coordinator that anticipates needs and manages priorities.</p>
                 <a href="/content/articles/building-chief-of-staff-ai.html" class="btn-primary">Read Article →</a>
             </article>
 
@@ -105,7 +130,7 @@
                 <span class="category-badge category-technical">Technical</span>
                 <h3>Super Swarm Architecture Deep Dive</h3>
                 <p class="article-meta">15 min read</p>
-                <p>Scale your AI capabilities through coordinated agent swarms. The architecture enabling 100+ parallel operations.</p>
+                <p>Scale your AI capabilities through coordinated agent swarms. The architecture for 100+ operations.</p>
                 <a href="/content/articles/super-swarm-architecture.html" class="btn-primary">Read Article →</a>
             </article>
 
@@ -137,15 +162,15 @@
                 <span class="category-badge category-journey">Journey</span>
                 <h3>Genesis Sprint Retrospective</h3>
                 <p class="article-meta">8 min read</p>
-                <p>Looking back at the Genesis Sprint that launched 36 autonomous agents. Lessons learned and progress achieved.</p>
+                <p>Looking back at the Genesis Sprint that launched 36 autonomous agents.</p>
                 <a href="/content/articles/genesis-sprint-retrospective.html" class="btn-primary">Read Article →</a>
             </article>
 
             <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI Trends</span>
+                <span class="category-badge category-ai">AI</span>
                 <h3>Agent Societies Overview</h3>
                 <p class="article-meta">10 min read</p>
-                <p>The emergence of agent societies—coordinated AI systems operating with shared goals and social structures.</p>
+                <p>The emergence of agent societies—coordinated AI systems with shared goals and social structures.</p>
                 <a href="/content/articles/agent-societies-overview.html" class="btn-primary">Read Article →</a>
             </article>
 
@@ -180,295 +205,9 @@
                 <p>Leverage Claude Code's powerful capabilities within your Life OS infrastructure.</p>
                 <a href="/content/articles/claude-code-integration.html" class="btn-primary">Read Article →</a>
             </article>
-
-            <!-- Additional Articles (16-50) -->
-            <article class="article-card glass-card">
-                <span class="category-badge category-tutorial">Tutorial</span>
-                <h3>Quick Start Guide 16</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Get up and running quickly with this focused tutorial.</p>
-                <a href="/content/articles/article-16.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>Advanced Configuration 17</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Deep dive into advanced configuration options.</p>
-                <a href="/content/articles/article-17.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>Productivity Hacks 18</h3>
-                <p class="article-meta">8 min read</p>
-                <p>Practical tips for maximizing your output.</p>
-                <a href="/content/articles/article-18.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI</span>
-                <h3>Machine Learning Basics 19</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Understanding fundamental ML concepts.</p>
-                <a href="/content/articles/article-19.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>API Integration Guide 20</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Connect external services seamlessly.</p>
-                <a href="/content/articles/article-20.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <!-- More articles (21-30) -->
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>Life OS Guide 21</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Comprehensive guide to Life OS capabilities.</p>
-                <a href="/content/articles/article-21.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>Life OS Guide 22</h3>
-                <p class="article-meta">7 min read</p>
-                <p>More Life OS implementation details.</p>
-                <a href="/content/articles/article-22.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-journey">Journey</span>
-                <h3>Life OS Guide 23</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Strategic Life OS implementation.</p>
-                <a href="/content/articles/article-23.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI</span>
-                <h3>Life OS Guide 24</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Advanced Life OS techniques.</p>
-                <a href="/content/articles/article-24.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-tutorial">Tutorial</span>
-                <h3>Life OS Guide 25</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Expert Life OS strategies.</p>
-                <a href="/content/articles/article-25.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>Life OS Guide 26</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Master-level Life OS insights.</p>
-                <a href="/content/articles/article-26.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>Life OS Guide 27</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Professional Life OS workflows.</p>
-                <a href="/content/articles/article-27.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-journey">Journey</span>
-                <h3>Life OS Guide 28</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Strategic thinking with Life OS.</p>
-                <a href="/content/articles/article-28.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI</span>
-                <h3>Life OS Guide 29</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Innovative Life OS applications.</p>
-                <a href="/content/articles/article-29.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-tutorial">Tutorial</span>
-                <h3>Life OS Guide 30</h3>
-                <p class="article-meta">7 min read</p>
-                <p>Complete Life OS mastery guide.</p>
-                <a href="/content/articles/article-30.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <!-- Technical Guides (31-40) -->
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>Technical Guide 31</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Technical implementation guide.</p>
-                <a href="/content/articles/article-31.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>Technical Guide 32</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Life OS technical integration.</p>
-                <a href="/content/articles/article-32.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI</span>
-                <h3>Technical Guide 33</h3>
-                <p class="article-meta">10 min read</p>
-                <p>AI technical implementation.</p>
-                <a href="/content/articles/article-33.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-tutorial">Tutorial</span>
-                <h3>Technical Guide 34</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Step-by-step technical tutorial.</p>
-                <a href="/content/articles/article-34.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>Technical Guide 35</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Advanced technical concepts.</p>
-                <a href="/content/articles/article-35.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>Technical Guide 36</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Life OS technical deep dive.</p>
-                <a href="/content/articles/article-36.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-journey">Journey</span>
-                <h3>Technical Guide 37</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Technical journey documentation.</p>
-                <a href="/content/articles/article-37.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI</span>
-                <h3>Technical Guide 38</h3>
-                <p class="article-meta">10 min read</p>
-                <p>AI technical architecture.</p>
-                <a href="/content/articles/article-38.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-tutorial">Tutorial</span>
-                <h3>Technical Guide 39</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Complete technical tutorial.</p>
-                <a href="/content/articles/article-39.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>Technical Guide 40</h3>
-                <p class="article-meta">10 min read</p>
-                <p>Professional technical guide.</p>
-                <a href="/content/articles/article-40.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <!-- Tutorials (41-50) -->
-            <article class="article-card glass-card">
-                <span class="category-badge category-tutorial">Tutorial</span>
-                <h3>AI Tutorial 41</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Step-by-step AI tutorial.</p>
-                <a href="/content/articles/article-41.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>AI Tutorial 42</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Life OS AI integration tutorial.</p>
-                <a href="/content/articles/article-42.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>AI Tutorial 43</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Technical AI tutorial.</p>
-                <a href="/content/articles/article-43.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-journey">Journey</span>
-                <h3>AI Tutorial 44</h3>
-                <p class="article-meta">12 min read</p>
-                <p>AI journey tutorial.</p>
-                <a href="/content/articles/article-44.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI</span>
-                <h3>AI Tutorial 45</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Comprehensive AI tutorial.</p>
-                <a href="/content/articles/article-45.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-tutorial">Tutorial</span>
-                <h3>AI Tutorial 46</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Expert AI tutorial.</p>
-                <a href="/content/articles/article-46.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>AI Tutorial 47</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Master AI tutorial.</p>
-                <a href="/content/articles/article-47.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-technical">Technical</span>
-                <h3>AI Tutorial 48</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Professional AI tutorial.</p>
-                <a href="/content/articles/article-48.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-journey">Journey</span>
-                <h3>AI Tutorial 49</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Journey AI tutorial.</p>
-                <a href="/content/articles/article-49.html" class="btn-primary">Read Article →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI</span>
-                <h3>AI Tutorial 50</h3>
-                <p class="article-meta">12 min read</p>
-                <p>Ultimate AI tutorial.</p>
-                <a href="/content/articles/article-50.html" class="btn-primary">Read Article →</a>
-            </article>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <p>Built with ❤️ using Life OS | <a href="https://github.com/ib3rt/personal-tech">Source</a></p>
-    </footer>
+    <footer><p>Built with ❤️ using Life OS | <a href="https://github.com/ib3rt">Source</a></p></footer>
 </body>
 </html>
