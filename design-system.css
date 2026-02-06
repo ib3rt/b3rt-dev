@@ -1,0 +1,362 @@
+/* ========================================
+   Life OS Design System v2.0
+   World-Class Design for All Sites
+   Created: 2026-02-05
+======================================== */
+
+:root {
+  /* 🎨 Unified Color Palette */
+  --primary: #8B5CF6;           /* Purple - Main brand */
+  --primary-light: #A78BFA;     /* Light purple */
+  --primary-dark: #7C3AED;      /* Dark purple */
+  --secondary: #06B6D4;        /* Cyan accent */
+  --accent: #10B981;           /* Green success */
+  --warning: #F59E0B;          /* Amber warnings */
+  --danger: #EF4444;           /* Red errors */
+  
+  /* 🌙 Dark Theme */
+  --bg-dark: #0a0a0f;
+  --bg-card: #15151a;
+  --bg-elevated: #1a1a25;
+  --bg-hover: #252530;
+  
+  /* 📝 Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b0;
+  --text-muted: #666680;
+  
+  /* 🎯 Brand Colors */
+  --brand-purple: #8B5CF6;
+  --brand-blue: #3B82F6;
+  --brand-teal: #14B8A6;
+  --brand-pink: #EC4899;
+  
+  /* 📏 Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* 📐 Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  
+  /* 🎬 Animations */
+  --ease-fast: 0.15s ease;
+  --ease-normal: 0.3s ease;
+  --ease-slow: 0.5s ease;
+  
+  /* 🖼️ Effects */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+  --glow: 0 0 20px rgba(139, 92, 246, 0.3);
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* 🌙 Dark Mode Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* 🎯 Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--ease-fast);
+}
+
+a:hover {
+  color: var(--primary-light);
+}
+
+/* 🃏 Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: var(--space-xl);
+  transition: all var(--ease-normal);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--glow);
+}
+
+/* 🎨 Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ✨ Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--ease-normal);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  box-shadow: var(--shadow-md), var(--glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--primary);
+}
+
+/* 🎯 Hero Section */
+.hero {
+  padding: var(--space-3xl) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  margin-bottom: var(--space-lg);
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+}
+
+/* 📊 Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-lg);
+  padding: var(--space-2xl) 0;
+}
+
+.stat {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.stat h3 {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: var(--space-sm);
+}
+
+.stat p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* 🔗 Links Grid */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+  margin-top: var(--space-xl);
+}
+
+.links .link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-elevated);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all var(--ease-normal);
+}
+
+.links .link:hover {
+  background: var(--bg-hover);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  color: var(--primary);
+}
+
+/* 🎭 Cards Grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .hero { padding: var(--space-2xl) 0; }
+  .hero h1 { font-size: 2.5rem; }
+  .card { padding: var(--space-lg); }
+  .links { flex-direction: column; align-items: center; }
+  .links .link { width: 100%; max-width: 300px; justify-content: center; }
+}
+
+/* 🖼️ Images */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* 📝 Code */
+code, pre {
+  font-family: var(--font-mono);
+  background: var(--bg-elevated);
+  border-radius: 6px;
+}
+
+code {
+  padding: 0.125em 0.375em;
+}
+
+pre {
+  padding: var(--space-md);
+  overflow-x: auto;
+}
+
+/* 🎬 Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* 🏷️ Tags */
+.tag {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-right: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/* 📦 Sections */
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+/* 🎯 Footer */
+footer {
+  padding: var(--space-2xl) 0;
+  text-align: center;
+  color: var(--text-muted);
+  border-top: 1px solid var(--glass-border);
+  margin-top: var(--space-3xl);
+}
+
+/* 🔍 Utilities */
+.text-center { text-align: center; }
+.text-primary { color: var(--primary); }
+.text-muted { color: var(--text-muted); }
+
+.mt-1 { margin-top: var(--space-md); }
+.mt-2 { margin-top: var(--space-xl); }
+.mt-3 { margin-top: var(--space-2xl); }
+
+.mb-1 { margin-bottom: var(--space-md); }
+.mb-2 { margin-bottom: var(--space-xl); }
+.mb-3 { margin-bottom: var(--space-2xl); }
+
+/* ✨ Loading States */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--bg-hover) 50%, var(--bg-elevated) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
