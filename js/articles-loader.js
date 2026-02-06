@@ -16,7 +16,7 @@ const ARTICLES_DB = {
             date: "2026-02-04",
             category: "Genesis",
             excerpt: "7 intelligent systems launched in one night. The beginning of Life OS.",
-            url: "/journey/2026-02-04-genesis-day.html"
+            url: "/articles/2026-02-04-genesis-day.html"
         },
         {
             title: "The Transformation",
@@ -24,7 +24,7 @@ const ARTICLES_DB = {
             date: "2026-02-04",
             category: "Journey",
             excerpt: "How building in public transformed the development process.",
-            url: "/journey/2026-02-04-transformation.html"
+            url: "/articles/2026-02-04-transformation.html"
         },
         {
             title: "Templates Published",
@@ -32,7 +32,7 @@ const ARTICLES_DB = {
             date: "2026-02-04",
             category: "Templates",
             excerpt: "Publishing the templates that power Life OS automation.",
-            url: "/journey/2026-02-04-templates-published.html"
+            url: "/articles/2026-02-04-templates-published.html"
         }
     ],
     
@@ -84,7 +84,7 @@ const ARTICLES_DB = {
             date: "2026-02-04",
             category: "Genesis",
             excerpt: "7 intelligent systems launched in one night. The beginning of Life OS.",
-            url: "/journey/2026-02-04-genesis-day.html"
+            url: "/articles/2026-02-04-genesis-day.html"
         },
         {
             title: "AI Trends Report",
@@ -108,7 +108,7 @@ const ARTICLES_DB = {
             date: "2026-02-04",
             category: "Journey",
             excerpt: "How building in public transformed the development process.",
-            url: "/journey/2026-02-04-transformation.html"
+            url: "/articles/2026-02-04-transformation.html"
         }
     ]
 };
@@ -148,7 +148,7 @@ function renderArticles(containerId, category = 'default', limit = 4) {
     html += `
             </div>
             <div class="articles-footer">
-                <a href="/journey/" class="btn btn-secondary">View All Articles →</a>
+                <a href="/articles/" class="btn btn-secondary">View All Articles →</a>
             </div>
         </div>
     `;
