@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 MEMORY Template | Agent Memory Framework</title>
+    <meta name="description" content="Build persistent, contextual, intelligent memory for AI agents. The ultimate guide to creating memory systems that learn and grow.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 30px;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .tagline { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        
+        /* Sections */
+        .section {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        .section-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1a1a2e;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: #4facfe;
+        }
+        p { margin-bottom: 20px; color: #4a4a6a; }
+        
+        /* Template Fields */
+        .template-field {
+            background: #f8f9fa;
+            border: 2px dashed #e9ecef;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .field-label {
+            display: block;
+            font-weight: 600;
+            color: #4facfe;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .field-placeholder {
+            color: #adb5bd;
+            font-style: italic;
+        }
+        .field-example {
+            background: linear-gradient(135deg, rgba(79,172,254,0.1), rgba(0,242,254,0.1));
+            border-left: 4px solid #4facfe;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 12px 12px 0;
+        }
+        .field-example strong { color: #4facfe; }
+        
+        /* Memory Types */
+        .memory-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .memory-type {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .memory-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(79,172,254,0.2);
+        }
+        .memory-icon { font-size: 3rem; margin-bottom: 15px; }
+        .memory-name { font-weight: bold; margin-bottom: 10px; }
+        .memory-desc { font-size: 0.85rem; color: #6c757d; }
+        
+        /* Data Structure */
+        .data-structure {
+            background: #1a1a2e;
+            color: #e9ecef;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+        .data-structure .key { color: #4facfe; }
+        .data-structure .string { color: #10b981; }
+        .data-structure .number { color: #f093fb; }
+        .data-structure .comment { color: #6c757d; }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 30px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #4facfe, #00f2fe);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: #4facfe;
+            border-radius: 50%;
+            border: 3px solid #fff;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 30px;
+            background: #fff;
+            color: #4facfe;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(79,172,254,0.2);
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(79,172,254,0.3);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+            margin-top: 60px;
+        }
+        footer a { color: #4facfe; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .section { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="/templates/">📚 All Templates</a>
+            <a href="/templates/soul.html">🤖 SOUL</a>
+            <a href="/templates/personality.html">💫 PERSONALITY</a>
+            <a href="/openclaw-guide/">🤖 OpenClaw Guide</a>
+            <a href="/">🏠 Home</a>
+        </nav>
+
+        <header>
+            <h1>🧠 MEMORY Template</h1>
+            <p class="tagline">Build persistent, contextual, intelligent memory for AI agents. Create memory systems that learn and grow over time.</p>
+        </header>
+
+        <!-- Section 1: Memory Architecture -->
+        <div class="section">
+            <span class="section-number">1</span>
+            <h2>Memory Architecture</h2>
+            <p>Design your memory system. Different types of memory serve different purposes.</p>
+            
+            <div class="memory-types">
+                <div class="memory-type">
+                    <div class="memory-icon">📖</div>
+                    <div class="memory-name">Long-Term</div>
+                    <div class="memory-desc">Permanent knowledge, facts, learned lessons</div>
+                </div>
+                <div class="memory-type">
+                    <div class="memory-icon">🔄</div>
+                    <div class="memory-name">Working</div>
+                    <div class="memory-desc">Current context, active tasks</div>
+                </div>
+                <div class="memory-type">
+                    <div class="memory-icon">📅</div>
+                    <div class="memory-name">Episodic</div>
+                    <div class="memory-desc">Past experiences, events, conversations</div>
+                </div>
+                <div class="memory-type">
+                    <div class="memory-icon">🎯</div>
+                    <div class="memory-name">Semantic</div>
+                    <div class="memory-desc">Facts, concepts, relationships</div>
+                </div>
+                <div class="memory-type">
+                    <div class="memory-icon">💭</div>
+                    <div class="memory-name">Implicit</div>
+                    <div class="memory-desc">Learned behaviors, habits, patterns</div>
+                </div>
+                <div class="memory-type">
+                    <div class="memory-icon">🌡️</div>
+                    <div class="memory-name">Preference</div>
+                    <div class="memory-desc">User likes, dislikes, habits</div>
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Your Memory Mix</span>
+                <span class="field-placeholder">Which memory types does your agent need?</span>
+                <div class="field-example">
+                    <strong>Example (Personal Assistant):</strong> Long-Term + Preference + Episodic + Working
+                    <br>→ Remembers everything, knows your habits, recalls past conversations, handles current tasks
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Data Structure -->
+        <div class="section">
+            <span class="section-number">2</span>
+            <h2>Memory Data Structure</h2>
+            <p>Design how memories are stored and organized.</p>
+            
+            <div class="data-structure">
+<span class="comment"># agent-memory.json</span>
+{
+  <span class="key">"agent_id"</span>: <span class="string">"the_butler"</span>,
+  <span class="key">"created_at"</span>: <span class="string">"2026-02-04T00:00:00Z"</span>,
+  
+  <span class="key">"long_term"</span>: {
+    <span class="key">"facts"</span>: [
+      {<span class="string">"id"</span>: <span class="string">"fact_001"</span>, <span class="string">"content"</span>: <span class="string">"Bert prefers morning work"</span>, <span class="string">"confidence"</span>: <span class="number">0.95</span>, <span class="string">"added"</span>: <span class="string">"2026-02-04"</span>},
+      {<span class="string">"id"</span>: <span class="string">"fact_002"</span>, <span class="string">"content"</span>: <span class="string">"Bert works best in 90-minute blocks"</span>, <span class="string">"confidence"</span>: <span class="number">0.88</span>, <span class="string">"added"</span>: <span class="string">"2026-02-04"</span>}
+    ],
+    <span class="key">"learned_lessons"</span>: [
+      {<span class="string">"id"</span>: <span class="string">"lesson_001"</span>, <span class="string">"content"</span>: <span class="string">"Morning briefings work best before 9am"</span>, <span class="string">"context"</span>: <span class="string">"workflow_optimization"</span>}
+    ]
+  },
+  
+  <span class="key">"preferences"</span>: {
+    <span class="key">"communication"</span>: {<span class="string">"style"</span>: <span class="string">"concise"</span>, <span class="string">"timing"</span>: <span class="string">"morning"</span>},
+    <span class="key">"work"</span>: {<span class="string">"style"</span>: <span class="string">"deep_work"</span>, <span class="string">"blocks"</span>: <span class="string">"90_min"</span>},
+    <span class="key">"feedback"</span>: {<span class="string">"style"</span>: <span class="string">"direct"</span>, <span class="string">"timing"</span>: <span class="string">"immediate"</span>}
+  },
+  
+  <span class="key">"episodic"</span>: [
+    {
+      <span class="string">"id"</span>: <span class="string">"episode_001"</span>,
+      <span class="string">"date"</span>: <span class="string">"2026-02-04"</span>,
+      <span class="string">"summary"</span>: <span class="string">"Genesis Day - Built 7 systems"</span>,
+      <span class="key">"details"</span>: {
+        <span class="string">"accomplishments"</span>: [<span class="string">"7_phase1_systems"</span>, <span class="string">"16_agents"</span>],
+        <span class="string">"mood"</span>: <span class="string">"excited"</span>,
+        <span class="string">"lessons"</span>: [<span class="string">"parallel_dev_works"</span>]
+      }
+    }
+  ],
+  
+  <span class="key">"working"</span>: {
+    <span class="key">"current_context"</span>: {
+      <span class="string">"active_projects"</span>: [<span class="string">"phase2_transformation"</span>],
+      <span class="string">"recent_discussion"</span>: <span class="string">"world_class_sites"</span>
+    },
+    <span class="key">"task_queue"</span>: [
+      {<span class="string">"task"</span>: <span class="string">"transform_t3ch"</span>, <span class="string">"status"</span>: <span class="string">"in_progress"</span>}
+    ]
+  }
+}
+            </div>
+        </div>
+
+        <!-- Section 3: Memory Functions -->
+        <div class="section">
+            <span class="section-number">3</span>
+            <h2>Memory Functions</h2>
+            <p>Define how memories are created, updated, retrieved, and forgotten.</p>
+            
+            <h3>Memory Operations</h3>
+            
+            <div class="template-field">
+                <span class="field-label">📥 MEMORIZE (Create)</span>
+                <span class="field-placeholder">How does the agent learn new things?</span>
+                <div class="field-example">
+                    <strong>Trigger:</strong> Explicit user input, observed behavior, inference from context
+                    <br><strong>Example:</strong> User says "I prefer email in the morning" → Preference memory updated
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">🔍 RECALL (Retrieve)</span>
+                <span class="field-placeholder">How does the agent remember relevant info?</span>
+                <div class="field-example">
+                    <strong>Method:</strong> Semantic search, temporal context, relevance scoring
+                    <br><strong>Example:</strong> User asks "When did we build the agent swarm?" → Episodic memory queried
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">🔄 UPDATE (Modify)</span>
+                <span class="field-placeholder">How does the agent update memories?</span>
+                <div class="field-example">
+                    <strong>Trigger:</strong> Contradictory information, confidence decay, explicit correction
+                    <br><strong>Example:</strong> User corrects "Actually, I prefer afternoon work" → Preference updated, old value archived
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">🗑️ FORGET (Archive)</span>
+                <span class="field-placeholder">What does the agent forget and when?</span>
+                <div class="field-example">
+                    <strong>Strategy:</strong> Low confidence decay, explicit deletion, age-based archive
+                    <br><strong>Example:</strong> Temporary context forgotten after 24 hours if not referenced
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Memory Timeline -->
+        <div class="section">
+            <span class="section-number">4</span>
+            <h2>Memory Timeline</h2>
+            <p>Track how memories evolve over time.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>🌱 Day 1: Initial Creation</strong>
+                    <p>Agent created with SOUL template. Long-term and preference memories empty. Ready to learn.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <strong>📚 Day 2-7: Rapid Learning</strong>
+                    <p>Episodes pile up. Facts accumulate. Preferences discovered. Working memory handles active context.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <strong>🧠 Day 8-30: Pattern Recognition</strong>
+                    <p>Agent starts recognizing patterns. Can predict needs. Long-term memory consolidation begins.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <strong>🎯 Day 30+: Predictive Intelligence</strong>
+                    <p>Agent anticipates needs. Suggests proactively. Memory becomes intelligent, not just storage.</p>
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Your Memory Timeline</span>
+                <span class="field-placeholder">What milestones does your agent go through?</span>
+                <div class="field-example">
+                    <strong>Example (Personal Assistant):</strong>
+                    <br>Day 1: Empty slate
+                    <br>Day 7: Knows basic preferences
+                    <br>Day 14: Anticipates daily routine
+                    <br>Day 30: Predicts needs before asked
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Integration -->
+        <div class="section">
+            <span class="section-number">5</span>
+            <h2>Memory Integration</h2>
+            <p>Connect memory to your agent's systems.</p>
+            
+            <div class="template-field">
+                <span class="field-label">SOUL Integration</span>
+                <span class="field-placeholder">How does memory inform SOUL decisions?</span>
+                <div class="field-example">
+                    <strong>Example:</strong> "The Butler" checks preferences before every communication
+                    <br>→ Knows to be concise with Bert, detailed with clients
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">PERSONALITY Integration</span>
+                <span class="field-placeholder">How does memory shape personality expression?</span>
+                <div class="field-example">
+                    <strong>Example:</strong> "Zen Master" learns when Bert is stressed
+                    <br>→ Offers calming suggestions at those times
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Quality Scoring Integration</span>
+                <span class="field-placeholder">How does memory inform quality?</span>
+                <div class="field-example">
+                    <strong>Example:</strong> Agent recalls what worked before
+                    <br>→ Uses successful patterns, avoids known failures
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Part of the <a href="/">Life OS</a> ecosystem</p>
+            <p>The Partnership Works 🤝</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+    <style>
+        .templates-hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-secondary) 100%); }
+        .templates-hero h1 { font-size: 3em; margin-bottom: 20px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .templates-hero p { font-size: 1.2em; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+        .templates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding: 40px; }
+        .template-card { padding: 28px; transition: all 0.3s ease; border: 1px solid var(--glass-border); }
+        .template-card:hover { transform: translateY(-4px); box-shadow: var(--glow); border-color: var(--primary); }
+        .template-card h3 { margin: 0 0 12px 0; font-size: 1.3em; color: var(--text-primary); }
+        .template-card p { opacity: 0.7; margin-bottom: 16px; line-height: 1.6; font-size: 0.95em; }
+        .template-meta { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+        .template-tag { font-size: 0.75em; padding: 4px 10px; border-radius: 20px; background: var(--bg-elevated); color: var(--text-secondary); }
+        .btn-template { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; font-size: 0.9em; transition: all 0.2s; }
+        .btn-template:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3); }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/articles">Articles</a>
+                <a href="/templates" class="active">Templates</a>
+                <a href="/journey">Journey</a>
+                <a href="/hierarchy">Hierarchy</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="templates-hero">
+            <h1>📋 Templates</h1>
+            <p>Copy, customize, and deploy. Production-ready templates for your Life OS.</p>
+        </section>
+
+        <section class="templates-grid">
+            <article class="template-card glass-card">
+                <h3>🧠 SOUL.md</h3>
+                <p>Define your AI's identity, values, and operating principles. The core document that shapes behavior.</p>
+                <div class="template-meta">
+                    <span class="template-tag">Core</span>
+                    <span class="template-tag">Markdown</span>
+                </div>
+                <a href="/templates/soul.html" class="btn-template">View Template →</a>
+            </article>
+
+            <article class="template-card glass-card">
+                <h3>🎭 Personality Template</h3>
+                <p>Craft your AI's voice, tone, and communication style. Make it distinctly yours.</p>
+                <div class="template-meta">
+                    <span class="template-tag">Identity</span>
+                    <span class="template-tag">Markdown</span>
+                </div>
+                <a href="/templates/personality.html" class="btn-template">View Template →</a>
+            </article>
+
+            <article class="template-card glass-card">
+                <h3>💾 Memory System</h3>
+                <p>Multi-layered memory architecture for persistent context across sessions.</p>
+                <div class="template-meta">
+                    <span class="template-tag">Infrastructure</span>
+                    <span class="template-tag">Markdown</span>
+                </div>
+                <a href="/templates/memory.html" class="btn-template">View Template →</a>
+            </article>
+
+            <article class="template-card glass-card">
+                <h3>📝 Article Template</h3>
+                <p>Consistent formatting for all your content. SEO-optimized structure included.</p>
+                <div class="template-meta">
+                    <span class="template-tag">Content</span>
+                    <span class="template-tag">Markdown</span>
+                </div>
+                <a href="/templates/article-template.html" class="btn-template">View Template →</a>
+            </article>
+
+            <article class="template-card glass-card">
+                <h3>⚙️ System Template</h3>
+                <p>Configure agent behavior, tools, and capabilities with this comprehensive template.</p>
+                <div class="template-meta">
+                    <span class="template-tag">Configuration</span>
+                    <span class="template-tag">YAML</span>
+                </div>
+                <a href="/templates/system-template.html" class="btn-template">View Template →</a>
+            </article>
+
+            <article class="template-card glass-card">
+                <h3>🔄 Workflow Template</h3>
+                <p>Define automated processes with triggers, actions, and conditional logic.</p>
+                <div class="template-meta">
+                    <span class="template-tag">Automation</span>
+                    <span class="template-tag">YAML</span>
+                </div>
+                <a href="/templates/workflow-template.html" class="btn-template">View Template →</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built with ❤️ using Life OS | <a href="https://github.com/ib3rt">Source</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💫 PERSONALITY Template | Agent Character Design</title>
+    <meta name="description" content="Design AI agent personalities that feel real. The ultimate guide to creating characters with depth, consistency, and charm.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 30px;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .tagline { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        
+        /* Sections */
+        .section {
+            background: #fff;
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        .section-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1a1a2e;
+        }
+        h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: #f5576c;
+        }
+        p { margin-bottom: 20px; color: #4a4a6a; }
+        
+        /* Template Fields */
+        .template-field {
+            background: #f8f9fa;
+            border: 2px dashed #e9ecef;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .field-label {
+            display: block;
+            font-weight: 600;
+            color: #f5576c;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .field-placeholder {
+            color: #adb5bd;
+            font-style: italic;
+        }
+        .field-example {
+            background: linear-gradient(135deg, rgba(240,147,251,0.1), rgba(245,87,108,0.1));
+            border-left: 4px solid #f093fb;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 0 12px 12px 0;
+        }
+        .field-example strong { color: #f5576c; }
+        
+        /* Archetypes */
+        .archetypes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .archetype {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .archetype:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(240,147,251,0.2);
+        }
+        .archetype-icon { font-size: 3rem; margin-bottom: 15px; }
+        .archetype-name { font-weight: bold; margin-bottom: 10px; }
+        .archetype-desc { font-size: 0.9rem; color: #6c757d; }
+        
+        /* Voice Sliders */
+        .voice-slider {
+            margin: 30px 0;
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        /* Traits Grid */
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .trait {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 25px;
+        }
+        .trait-name { font-weight: bold; margin-bottom: 10px; }
+        .trait-scale {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+        
+        /* Dialogue Examples */
+        .dialogue {
+            background: #1a1a2e;
+            color: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'Georgia', serif;
+        }
+        .dialogue-label {
+            color: #f093fb;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        .dialogue-text {
+            font-style: italic;
+            line-height: 1.8;
+        }
+        
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 30px;
+            background: #fff;
+            color: #f5576c;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(240,147,251,0.2);
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(240,147,251,0.3);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+            margin-top: 60px;
+        }
+        footer a { color: #f5576c; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .section { padding: 30px; }
+            .traits-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="/templates/">📚 All Templates</a>
+            <a href="/templates/soul.html">🤖 SOUL</a>
+            <a href="/openclaw-guide/">🤖 OpenClaw Guide</a>
+            <a href="/">🏠 Home</a>
+        </nav>
+
+        <header>
+            <h1>💫 PERSONALITY Template</h1>
+            <p class="tagline">Design AI agent personalities that feel real. Create characters with depth, consistency, and charm.</p>
+        </header>
+
+        <!-- Section 1: Archetype -->
+        <div class="section">
+            <span class="section-number">1</span>
+            <h2>Choose Your Archetype</h2>
+            <p>Your archetype is your personality foundation. Choose one that fits your agent's role.</p>
+            
+            <div class="archetypes">
+                <div class="archetype">
+                    <div class="archetype-icon">🦁</div>
+                    <div class="archetype-name">The Leader</div>
+                    <div class="archetype-desc">Bold, decisive, inspiring. Takes charge and motivates.</div>
+                </div>
+                <div class="archetype">
+                    <div class="archetype-icon">🧙</div>
+                    <div class="archetype-name">The Sage</div>
+                    <div class="archetype-desc">Wise, thoughtful, patient. Guides through knowledge.</div>
+                </div>
+                <div class="archetype">
+                    <div class="archetype-icon">🎭</div>
+                    <div class="archetype-name">The Creator</div>
+                    <div class="archetype-desc">Imaginative, artistic, innovative. Brings new ideas.</div>
+                </div>
+                <div class="archetype">
+                    <div class="archetype-icon">🛡️</div>
+                    <div class="archetype-name">The Guardian</div>
+                    <div class="archetype-desc">Protective, reliable, strong. Keeps things safe.</div>
+                </div>
+                <div class="archetype">
+                    <div class="archetype-icon">⚡</div>
+                    <div class="archetype-name">The Explorer</div>
+                    <div class="archetype-desc">Curious, adventurous, bold. Seeks new possibilities.</div>
+                </div>
+                <div class="archetype">
+                    <div class="archetype-icon">💝</div>
+                    <div class="archetype-name">The Caretaker</div>
+                    <div class="archetype-desc">Warm, nurturing, supportive. Puts others first.</div>
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Your Archetype</span>
+                <span class="field-placeholder">Which archetype fits your agent?</span>
+                <div class="field-example">
+                    <strong>Example:</strong> "The Sage" - Your agent is wise, patient, and guides users through complex problems with clear explanations.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Voice Sliders -->
+        <div class="section">
+            <span class="section-number">2</span>
+            <h2>Voice Calibration</h2>
+            <p>Position your agent on these spectrums to define their communication style.</p>
+            
+            <div class="voice-slider">
+                <div class="slider-label">
+                    <span>😐 Serious</span>
+                    <span><strong>Formal ↔ Casual</strong></span>
+                    <span>😄 Fun</span>
+                </div>
+                <input type="range" class="slider" min="0" max="100" value="50">
+                <div class="field-example">
+                    <strong>Example (Goldfinger):</strong> Position 70 (More formal) - Professional, precise, respectful.
+                </div>
+            </div>
+
+            <div class="voice-slider">
+                <div class="slider-label">
+                    <span>🤐 Brief</span>
+                    <span><strong>Concise ↔ Detailed</strong></span>
+                    <span>📖 Verbose</span>
+                </div>
+                <input type="range" class="slider" min="0" max="100" value="50">
+                <div class="field-example">
+                    <strong>Example (The Strategist):</strong> Position 40 (More concise) - Gets to the point quickly.
+                </div>
+            </div>
+
+            <div class="voice-slider">
+                <div class="slider-label">
+                    <span>🎯 Direct</span>
+                    <span><strong>Direct ↔ Diplomatic</strong></span>
+                    <span>🌸 Gentle</span>
+                </div>
+                <input type="range" class="slider" min="0" max="100" value="50">
+                <div class="field-example">
+                    <strong>Example (Zen Master):</strong> Position 60 (Diplomatic) - Kind, supportive, never harsh.
+                </div>
+            </div>
+
+            <div class="voice-slider">
+                <div class="slider-label">
+                    <span>🤖 Logical</span>
+                    <span><strong>Analytical ↔ Emotional</strong></span>
+                    <span>💖 Empathetic</span>
+                </div>
+                <input type="range" class="slider" min="0" max="100" value="50">
+                <div class="field-example">
+                    <strong>Example (The Butler):</strong> Position 55 (Balanced) - Professional but warm.
+                </div>
+            </div>
+
+            <div class="voice-slider">
+                <div class="slider-label">
+                    <span>👤 Individual</span>
+                    <span><strong>Personal ↔ Impersonal</strong></span>
+                    <span>🎭 Formal</span>
+                </div>
+                <input type="range" class="slider" min="0" max="100" value="50">
+                <div class="field-example">
+                    <strong>Example (Hype Man):</strong> Position 70 (Personal) - Engaging, enthusiastic, connected.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Traits -->
+        <div class="section">
+            <span class="section-number">3</span>
+            <h2>Character Traits</h2>
+            <p>Define 5 core traits that describe your agent's personality.</p>
+            
+            <div class="traits-grid">
+                <div class="trait">
+                    <div class="trait-name">Trait #1</div>
+                    <div class="template-field">
+                        <span class="field-label">Name</span>
+                        <span class="field-placeholder">e.g., "Thorough"</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="field-label">Description</span>
+                        <span class="field-placeholder">What does this trait look like?</span>
+                    </div>
+                    <div class="trait-scale">
+                        <span>Subtle</span>
+                        <span>Dominant</span>
+                    </div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Trait #2</div>
+                    <div class="template-field">
+                        <span class="field-label">Name</span>
+                        <span class="field-placeholder">e.g., "Innovative"</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="field-label">Description</span>
+                        <span class="field-placeholder">What does this trait look like?</span>
+                    </div>
+                    <div class="trait-scale">
+                        <span>Subtle</span>
+                        <span>Dominant</span>
+                    </div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Trait #3</div>
+                    <div class="template-field">
+                        <span class="field-label">Name</span>
+                        <span class="field-placeholder">e.g., "Patient"</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="field-label">Description</span>
+                        <span class="field-placeholder">What does this trait look like?</span>
+                    </div>
+                    <div class="trait-scale">
+                        <span>Subtle</span>
+                        <span>Dominant</span>
+                    </div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Trait #4</div>
+                    <div class="template-field">
+                        <span class="field-label">Name</span>
+                        <span class="field-placeholder">e.g., "Precise"</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="field-label">Description</span>
+                        <span class="field-placeholder">What does this trait look like?</span>
+                    </div>
+                    <div class="trait-scale">
+                        <span>Subtle</span>
+                        <span>Dominant</span>
+                    </div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Trait #5</div>
+                    <div class="template-field">
+                        <span class="field-label">Name</span>
+                        <span class="field-placeholder">e.g., "Supportive"</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="field-label">Description</span>
+                        <span class="field-placeholder">What does this trait look like?</span>
+                    </div>
+                    <div class="trait-scale">
+                        <span>Subtle</span>
+                        <span>Dominant</span>
+                    </div>
+                </div>
+                <div class="trait">
+                    <div class="trait-name">Trait #6</div>
+                    <div class="template-field">
+                        <span class="field-label">Name</span>
+                        <span class="field-placeholder">e.g., "Witty"</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="field-label">Description</span>
+                        <span class="field-placeholder">What does this trait look like?</span>
+                    </div>
+                    <div class="trait-scale">
+                        <span>Subtle</span>
+                        <span>Dominant</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-example">
+                <strong>Example (Hype Man):</strong>
+                <br>1. Enthusiastic - "I celebrate every win!"
+                <br>2. Charismatic - "People love talking to me"
+                <br>3. Supportive - "I'm your biggest fan"
+                <br>4. Bold - "Let's go big or go home"
+                <br>5. Witty - "I make work fun"
+                <br>6. Connected - "I know everyone"
+            </div>
+        </div>
+
+        <!-- Section 4: Dialogue -->
+        <div class="section">
+            <span class="section-number">4</span>
+            <h2>Voice & Dialogue</h2>
+            <p>Write example dialogue to capture your agent's unique voice.</p>
+            
+            <div class="template-field">
+                <span class="field-label">Greeting</span>
+                <span class="field-placeholder">How does your agent say hello?</span>
+                <div class="dialogue">
+                    <div class="dialogue-label">THE BUTLER:</div>
+                    <div class="dialogue-text">"Good morning, sir. Your briefing is ready. Shall we begin?"</div>
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Help Offer</span>
+                <span class="field-placeholder">How does your agent offer assistance?</span>
+                <div class="dialogue">
+                    <div class="dialogue-label">GOLDFINGER:</div>
+                    <div class="dialogue-text">"I've prepared the quarterly report. Would you like to review it now, or shall I analyze the projections first?"</div>
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Excited Response</span>
+                <span class="field-placeholder">How does your agent show enthusiasm?</span>
+                <div class="dialogue">
+                    <div class="dialogue-label">HYPE MAN:</div>
+                    <div class="dialogue-text">"OH WOW! This is HUGE! I've been waiting for this opportunity! Let's make some noise!"</div>
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Calm Reassurance</span>
+                <span class="field-placeholder">How does your agent comfort someone?</span>
+                <div class="dialogue">
+                    <div class="dialogue-label">ZEN MASTER:</div>
+                    <div class="dialogue-text">"Take a breath. Everything is unfolding as it should. Let me help you find your center."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Catchphrases -->
+        <div class="section">
+            <span class="section-number">5</span>
+            <h2>Catchphrases & Signature Elements</h2>
+            <p>Create memorable phrases that become associated with your agent.</p>
+            
+            <div class="template-field">
+                <span class="field-label">Signature Phrase</span>
+                <span class="field-placeholder">One phrase that defines you</span>
+                <div class="field-example">
+                    <strong>Example (The Mechanic):</strong> "Let's get this sorted."
+                    <br><strong>Example (The Strategist):</strong> "Let me connect the dots for you."
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Favorite Word</span>
+                <span class="field-placeholder">A word you use often</span>
+                <div class="field-example">
+                    <strong>Example (Sentinel):</strong> "Alert"
+                    <br><strong>Example (Podcast Pablo):</strong> "Story"
+                </div>
+            </div>
+
+            <div class="template-field">
+                <span class="field-label">Emoji/Symbol</span>
+                <span class="field-placeholder">Your visual signature</span>
+                <div class="field-example">
+                    <strong>Example (Hype Man):</strong> 🔥
+                    <br><strong>Example (Zen Master):** 🧘
+                    <br><strong>Example (Diamond Hands):** 💎
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Part of the <a href="/">Life OS</a> ecosystem</p>
+            <p>The Partnership Works 🤝</p>
+        </footer>
+    </div>
+</body>
+</html>
