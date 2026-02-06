@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Template | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+    <style>
+        .template-container { max-width: 900px; margin: 0 auto; padding: var(--space-2xl); }
+        .template-content { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: var(--space-2xl); }
+        .code-block { background: var(--bg-dark); border-radius: 8px; padding: var(--space-lg); overflow-x: auto; margin: var(--space-lg) 0; font-family: 'Fira Code', monospace; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/articles">Articles</a>
+                <a href="/templates">Templates</a>
+                <a href="/journey">Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="template-container">
+        <a href="/templates" style="color: var(--primary); text-decoration: none;">← Back to Templates</a>
+        
+        <h1 style="margin-top: var(--space-lg);">🔄 Workflow Template</h1>
+        
+        <div class="template-content">
+            <h2>Purpose</h2>
+            <p>Define automated processes with triggers, actions, and conditional logic for your Life OS.</p>
+
+            <h2>Template</h2>
+            <div class="code-block">
+<pre># Workflow Automation Template
+# ====================================
+
+# Workflow Metadata
+name: "workflow-name"
+version: "1.0.0"
+description: "What this workflow accomplishes"
+
+# Trigger - When does this workflow start?
+trigger:
+  type: "schedule"  # Options: schedule, event, webhook, manual
+  schedule: "0 9 * * 1-5"  # Cron expression (9 AM weekdays)
+  # Or for events:
+  event: "new_email_received"
+  conditions:
+    - field: "sender"
+      contains: "important"
+
+# Actions - What happens when triggered?
+actions:
+  - name: "action-1"
+    type: "notification"
+    channel: "telegram"
+    message: "Morning brief ready!"
+
+  - name: "action-2"
+    type: "agent_run"
+    agent: "research-agent"
+    input: "Latest AI news"
+
+  - name: "action-3"
+    type: "webhook"
+    url: "https://api.example.com/notify"
+    method: "POST"
+    body: '{"status": "complete"}'
+
+# Conditional Logic
+conditions:
+  - if: "action-2.success == true"
+    then:
+      - name: "success-path"
+        actions: ["action-3"]
+    else:
+      - name: "failure-path"
+        actions: ["action-4"]
+
+# Error Handling
+error_handling:
+  on_failure: "notify_admin"
+  max_retries: 3
+  retry_delay: 60  # seconds</pre>
+            </div>
+
+            <h2>Usage</h2>
+            <p>Save as <code>workflow.yaml</code> and deploy to your automation system.</p>
+        </div>
+    </main>
+
+    <footer><p>Built with ❤️ using Life OS</p></footer>
+</body>
+</html>

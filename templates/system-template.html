@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Template | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+    <style>
+        .template-container { max-width: 900px; margin: 0 auto; padding: var(--space-2xl); }
+        .template-content { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: var(--space-2xl); }
+        .code-block { background: var(--bg-dark); border-radius: 8px; padding: var(--space-lg); overflow-x: auto; margin: var(--space-lg) 0; font-family: 'Fira Code', monospace; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/articles">Articles</a>
+                <a href="/templates">Templates</a>
+                <a href="/journey">Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="template-container">
+        <a href="/templates" style="color: var(--primary); text-decoration: none;">← Back to Templates</a>
+        
+        <h1 style="margin-top: var(--space-lg);">⚙️ System Configuration Template</h1>
+        
+        <div class="template-content">
+            <h2>Purpose</h2>
+            <p>Define agent behavior, tools, and capabilities through this YAML configuration file.</p>
+
+            <h2>Template</h2>
+            <div class="code-block">
+<pre># System Configuration Template
+# ====================================
+
+# Identity
+name: "Your Agent Name"
+version: "1.0.0"
+description: "Brief description of your agent"
+
+# Model Configuration
+model:
+  primary: "model-name"
+  fallback: ["fallback-model-1", "fallback-model-2"]
+  temperature: 0.7
+  max_tokens: 8192
+
+# Capabilities
+capabilities:
+  - web_search
+  - code_execution
+  - file_operations
+  - memory_management
+
+# Tools
+tools:
+  enabled:
+    - read
+    - write
+    - exec
+    - web_search
+    - memory_search
+
+# Behavior Rules
+behavior:
+  max_steps: 10
+  require_confirmation: false
+  auto_retry: true
+  max_retries: 3
+
+# Memory Settings
+memory:
+  type: "multi-layer"
+  short_term_limit: 100
+  long_term_enabled: true
+
+# Output Preferences
+output:
+  format: "detailed"
+  channel: "default"
+  preserve_formatting: true</pre>
+            </div>
+
+            <h2>Usage</h2>
+            <p>Copy this template and customize according to your agent's purpose. Save as <code>system.yaml</code> in your agent directory.</p>
+        </div>
+    </main>
+
+    <footer><p>Built with ❤️ using Life OS</p></footer>
+</body>
+</html>
