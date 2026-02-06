@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start Guide: Your First Steps with Life OS | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/articles">Articles</a>
+                <a href="/templates">Templates</a>
+                <a href="/journey">Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <a href="/articles" class="back-link">← Back to Articles</a>
+        
+        <article class="article-content">
+            <header class="article-header">
+                <span class="article-category">"Life OS"</span>
+                <h1 class="article-title">Quick Start Guide: Your First Steps with Life OS</h1>
+                <div class="article-meta">
+                    <span>📖 "8 min read"</span>
+                    <span>✍️ By b3rt</span>
+                </div>
+            </header>
+            
+            <div class="article-body">
+<h1>Quick Start Guide: Your First Steps with Life OS</h1>
+<p>Welcome to Life OS—your personal operating system for AI-powered productivity. This guide walks you through the essential first steps to get your system running smoothly.</p>
+<h2>Prerequisites</h2>
+<p>Before you begin, ensure you have:</p>
+<li>A computer running Linux, macOS, or Windows with WSL2</li>
+<li>Node.js version 18 or higher installed</li>
+<li>At least 2GB of available RAM</li>
+<li>500MB of free storage space</li>
+<li>A GitHub account for version control and deployment</li>
+<h2>Installation Steps</h2>
+<h3>Step 1: Install OpenClaw</h3>
+<p>OpenClaw is the core framework that powers Life OS. Install it globally using npm:</p>
+<p><code>`</code>bash
+npm install -g openclaw
+<code>`</code></p>
+<p>This command downloads and installs the OpenClaw CLI, which you'll use to manage your entire system.</p>
+<h3>Step 2: Initialize Your Workspace</h3>
+<p>Create a new directory for your Life OS and initialize the framework:</p>
+<p><code>`</code>bash
+mkdir my-life-os
+cd my-life-os
+openclaw init
+<code>`</code></p>
+<p>The initialization process prompts you for:
+<li>Your name and preferred AI model</li>
+<li>Channel preferences (Telegram, Discord, etc.)</li>
+<li>Initial skill selections</li></p>
+<h3>Step 3: Configure Your Gateway</h3>
+<p>The gateway acts as the central hub for all agent communications. Start it with:</p>
+<p><code>`</code>bash
+openclaw gateway start
+<code>`</code></p>
+<p>By default, the gateway runs on localhost:18789. You can access the dashboard at http://localhost:18789/dashboard.</p>
+<h3>Step 4: Connect Your Channels</h3>
+<p>Life OS communicates through various channels. Connect your preferred platforms:</p>
+<p><code>`</code>bash
+<h1>Connect Telegram</h1>
+openclaw channel add telegram --token YOUR_BOT_TOKEN</p>
+<h1>Connect Discord  </h1>
+openclaw channel add discord --token YOUR_DISCORD_TOKEN
+<code>`</code>
+<h2>Verifying Your Setup</h2>
+<p>After installation, run the health check to ensure everything works:</p>
+<p><code>`</code>bash
+openclaw healthcheck
+<code>`</code></p>
+<p>A successful output shows:
+<li>Gateway status: running</li>
+<li>Active channels: connected</li>
+<li>Agent count: 0 (initially)</li>
+<li>Memory: operational</li></p>
+<h2>Your First Agent</h2>
+<p>Deploy a simple agent to test the system:</p>
+<p><code>`</code>bash
+openclaw agent deploy --name hello-world --type genesis
+<code>`</code></p>
+<p>This deploys a basic "Hello World" agent that responds to messages.</p>
+<h2>Understanding the Directory Structure</h2>
+<p>Life OS organizes your workspace with a clear hierarchy:</p>
+<p><code>`</code>
+my-life-os/
+├── agents/           # Your AI agents
+├── brands/           # Website and content
+├── tools/            # Automation scripts
+├── memory/           # Session logs and knowledge
+└── automation/       # Scheduled tasks
+<code>`</code></p>
+<h2>Next Steps</h2>
+<p>With your basic setup complete, consider these next actions:</p>
+<p>1. <strong>Deploy genesis agents</strong> - Start with the 17 foundational agents
+2. <strong>Configure skills</strong> - Add capabilities like web search, file management
+3. <strong>Set up deployment</strong> - Connect to Cloudflare Pages for your websites
+4. <strong>Create your first workflow</strong> - Automate a repetitive task</p>
+<h2>Common Installation Issues</h2>
+<h3>Node Version Mismatch</h3>
+<p>If you see version errors, check your Node installation:</p>
+<p><code>`</code>bash
+node --version
+<code>`</code></p>
+<p>Upgrade Node.js if below version 18 using nvm or your system's package manager.</p>
+<h3>Port Conflicts</h3>
+<p>The gateway uses port 18789 by default. If this port is in use, specify an alternative:</p>
+<p><code>`</code>bash
+openclaw gateway start --port 18790
+<code>`</code></p>
+<h3>Permission Errors</h3>
+<p>On Linux/macOS, you may need sudo for global installs:</p>
+<p><code>`</code>bash
+sudo npm install -g openclaw
+<code>`</code></p>
+<h2>Conclusion</h2>
+<p>You now have a functional Life OS installation. The system is designed to grow with your needs—start simple, add complexity as required, and let the agents handle the rest.</p>
+<p>The journey from this basic installation to a fully autonomous personal AI system takes time. Pace yourself, experiment often, and don't hesitate to modify the default configurations to match your workflow.</p>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>Built with ❤️ using Life OS</p>
+    </footer>
+</body>
+</html>

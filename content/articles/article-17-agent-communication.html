@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Agent Communication Protocols | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/articles">Articles</a>
+                <a href="/templates">Templates</a>
+                <a href="/journey">Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <a href="/articles" class="back-link">← Back to Articles</a>
+        
+        <article class="article-content">
+            <header class="article-header">
+                <span class="article-category">"Technical"</span>
+                <h1 class="article-title">Understanding Agent Communication Protocols</h1>
+                <div class="article-meta">
+                    <span>📖 "10 min read"</span>
+                    <span>✍️ By b3rt</span>
+                </div>
+            </header>
+            
+            <div class="article-body">
+<h1>Understanding Agent Communication Protocols</h1>
+<p>Life OS orchestrates dozens of autonomous agents that must communicate effectively to accomplish complex tasks. This article explores the communication protocols that make this possible.</p>
+<h2>The Communication Challenge</h2>
+<p>When you have 17, 50, or 100+ agents working simultaneously, each handling different aspects of your digital life, communication becomes the critical bottleneck. Poorly designed communication leads to:</p>
+<li><strong>Race conditions</strong> where agents interfere with each other</li>
+<li><strong>Information silos</strong> where valuable insights aren't shared</li>
+<li><strong>Duplicate work</strong> when multiple agents solve the same problem</li>
+<li><strong>Cascading failures</strong> where one agent's error propagates widely</li>
+<p>Life OS addresses these challenges through a layered communication architecture.</p>
+<h2>The Message Bus Architecture</h2>
+<p>At its core, Life OS uses a message bus pattern. All agent communications flow through a central message bus rather than direct peer-to-peer connections.</p>
+<h3>How the Message Bus Works</h3>
+<p><code>`</code>python
+<h1>Agent publishes a message to the bus</h1>
+message_bus.publish(
+    topic="research.findings",
+    payload={"query": "AI trends", "results": [...]},
+    sender="research-agent-01"
+)</p>
+<h1>Other agents subscribe to topics they care about</h1>
+message_bus.subscribe(
+    topic="research.findings",
+    handler=handle_research_findings
+)
+<code>`</code>
+<p>This decoupling provides several benefits:</p>
+<p>1. <strong>Loose coupling</strong> - Agents don't need to know about each other
+2. <strong>Scalability</strong> - Adding new agents doesn't require modifying existing ones
+3. <strong>Reliability</strong> - Messages persist until processed
+4. <strong>Debuggability</strong> - All communications are logged centrally</p>
+<h2>Message Types</h2>
+<p>Life OS distinguishes between several message types, each serving different purposes.</p>
+<h3>Command Messages</h3>
+<p>Command messages instruct an agent to perform an action:</p>
+<p><code>`</code>
+TO: task-prioritizer
+TYPE: COMMAND
+ACTION: add_task
+PAYLOAD: {"task": "Review PR", "priority": "high"}
+<code>`</code></p>
+<p>Command messages expect acknowledgment and potentially a result.</p>
+<h3>Event Messages</h3>
+<p>Event notifications inform other agents about something that happened:</p>
+<p><code>`</code>
+TYPE: EVENT
+EVENT: task.completed
+PAYLOAD: {"task_id": 42, "result": "approved"}
+<code>`</code></p>
+<p>Event messages are fire-and-forget—they don't expect responses.</p>
+<h3>Query Messages</h3>
+<p>Query messages request information from other agents:</p>
+<p><code>`</code>
+TO: memory-manager
+TYPE: QUERY
+QUERY: recent_documents
+PAYLOAD: {"count": 10, "type": "markdown"}
+<code>`</code></p>
+<p>Query messages expect a response with the requested information.</p>
+<h3>Response Messages</h3>
+<p>Response messages deliver query results or acknowledge command completion:</p>
+<p><code>`</code>
+TYPE: RESPONSE
+CORRELATION_ID: abc-123
+STATUS: success
+PAYLOAD: [{"title": "Doc 1", ...}]
+<code>`</code></p>
+<h2>Topic Hierarchy</h2>
+<p>Life OS organizes topics in a hierarchical namespace:</p>
+<p><code>`</code>
+lifeos/
+├── research/
+│   ├── started
+│   ├── progress
+│   └── completed
+├── content/
+│   ├── started
+│   ├── progress  
+│   └── completed
+├── system/
+│   ├── health
+│   ├── error
+│   └── shutdown
+└── user/
+    ├── request
+    └── response
+<code>`</code></p>
+<p>This hierarchy makes it easy to:
+<li>Subscribe to all messages in a subtree (e.g., <code>research.#</code>)</li>
+<li>Route messages appropriately</li>
+<li>Debug communication flows</li></p>
+<h2>Quality of Service</h2>
+<p>Not all messages are equal. Life OS provides different QoS levels:</p>
+<h3>At Most Once</h3>
+<p>Messages delivered zero or one time. Used for:
+<li>Periodic status updates</li>
+<li>Non-critical notifications</li>
+<li>High-volume events where occasional loss is acceptable</li></p>
+<h3>At Least Once</h3>
+<p>Messages guaranteed to be delivered, possibly multiple times. Used for:
+<li>Command messages</li>
+<li>Critical system notifications</li>
+<li>Any message that must be processed</li></p>
+<h3>Exactly Once</h3>
+<p>Messages delivered precisely once. Used for:
+<li>Financial transactions</li>
+<li>State-changing operations</li>
+<li>Any operation with side effects</li></p>
+<h2>Error Handling</h2>
+<p>Communication failures are inevitable. Life OS handles them gracefully:</p>
+<h3>Retry Strategies</h3>
+<p>Failed messages are retried with exponential backoff:</p>
+<p><code>`</code>
+Retry 1: immediately
+Retry 2: 1 second
+Retry 3: 2 seconds
+Retry 4: 4 seconds
+...
+Retry N: 30 seconds (max)
+<code>`</code></p>
+<p>After maximum retries, messages move to a dead letter queue for manual inspection.</p>
+<h3>Circuit Breakers</h3>
+<p>When an agent consistently fails to respond, the circuit breaker opens:</p>
+<p>1. <strong>Closed</strong> - Normal operation
+2. <strong>Open</strong> - Agent marked as unavailable, messages queued
+3. <strong>Half-open</strong> - Periodic probes to check recovery</p>
+<h2>Security Considerations</h2>
+<p>All inter-agent communications are encrypted and authenticated:</p>
+<h3>Encryption</h3>
+<p>Messages use AES-256 encryption with rotating keys. Each agent has its own key pair.</p>
+<h3>Authentication</h3>
+<p>Agents authenticate using mutual TLS certificates. Unknown agents cannot publish or subscribe.</p>
+<h3>Authorization</h3>
+<p>Topic-level access controls restrict which agents can publish or subscribe:</p>
+<p><code>`</code>
+research-agents: publish(research.#), subscribe(research.#)
+content-agents: publish(content.#), subscribe(content.#)
+user-interface: subscribe(user.response.#)
+<code>`</code></p>
+<h2>Monitoring Communication</h2>
+<p>The health dashboard provides visibility into agent communications:</p>
+<p>Key metrics tracked:
+<li><strong>Messages per second</strong> - System throughput</li>
+<li><strong>Queue depth</strong> - Backlog accumulation</li>
+<li><strong>Delivery latency</strong> - End-to-end timing</li>
+<li><strong>Error rate</strong> - Failed message percentage</li>
+<li><strong>Agent responsiveness</strong> - Individual agent health</li></p>
+<h2>Best Practices</h2>
+<p>When adding new agents to Life OS:</p>
+<p>1. <strong>Use existing topics</strong> before creating new ones
+2. <strong>Keep payloads small</strong> - Reference large data by ID
+3. <strong>Handle your own errors</strong> - Don't crash the message bus
+4. <strong>Acknowledge promptly</strong> - Signal you're alive within seconds
+5. <strong>Log meaningfully</strong> - Include correlation IDs in all logs</p>
+<h2>Conclusion</h2>
+<p>Effective agent communication is what separates a collection of scripts from a true operating system. The protocols described here enable Life OS to coordinate dozens of agents reliably, securely, and at scale.</p>
+<p>Master these patterns, and your agents will work together seamlessly rather than tripping over each other.</p>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>Built with ❤️ using Life OS</p>
+    </footer>
+</body>
+</html>

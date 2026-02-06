@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Interface Setup and Configuration | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/articles">Articles</a>
+                <a href="/templates">Templates</a>
+                <a href="/journey">Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <a href="/articles" class="back-link">← Back to Articles</a>
+        
+        <article class="article-content">
+            <header class="article-header">
+                <span class="article-category">"Technical"</span>
+                <h1 class="article-title">Voice Interface Setup and Configuration</h1>
+                <div class="article-meta">
+                    <span>📖 "15 min read"</span>
+                    <span>✍️ By b3rt</span>
+                </div>
+            </header>
+            
+            <div class="article-body">
+<h1>Voice Interface Setup and Configuration</h1>
+<p>Voice transforms how you interact with Life OS—turning typing into natural conversation. This guide covers setting up comprehensive voice capabilities.</p>
+<h2>Voice Architecture Overview</h2>
+<p>Life OS voice interfaces consist of three components:</p>
+<p>1. <strong>Speech-to-Text (STT)</strong> - Converts your speech to text
+2. <strong>Natural Language Understanding (NLU)</strong> - Interprets intent and entities
+3. <strong>Text-to-Speech (TTS)</strong> - Converts responses back to audio</p>
+<p><code>`</code>
+[You Speak] → [Whisper STT] → [LLM NLU] → [Response] → [ElevenLabs TTS] → [You Hear]
+<code>`</code></p>
+<h2>Prerequisites</h2>
+<p>Before configuring voice, ensure you have:</p>
+<li>Working microphone and speakers</li>
+<li>OpenAI Whisper API key (or local Whisper installation)</li>
+<li>ElevenLabs API key for premium TTS</li>
+<li>At least 500MB free disk for local models</li>
+<h2>Step 1: Configure Speech-to-Text</h2>
+<h3>Option A: OpenAI Whisper (Cloud)</h3>
+<p>1. Obtain your API key from platform.openai.com
+2. Configure in Life OS:</p>
+<p><code>`</code>bash
+openclaw config set voice.stt.provider openai
+openclaw config set voice.stt.api_key YOUR_OPENAI_API_KEY
+openclaw config set voice.stt.model whisper-1
+openclaw config set voice.stt.language en
+<code>`</code></p>
+<p>3. Test the configuration:</p>
+<p><code>`</code>bash
+openclaw voice test --stt
+<h1>Say something... transcribed text appears</h1>
+<code>`</code></p>
+<h3>Option B: Local Whisper (Privacy-Focused)</h3>
+<p>For offline transcription:</p>
+<p><code>`</code>bash
+<h1>Install Whisper locally</h1>
+pip install openai-whisper</p>
+<h1>Configure for local use</h1>
+openclaw config set voice.stt.provider local
+openclaw config set voice.stt.model base  # Options: tiny, base, small, medium, large
+openclaw config set voice.stt.device cpu    # Or cuda for GPU acceleration
+<h1>Test</h1>
+openclaw voice test --stt
+<code>`</code>
+<p>Model size recommendations:
+<li><strong>tiny</strong> - Fastest, lower accuracy (~75%)</li>
+<li><strong>base</strong> - Good balance (~90% accuracy)</li>
+<li><strong>small</strong> - Better accuracy (~95%)</li>
+<li><strong>medium</strong> - Slow, very accurate (~97%)</li>
+<li><strong>large</strong> - Very slow, best accuracy</li></p>
+<h2>Step 2: Configure Text-to-Speech</h2>
+<h3>ElevenLabs Setup (Premium)</h3>
+<p>1. Get your API key from elevenlabs.io
+2. Configure Life OS:</p>
+<p><code>`</code>bash
+openclaw config set voice.tts.provider elevenlabs
+openclaw config set voice.tts.api_key YOUR_ELEVENLABS_API_KEY
+openclaw config set voice.tts.voice_id Adam  # See available voices
+openclaw config set voice.tts.stability 0.5
+openclaw config set voice.tts.similarity_boost 0.75
+<code>`</code></p>
+<p>3. Test voice output:</p>
+<p><code>`</code>bash
+openclaw voice test --tts "Hello, I am your voice assistant"
+<code>`</code></p>
+<h3>Voice Selection</h3>
+<p>ElevenLabs offers multiple voices. Common choices:</p>
+<p>| Voice ID | Gender | Best For |
+|----------|--------|----------|
+| Adam | Male | General assistant |
+| Bella | Female | Friendly responses |
+| Antoni | Male | Professional tone |
+| Sarah | Female | Clear announcements |
+| Charlie | Male | Casual conversation |</p>
+<h3>Testing Different Voices</h3>
+<p><code>`</code>bash
+<h1>List available voices</h1>
+openclaw voice list-voices</p>
+<h1>Test specific voice</h1>
+openclaw voice test --voice Bella "Testing the Bella voice"
+<code>`</code>
+<h2>Step 3: Configure Wake Word</h2>
+<p>Activate voice mode with a wake word:</p>
+<p><code>`</code>bash
+openclaw config set voice.wake_word.enabled true
+openclaw config set voice.wake_word.word "hey assistant"
+openclaw config set voice.wake_word.sensitivity 0.6
+<code>`</code></p>
+<p>Wake word options:
+<li><strong>hey assistant</strong> - Standard activation</li>
+<li><strong>computer</strong> - Star Trek style</li>
+<li><strong>life os</strong> - Custom branded</li>
+<li><strong>listen</strong> - Simple command</li></p>
+<p>Test wake word detection:</p>
+<p><code>`</code>bash
+openclaw voice test --wake
+<h1>Say wake word... system acknowledges</h1>
+<code>`</code></p>
+<h2>Step 4: Channel Configuration</h2>
+<p>Connect voice to your messaging platforms:</p>
+<h3>Telegram Voice Commands</h3>
+<p><code>`</code>bash
+openclaw channel configure telegram --voice-enabled true
+openclaw channel configure telegram --voice_format audio_ogg  # Or audioMp3
+<code>`</code></p>
+<p>Telegram supports:
+<li>Voice messages (automatic transcription)</li>
+<li>Speech-to-command shortcuts</li>
+<li>Audio file processing</li></p>
+<h3>Discord Voice Integration</h3>
+<p><code>`</code>bash
+openclaw channel configure discord --voice-enabled true
+openclaw channel configure discord --voice_channel general
+<code>`</code></p>
+<p>Discord features:
+<li>Real-time voice command recognition</li>
+<li>Meeting transcription</li>
+<li>Voice activity detection</li></p>
+<h2>Step 5: Natural Language Understanding</h2>
+<p>Configure how Life OS interprets voice commands:</p>
+<p><code>`</code>bash
+<h1>Set NLU provider</h1>
+openclaw config set voice.nlu.provider kimichat  # Or claude, openai</p>
+<h1>Adjust interpretation settings</h1>
+openclaw config set voice.nlu.confidence_threshold 0.7
+openclaw config set voice.nlu.entity_extraction true
+openclaw config set voice.nlu.sentiment_analysis false
+<code>`</code>
+<p>Example voice interaction:</p>
+<p><code>`</code>
+You: "Hey assistant, what's on my agenda today?"</p>
+<p>System: (Transcribes) → (NLU interprets intent: task.list_today)
+         → (Executes) → (Synthesizes response)
+         
+System: "You have 3 tasks today:
+         - Review PR #42 (high priority)
+         - Team meeting at 2pm
+         - Write documentation for API"
+<code>`</code></p>
+<h2>Advanced Voice Features</h2>
+<h3>Custom Intents</h3>
+<p>Define your own voice commands:</p>
+<p><code>`</code>yaml
+<h1>config/voice/intents.yaml</h1>
+intents:
+  - name: quick_note
+    phrases:
+      - "note to self {note}"
+      - "remember {note}"
+      - "jot down {note}"
+    action: memory.quick_capture
+    entities:
+      - name: note
+        type: string
+        
+  - name: timer
+    phrases:
+      - "set timer for {minutes} minutes"
+      - "remind me in {minutes} minutes"
+      - "{minutes} minute timer"
+    action: automation.timer_start
+    entities:
+      - name: minutes
+        type: number
+<code>`</code></p>
+<h3>Voice Profiles</h3>
+<p>Create different voice behaviors:</p>
+<p><code>`</code>bash
+<h1>Create a formal profile for work hours</h1>
+openclaw voice profile create formal \
+  --voice professional \
+  --wake-word "computer" \
+  --response-length detailed</p>
+<h1>Create a casual profile for evenings</h1>
+openclaw voice profile create casual \
+  --voice friendly \
+  --wake-word "hey buddy" \
+  --response-length brief
+<h1>Switch between profiles</h1>
+openclaw voice profile switch formal
+<code>`</code>
+<h3>Noise Reduction</h3>
+<p>Improve accuracy in noisy environments:</p>
+<p><code>`</code>bash
+openclaw config set voice.processing.noise_reduction true
+openclaw config set voice.processing.noise_threshold 0.02
+openclaw config set voice.processing.auto_gain true
+<code>`</code></p>
+<h2>Troubleshooting</h2>
+<h3>Microphone Not Detected</h3>
+<p><code>`</code>bash
+<h1>List available input devices</h1>
+arecord -l                          # Linux
+sox --file-length /dev/null         # macOS
+<code>`</code></p>
+<p>Configure the correct device:</p>
+<p><code>`</code>bash
+openclaw config set voice.input.device hw:0,0
+openclaw config set voice.input.sample_rate 16000
+<code>`</code></p>
+<h3>Poor Transcription Accuracy</h3>
+<p>1. <strong>Speak more clearly</strong> - Whisper handles accents well but benefits from clarity
+2. <strong>Reduce background noise</strong> - Use noise-canceling microphones
+3. <strong>Check sample rate</strong> - 16000Hz is optimal for Whisper
+4. <strong>Use larger model</strong> - If accuracy is critical, switch to "medium" or "large"</p>
+<h3>Voice Responses Sound Robotic</h3>
+<p>1. <strong>Increase stability</strong> - Lower values (0.3-0.5) sound more expressive
+2. <strong>Adjust similarity boost</strong> - Higher values (0.8+) maintain consistency
+3. <strong>Try different voices</strong> - Some voices sound more natural
+4. <strong>Add emotional context</strong> - Configure emotional variants if available</p>
+<h2>Performance Optimization</h2>
+<h3>Latency Reduction</h3>
+<p>For faster responses:</p>
+<p><code>`</code>bash
+<h1>Use streaming transcription</h1>
+openclaw config set voice.stt.streaming true</p>
+<h1>Cache frequent responses</h1>
+openclaw config set voice.tts.cache true
+openclaw config set voice.tts.cache_size 100
+<h1>Preload voice model</h1>
+openclaw config set voice.stt.preload true
+<code>`</code>
+<h3>Resource Management</h3>
+<p>On resource-constrained systems:</p>
+<p><code>`</code>bash
+<h1>Use smaller Whisper model</h1>
+openclaw config set voice.stt.model base</p>
+<h1>Disable NLU caching</h1>
+openclaw config set voice.nlu.cache false
+<h1>Limit concurrent requests</h1>
+openclaw config set voice.max_concurrent 2
+<code>`</code>
+<h2>Security Considerations</h2>
+<p>Voice data is sensitive. Consider these safeguards:</p>
+<h3>Local Processing</h3>
+<p><code>`</code>bash
+<h1>Keep everything local for maximum privacy</h1>
+openclaw config set voice.stt.provider local
+openclaw config set voice.tts.provider local  # Requires TTS hardware
+<code>`</code></p>
+<h3>Data Retention</h3>
+<p><code>`</code>bash
+<h1>Don't store voice recordings</h1>
+openclaw config set voice.storage.enabled false</p>
+<h1>Auto-delete transcriptions after use</h1>
+openclaw config set voice.auto_delete true
+openclaw config set voice.auto_delete_hours 1
+<code>`</code>
+<h2>Conclusion</h2>
+<p>Voice integration transforms Life OS from a tool you type commands into—an assistant you talk to. The setup process involves configuring three distinct components, but the result is natural, hands-free interaction that fits seamlessly into your workflow.</p>
+<p>Start with cloud providers (Whisper + ElevenLabs) for best quality, then consider local alternatives if privacy or cost becomes a concern.</p>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>Built with ❤️ using Life OS</p>
+    </footer>
+</body>
+</html>

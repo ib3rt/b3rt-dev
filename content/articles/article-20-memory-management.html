@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Management Across Sessions | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/articles">Articles</a>
+                <a href="/templates">Templates</a>
+                <a href="/journey">Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <a href="/articles" class="back-link">← Back to Articles</a>
+        
+        <article class="article-content">
+            <header class="article-header">
+                <span class="article-category">"Technical"</span>
+                <h1 class="article-title">Memory Management Across Sessions</h1>
+                <div class="article-meta">
+                    <span>📖 "12 min read"</span>
+                    <span>✍️ By b3rt</span>
+                </div>
+            </header>
+            
+            <div class="article-body">
+<h1>Memory Management Across Sessions</h1>
+<p>A truly personal AI assistant remembers context from previous conversations, learns your preferences, and accumulates knowledge over time. Life OS implements sophisticated memory systems that persist across sessions.</p>
+<h2>Memory Architecture</h2>
+<p>Life OS uses a multi-layered memory system:</p>
+<p><code>`</code>
+┌─────────────────────────────────────────────────────────┐
+│                    Working Memory                        │
+│           (Current session, instant access)              │
+├─────────────────────────────────────────────────────────┤
+│                   Short-Term Memory                      │
+│              (Recent conversations, 7 days)              │
+├─────────────────────────────────────────────────────────┤
+│                  Long-Term Memory                        │
+│           (Preferences, learned patterns)               │
+├─────────────────────────────────────────────────────────┤
+│                   Semantic Memory                       │
+│              (Knowledge base, embeddings)                │
+└─────────────────────────────────────────────────────────┘
+<code>`</code></p>
+<h2>Working Memory</h2>
+<p>Working memory holds the current conversation context:</p>
+<p><code>`</code>python
+class WorkingMemory:
+    """Holds current session state."""
+    
+    def __init__(self):
+        self.messages = []           # Conversation history
+        self.entities = {}           # Extracted entities
+        self.intent = None           # Current intent
+        self.context = {}            # User context (location, time, etc.)
+        self.working_set = []       # Information being processed
+        
+    def add_message(self, role: str, content: str):
+        """Add message to conversation."""
+        self.messages.append({
+            'role': role,
+            'content': content,
+            'timestamp': now()
+        })
+        # Keep only last 50 messages
+        if len(self.messages) > 50:
+            self.messages = self.messages[-50:]
+<code>`</code></p>
+<p>Working memory is:
+<li><strong>Fastest</strong> - In-memory, microsecond access</li>
+<li><strong>Ephemeral</strong> - Lost on restart unless saved</li>
+<li><strong>Private</strong> - Never leaves the system</li></p>
+<h2>Short-Term Memory</h2>
+<p>Short-term memory retains recent conversations:</p>
+<p><code>`</code>python
+class ShortTermMemory:
+    """Retains recent context for 7 days."""
+    
+    def __init__(self, ttl_days=7):
+        self.storage = RedisStorage(ttl=ttl_days * 86400)
+    
+    async def save_conversation(self, user_id: str, messages: list):
+        """Save conversation with timestamp."""
+        await self.storage.save(
+            key=f"conv:{user_id}:{timestamp()}",
+            value=messages
+        )
+    
+    async def get_recent(self, user_id: str, hours: int = 24) -> list:
+        """Retrieve recent conversations."""
+        cutoff = now() - timedelta(hours=hours)
+        return await self.storage.query(
+            prefix=f"conv:{user_id}:",
+            after=cutoff
+        )
+<code>`</code></p>
+<h3>What Gets Stored</h3>
+<p>Short-term memory retains:
+<li>Full conversation transcripts</li>
+<li>Task-related discussions</li>
+<li>Contextual clarifications</li>
+<li>Problem-solving attempts</li></p>
+<h3>Automatic Cleanup</h3>
+<p><code>`</code>yaml
+<h1>config/memory/short-term.yaml</h1>
+retention:
+  default_days: 7
+  conversations_days: 7
+  tasks_days: 14
+  decisions_days: 30</p>
+<p>cleanup:
+  enabled: true
+  schedule: "0 3 <em> </em> *"  # 3 AM daily
+  batch_size: 1000
+<code>`</code></p>
+<h2>Long-Term Memory</h2>
+<p>Long-term memory stores learned preferences and patterns:</p>
+<p><code>`</code>python
+class LongTermMemory:
+    """Persistent user preferences and learned behaviors."""
+    
+    def __init__(self):
+        self.preferences = {}        # User settings
+        self.behavior_patterns = {}  # Learned behaviors
+        self.dislikes = {}          # Avoidance patterns
+        self.skills = {}            # Acquired capabilities
+        self.goals = []             # User objectives
+    
+    async def learn_preference(self, category: str, key: str, value: any):
+        """Store a learned preference."""
+        if category not in self.preferences:
+            self.preferences[category] = {}
+        self.preferences[category][key] = value
+        
+        # Also store the context of learning
+        await self.memory_graph.add(
+            subject=f"user:{user_id}",
+            predicate="learned_preference",
+            object=f"{category}:{key}",
+            context={"value": str(value), "timestamp": now()}
+        )
+    
+    async def get_preference(self, category: str, key: str) -> any:
+        """Retrieve a stored preference."""
+        return self.preferences.get(category, {}).get(key)
+<code>`</code></p>
+<h3>Preference Categories</h3>
+<p><code>`</code>
+preferences/
+├── communication/
+│   ├── tone: formal
+│   ├── detail_level: high
+│   └── response_length: medium
+├── workflow/
+│   ├── morning_brief: true
+│   ├── check_schedule_first: true
+│   └── default_agents: [research, content]
+├── content/
+│   ├── preferred_topics: [AI, automation]
+│   ├── writing_style: technical
+│   └── reading_level: advanced
+└── system/
+    ├── notifications: minimal
+    ├── auto_deploy: true
+    └── debug_mode: false
+<code>`</code></p>
+<h2>Semantic Memory</h2>
+<p>Semantic memory stores knowledge as embeddings for similarity search:</p>
+<p><code>`</code>python
+class SemanticMemory:
+    """Knowledge base with vector embeddings."""
+    
+    def __init__(self):
+        self.embeddings = WeaviateClient()
+        self.documents = QdrantCollection()
+    
+    async def add_knowledge(self, text: str, metadata: dict = None):
+        """Store knowledge with embedding."""
+        embedding = await self.get_embedding(text)
+        await self.embeddings.add(
+            vector=embedding,
+            payload={"text": text, **(metadata or {})}
+        )
+    
+    async def search(self, query: str, limit: int = 5) -> list:
+        """Find related knowledge."""
+        query_embedding = await self.get_embedding(query)
+        results = await self.embeddings.search(
+            query=query_embedding,
+            limit=limit
+        )
+        return results
+<code>`</code></p>
+<h3>Knowledge Organization</h3>
+<p><code>`</code>
+knowledge/
+├── concepts/
+│   ├── ai-agents.md
+│   ├── automation-patterns.md
+│   └── system-architecture.md
+├── procedures/
+│   ├── deployment.md
+│   ├── troubleshooting.md
+│   └── onboarding.md
+├── decisions/
+│   ├── 2026-01-15-model-selection.md
+│   └── 2026-01-20-deployment-strategy.md
+└── projects/
+    ├── life-os/
+    ├── website-redesign/
+    └── super-swarm/
+<code>`</code></p>
+<h2>Memory Retrieval</h2>
+<p>Life OS intelligently retrieves relevant memory:</p>
+<p><code>`</code>python
+class MemoryRetrieval:
+    """Intelligent memory retrieval system."""
+    
+    async def retrieve(self, query: str, user_context: dict) -> dict:
+        """Retrieve contextually relevant memories."""
+        
+        results = {
+            'working': await self.get_working(user_context),
+            'recent': await self.get_recent(user_context),
+            'preferences': await self.get_preferences(user_context),
+            'semantic': await self.semantic_search(query, user_context),
+        }
+        
+        # Score and rank all results
+        scored = self.score_results(query, results)
+        
+        return {
+            'memories': scored[:10],  # Top 10 most relevant
+            'sources': self.cite_sources(scored)
+        }
+    
+    def score_results(self, query: str, results: dict) -> list:
+        """Score and rank memories by relevance."""
+        scored = []
+        
+        for category, memories in results.items():
+            for memory in memories:
+                score = self.calculate_relevance(query, memory)
+                scored.append({**memory, 'score': score, 'category': category})
+        
+        return sorted(scored, key=lambda x: x['score'], reverse=True)
+<code>`</code></p>
+<h2>Memory Security</h2>
+<p>Memory contains sensitive personal data. Protect it:</p>
+<h3>Encryption</h3>
+<p><code>`</code>python
+class EncryptedMemory:
+    """Memory with automatic encryption."""
+    
+    def __init__(self, key: bytes):
+        self.cipher = AES256Cipher(key)
+    
+    async def save(self, key: str, value: any):
+        """Encrypt before saving."""
+        json_data = json.dumps(value)
+        encrypted = self.cipher.encrypt(json_data)
+        await self.storage.save(key, encrypted)
+    
+    async def load(self, key: str) -> any:
+        """Decrypt after loading."""
+        encrypted = await self.storage.load(key)
+        json_data = self.cipher.decrypt(encrypted)
+        return json.loads(json_data)
+<code>`</code></p>
+<h3>Access Control</h3>
+<p><code>`</code>yaml
+memory:
+  access:
+    # Who can read what
+    read:
+      user: [own_preferences, own_conversations]
+      agents: [working_memory]
+      admin: [all]
+      
+    # Who can write what
+    write:
+      user: [own_preferences]
+      agents: [conversation_memory, learned_patterns]
+      admin: [all]
+<code>`</code></p>
+<h2>Memory Operations</h2>
+<p>Common memory management tasks:</p>
+<h3>View All Memories</h3>
+<p><code>`</code>bash
+openclaw memory list --all --format json
+<code>`</code></p>
+<h3>Search Memories</h3>
+<p><code>`</code>bash
+openclaw memory search "deployment procedures"
+openclaw memory search "project decisions" --limit 20
+<code>`</code></p>
+<h3>Export Memory</h3>
+<p><code>`</code>bash
+openclaw memory export --user $USER --output backup.json
+<code>`</code></p>
+<h3>Clear Memory</h3>
+<p><code>`</code>bash
+<h1>Clear specific category</h1>
+openclaw memory clear --category short_term</p>
+<h1>Clear all (careful!)</h1>
+openclaw memory clear --all --confirm
+<code>`</code>
+<h2>Best Practices</h2>
+<p>1. <strong>Don't store everything</strong> - Be selective about long-term memory
+2. <strong>Regular reviews</strong> - Periodically review and prune memories
+3. <strong>Test retrieval</strong> - Ensure memories can be found when needed
+4. <strong>Backup regularly</strong> - Export memory to prevent data loss
+5. <strong>Respect privacy</strong> - Don't store sensitive data unencrypted</p>
+<h2>Conclusion</h2>
+<p>Memory is what transforms an AI tool into a personal assistant—one that knows your preferences, remembers your projects, and learns from interactions. The multi-layered architecture ensures speed for current tasks while accumulating wisdom over months and years of use.</p>
+<p>Invest time in configuring memory properly upfront, and your assistant becomes more helpful over time rather than starting fresh each conversation.</p>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>Built with ❤️ using Life OS</p>
+    </footer>
+</body>
+</html>
