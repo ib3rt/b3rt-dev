@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+    <style>
+        .hero { 
+            text-align: center; 
+            padding: 80px 20px; 
+            background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-secondary) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .hero h1 { 
+            font-size: 3em; 
+            margin-bottom: 20px; 
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .hero p { 
+            font-size: 1.2em; 
+            opacity: 0.8; 
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
+        .timeline {
+            padding: 60px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--glass-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .timeline-date {
+            min-width: 120px;
+            color: var(--accent-amber);
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .timeline-content h3 {
+            margin: 0 0 12px 0;
+            color: var(--accent-cyan);
+        }
+        .timeline-content p {
+            opacity: 0.8;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--glass-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--accent-green);
+            display: block;
+        }
+        .stat-label {
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/templates">Templates</a>
+                <a href="/journey" class="active">Journey</a>
+                <a href="/hierarchy">Hierarchy</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>🚀 The Journey</h1>
+            <p>From idea to autonomous empire — tracking the evolution of personal AI infrastructure</p>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">15</span>
+                <div class="stat-label">Genesis Agents</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5</span>
+                <div class="stat-label">Active Sites</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">25</span>
+                <div class="stat-label">Total Agents</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">∞</span>
+                <div class="stat-label">Possibilities</div>
+            </div>
+        </section>
+
+        <section class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2026-02-07</div>
+                <div class="timeline-content">
+                    <h3>🌅 Genesis Sprint Complete</h3>
+                    <p>Deployed 15 Genesis agents across infrastructure, security, development, and operations. Launched t3ch.b3rt.dev dashboard with real-time chat, agent management, and build queue tracking. All 5 business sites now live.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2026-02-06</div>
+                <div class="timeline-content">
+                    <h3>⚡ Infrastructure Stabilized</h3>
+                    <p>Resolved SSL certificate issues, AWS security group configurations, and DNS routing. Dashboard now running on VPS with Caddy reverse proxy. Systemd service implemented for stability.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2026-02-05</div>
+                <div class="timeline-content">
+                    <h3>🏗️ Business Sites Built</h3>
+                    <p>Created Sparkling Solutions and BE Repaired websites with professional designs, booking forms, and quote calculators. Deployed to Cloudflare Pages with custom domains.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2026-02-03</div>
+                <div class="timeline-content">
+                    <h3>⚛️ Atomrend Awakens</h3>
+                    <p>Initial OpenClaw deployment on AWS VPS. Established multi-agent architecture with specialized agents for different business functions. Defined communication protocols and agent hierarchy.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2026-01-31</div>
+                <div class="timeline-content">
+                    <h3>🎯 Vision Defined</h3>
+                    <p>Locked in FRUGAL and Open Source First principles. Established Sparkling Solutions (Airbnb cleaning) and BE Repaired (handyman) as initial business ventures. Multi-agent plan drafted.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
