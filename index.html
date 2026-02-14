@@ -5,68 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>b3rt.dev | Personal Tech Hub</title>
     <link rel="stylesheet" href="/design-system.css">
-    <style>
-        .hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-secondary) 100%); border-bottom: 1px solid var(--border-color); }
-        .hero h1 { font-size: 3em; margin-bottom: 20px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.2em; opacity: 0.8; max-width: 600px; margin: 0 auto; }
-        .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; padding: 40px; }
-        .article-card { padding: 28px; transition: all 0.3s ease; }
-        .article-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .article-card h3 { margin: 0 0 12px 0; font-size: 1.3em; }
-        .article-card p { opacity: 0.7; margin-bottom: 16px; line-height: 1.6; }
-        .article-meta { font-size: 0.85em; opacity: 0.6; margin-bottom: 16px; }
-        .category-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75em; margin-bottom: 12px; }
-        .category-life { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-        .category-tech { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-        .category-ai { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
-        .category-journey { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    </style>
 </head>
 <body>
     <nav class="glass-nav">
         <div class="nav-container">
-            <a href="/" class="nav-logo">🦞 b3rt</a>
+            <a href="/" class="nav-logo">b3rt</a>
             <div class="nav-links">
                 <a href="/" class="active">Home</a>
-                <a href="/templates">Templates</a>
-                <a href="/journey">Journey</a>
-                <a href="/hierarchy">Hierarchy</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
             </div>
         </div>
     </nav>
 
     <main>
         <section class="hero">
-            <h1>🦞 b3rt</h1>
-            <p>Personal Tech Hub — Building the future, one automated system at a time</p>
+            <h1 class="gradient-text">b3rt</h1>
+            <p>Personal Tech Hub â€” Building the future, one automated system at a time</p>
+            <div class="links">
+                <a href="/about.html" class="link">About Me</a>
+                <a href="/contact.html" class="link">Get in Touch</a>
+            </div>
         </section>
 
-        <section class="article-grid">
-            <article class="article-card glass-card">
-                <span class="category-badge category-life">Life OS</span>
-                <h3>Quick Start Guide</h3>
-                <p class="article-meta">8 min read</p>
-                <p>Get your Life OS running in minutes.</p>
-                <a href="/content/article-16-quick-start.html" class="btn-primary">Read →</a>
-            </article>
+        <section class="section">
+            <div class="section-title">
+                <h2>What I'm Building</h2>
+                <p>Exploring the intersection of AI, automation, and human potential</p>
+            </div>
+            <div class="cards container">
+                <div class="card">
+                    <h3>Life OS</h3>
+                    <p>A comprehensive personal operating system for the AI age. Automating workflows, organizing knowledge, and augmenting human capabilities.</p>
+                    <span class="tag">Automation</span>
+                    <span class="tag">Productivity</span>
+                </div>
+                <div class="card">
+                    <h3>OpenClaw</h3>
+                    <p>An extensible AI agent framework that puts the power of autonomous agents in your hands. Build, deploy, and orchestrate AI workflows.</p>
+                    <span class="tag">AI</span>
+                    <span class="tag">Open Source</span>
+                </div>
+                <div class="card">
+                    <h3>Business Automation</h3>
+                    <p>Helping businesses leverage AI to streamline operations, reduce costs, and unlock new opportunities in the rapidly evolving tech landscape.</p>
+                    <span class="tag">Consulting</span>
+                    <span class="tag">Strategy</span>
+                </div>
+            </div>
+        </section>
 
-            <article class="article-card glass-card">
-                <span class="category-badge category-ai">AI Trends</span>
-                <h3>OpenClaw Setup Guide</h3>
-                <p class="article-meta">15 min read</p>
-                <p>Complete installation and configuration guide.</p>
-                <a href="/content/openclaw-setup-guide.html" class="btn-primary">Read →</a>
-            </article>
-
-            <article class="article-card glass-card">
-                <span class="category-badge category-tech">Technical</span>
-                <h3>Agent Communication</h3>
-                <p class="article-meta">10 min read</p>
-                <p>How Life OS agents communicate.</p>
-                <a href="/content/article-17-agent-communication.html" class="btn-primary">Read →</a>
-            </article>
+        <section class="section" style="background: var(--bg-card); margin-top: var(--space-3xl);">
+            <div class="container" style="text-align: center; padding: var(--space-3xl) 0;">
+                <h2>Let's Build Together</h2>
+                <p style="max-width: 600px; margin: 0 auto var(--space-xl);">Whether you're looking to implement AI in your business or want to collaborate on cutting-edge projects, I'd love to hear from you.</p>
+                <a href="/contact.html" class="btn btn-primary">Get in Touch</a>
+            </div>
         </section>
     </main>
 
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 b3rt. Building the future, one system at a time.</p>
+        </div>
+    </footer>
 </body>
 </html>
