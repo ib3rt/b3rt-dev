@@ -17,11 +17,32 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
     - name: Install Wrangler CLI
       run: npm install -g wrangler
 
+    - name: Create Cloudflare Pages Project (if not exists)
+      run: |
+        # Try to get project info - if it fails, create the project
+        if ! wrangler pages project get b3rt-dev 2>/dev/null; then
+          echo "Project does not exist, creating..."
+          wrangler pages project create b3rt-dev --production-branch=main
+        else
+          echo "Project exists"
+        fi
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      continue-on-error: true
+
     - name: Deploy to Cloudflare Pages
-      run: wrangler pages deploy . --project-name=b3rt-dev --branch=main
+      run: |
+        echo "Attempting deployment..."
+        wrangler pages deploy . --project-name=b3rt-dev --branch=main --commit-dirty=true
       env:
         CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
