@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | b3rt.dev</title>
+    <link rel="stylesheet" href="/design-system.css">
+    <style>
+        .error-container {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+        .error-code {
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: var(--space-lg);
+        }
+        .error-message {
+            font-size: var(--text-xl);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xl);
+        }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">b3rt</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="gradient-text">Page Not Found</h1>
+        <p class="error-message">
+            The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; justify-content: center;">
+            <a href="/" class="btn btn-primary">Go Home</a>
+            <a href="/contact.html" class="btn btn-secondary">Contact Me</a>
+        </div>
+    </main>
+
+    <footer style="position: fixed; bottom: 0; width: 100%;">
+        <div class="container">
+            <p>&copy; 2026 b3rt. Building the future, one system at a time.</p>
+        </div>
+    </footer>
+</body>
+</html>
