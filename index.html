@@ -1,73 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>b3rt.dev | Personal Tech Hub</title>
-    <link rel="stylesheet" href="/design-system.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>B3RT // The Empire Stack</title>
+<meta name="description" content="The B3RT Empire — local service businesses, AI communities, and content tools. One shell. 16 sites. 12 dashboards." />
+<meta name="theme-color" content="#0a0a0f" />
+<meta property="og:title" content="B3RT // Stack Sats. Pwn Systems. Scale Empires." />
+<meta property="og:description" content="A multi-business empire run by Bert. Local services, AI communities, content tools — tracked in one shell." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-elev: #12121a;
+    --bg-card: #15151f;
+    --border: #1f1f2e;
+    --text: #e5e7eb;
+    --text-dim: #9ca3af;
+    --text-faint: #6b7280;
+    --cyan: #00D4FF;
+    --cyan-dim: rgba(0, 212, 255, 0.12);
+    --emerald: #10B981;
+    --emerald-dim: rgba(16, 185, 129, 0.12);
+    --radius: 14px;
+    --max: 1200px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  /* Subtle background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container { position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-weight: 800; font-size: 18px; letter-spacing: 0.05em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--text-dim);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-cta {
+    padding: 8px 16px; background: var(--cyan); color: #0a0a0f !important;
+    border-radius: 8px; font-weight: 600; font-size: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--cyan-dim); color: #0a0a0f !important; }
+  @media (max-width: 720px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+  }
+
+  /* HERO */
+  .hero {
+    padding: 120px 0 100px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+  }
+  h1.hero-title {
+    font-size: clamp(40px, 7vw, 84px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  h1.hero-title .accent {
+    background: linear-gradient(90deg, var(--cyan) 0%, var(--emerald) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--text-dim);
+    max-width: 680px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .hero-ctas {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 26px;
+    border-radius: 10px;
+    font-size: 15px; font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--cyan); color: #0a0a0f;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px var(--cyan-dim); }
+  .btn-secondary {
+    background: transparent; color: var(--text);
+    border-color: var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+  .arrow { transition: transform 0.2s; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* SECTION */
+  section { padding: 80px 0; }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .eyebrow {
+    color: var(--cyan);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h2.section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  /* SHOWCASE GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    display: flex; flex-direction: column;
+    text-align: left;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan);
+    background: var(--bg-elev);
+  }
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--cyan-dim);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .card-icon.emerald { background: var(--emerald-dim); }
+  .card h3 {
+    font-size: 19px; font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .card p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.55;
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  .card-link {
+    color: var(--cyan);
+    font-size: 14px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .card:hover .card-link .arrow { transform: translateX(3px); }
+
+  /* STAT CALLOUT */
+  .stat {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elev) 100%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 64px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--cyan-dim) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .stat > * { position: relative; z-index: 1; }
+  .stat-number {
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .stat-number .c { color: var(--cyan); }
+  .stat-number .e { color: var(--emerald); }
+  .stat-text {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin: 0 auto 16px;
+  }
+  .stat-cta {
+    margin-top: 28px;
+  }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 56px 40px;
+    text-align: center;
+  }
+  .newsletter h2 { margin-bottom: 12px; }
+  .newsletter-form {
+    display: flex; gap: 8px;
+    max-width: 480px;
+    margin: 28px auto 0;
+  }
+  .newsletter-form input[type="email"] {
+    flex: 1;
+    padding: 14px 18px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    transition: border-color 0.2s;
+  }
+  .newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--cyan);
+  }
+  .newsletter-form input[type="email"]::placeholder { color: var(--text-faint); }
+  .newsletter-form button {
+    padding: 14px 22px;
+    background: var(--cyan);
+    color: #0a0a0f;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .newsletter-form button:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--cyan-dim); }
+  .newsletter-fine {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-top: 16px;
+  }
+  @media (max-width: 520px) {
+    .newsletter-form { flex-direction: column; }
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 0 40px;
+    background: var(--bg);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 820px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  .footer-brand p {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-top: 12px;
+    max-width: 320px;
+  }
+  .footer-col h4 {
+    font-size: 12px; font-weight: 700;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    color: var(--text-dim);
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--cyan); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 13px;
+    color: var(--text-faint);
+  }
+  .footer-social { display: flex; gap: 16px; }
+  .footer-social a:hover { color: var(--cyan); }
+</style>
+<script defer data-domain="b3rt.dev" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-    <nav class="glass-nav">
-        <div class="nav-container">
-            <a href="/" class="nav-logo">b3rt</a>
-            <div class="nav-links">
-                <a href="/" class="active">Home</a>
-                <a href="/about.html">About</a>
-                <a href="/contact.html">Contact</a>
-            </div>
-        </div>
-    </nav>
 
-    <main>
-        <section class="hero">
-            <h1 class="gradient-text">b3rt</h1>
-            <p>Personal Tech Hub â€” Building the future, one automated system at a time</p>
-            <div class="links">
-                <a href="/about.html" class="link">About Me</a>
-                <a href="/contact.html" class="link">Get in Touch</a>
-            </div>
-        </section>
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-dot"></span>
+      B3RT
+    </a>
+    <div class="nav-links">
+      <a href="#empire">Empire</a>
+      <a href="#os">Empire OS</a>
+      <a href="#pulse">Pulse</a>
+      <a href="http://127.0.0.1:8097/" class="nav-cta">Join LSB →</a>
+    </div>
+  </div>
+</nav>
 
-        <section class="section">
-            <div class="section-title">
-                <h2>What I'm Building</h2>
-                <p>Exploring the intersection of AI, automation, and human potential</p>
-            </div>
-            <div class="cards container">
-                <div class="card">
-                    <h3>Life OS</h3>
-                    <p>A comprehensive personal operating system for the AI age. Automating workflows, organizing knowledge, and augmenting human capabilities.</p>
-                    <span class="tag">Automation</span>
-                    <span class="tag">Productivity</span>
-                </div>
-                <div class="card">
-                    <h3>OpenClaw</h3>
-                    <p>An extensible AI agent framework that puts the power of autonomous agents in your hands. Build, deploy, and orchestrate AI workflows.</p>
-                    <span class="tag">AI</span>
-                    <span class="tag">Open Source</span>
-                </div>
-                <div class="card">
-                    <h3>Business Automation</h3>
-                    <p>Helping businesses leverage AI to streamline operations, reduce costs, and unlock new opportunities in the rapidly evolving tech landscape.</p>
-                    <span class="tag">Consulting</span>
-                    <span class="tag">Strategy</span>
-                </div>
-            </div>
-        </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">◈ DIGITAL EMPIRE // 2026</div>
+    <h1 class="hero-title">
+      STACK SATS.<br>
+      PWN SYSTEMS.<br>
+      <span class="accent">SCALE EMPIRES.</span>
+    </h1>
+    <p class="hero-sub">
+      The B3RT Empire is a multi-business empire run by Bert. Local service businesses.
+      AI communities. Content tools. Tracking it all in one shell.
+    </p>
+    <div class="hero-ctas">
+      <a href="http://127.0.0.1:8097/" class="btn btn-primary">
+        Join the AI Profit Boardroom LSB
+        <span class="arrow">→</span>
+      </a>
+      <a href="http://127.0.0.1:8099/" class="btn btn-secondary">
+        Explore the Empire OS
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
 
-        <section class="section" style="background: var(--bg-card); margin-top: var(--space-3xl);">
-            <div class="container" style="text-align: center; padding: var(--space-3xl) 0;">
-                <h2>Let's Build Together</h2>
-                <p style="max-width: 600px; margin: 0 auto var(--space-xl);">Whether you're looking to implement AI in your business or want to collaborate on cutting-edge projects, I'd love to hear from you.</p>
-                <a href="/contact.html" class="btn btn-primary">Get in Touch</a>
-            </div>
-        </section>
-    </main>
+<!-- EMPIRE SHOWCASE -->
+<section id="empire">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">The Empire Stack</div>
+      <h2 class="section-title">Four fronts. One operator.</h2>
+      <p class="section-sub">
+        From a Massachusetts cleaning crew to a 12,000-member AI community — every business runs through the same shell.
+      </p>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 b3rt. Building the future, one system at a time.</p>
-        </div>
-    </footer>
+    <div class="grid">
+      <a href="http://127.0.0.1:8097/" class="card">
+        <div class="card-icon">💎</div>
+        <h3>AI Profit Boardroom</h3>
+        <p>The flagship AI community. Monthly LSB intensives, agentic workflows, and a private network of operators building with AI.</p>
+        <span class="card-link">Join the LSB <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://sparklingsolutionsboston.com" class="card">
+        <div class="card-icon emerald">✨</div>
+        <h3>Sparkling Solutions</h3>
+        <p>Boston-area residential and commercial cleaning. Booking, dispatch, and client OS — all run on Empire infrastructure.</p>
+        <span class="card-link">Book a clean <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://bepaired.com" class="card">
+        <div class="card-icon">🔧</div>
+        <h3>BE Repaired</h3>
+        <p>Small engine and equipment repair service. Lead intake, SOW estimates, and invoicing unified under the Empire OS.</p>
+        <span class="card-link">Request a repair <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://b3prompt.com" class="card">
+        <div class="card-icon emerald">⚡</div>
+        <h3>b3prompt</h3>
+        <p>Curated prompt library and AI tooling. Tested prompts for Claude, GPT, and local models — built by empire operators.</p>
+        <span class="card-link">Browse prompts <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EMPIRE OS STAT -->
+<section id="os">
+  <div class="container">
+    <div class="stat">
+      <div class="eyebrow">The Empire OS</div>
+      <div class="stat-number">
+        <span class="c">16</span> sites.
+        <span class="e">12</span> dashboards.
+        <span>1</span> shell.
+      </div>
+      <p class="stat-text">
+        Every site, every dashboard, every agent in the B3RT stack is unified under a single Empire OS shell —
+        <strong style="color:var(--text);">one FastAPI hub</strong>, one kanban, one cron, one revenue tracker. No more
+        duct-taped SaaS subscriptions. The empire runs on its own infrastructure.
+      </p>
+      <div class="stat-cta">
+        <a href="http://127.0.0.1:8099/" class="btn btn-primary">
+          Open Empire OS
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="pulse">
+  <div class="container">
+    <div class="newsletter">
+      <div class="eyebrow">Empire Pulse</div>
+      <h2 class="section-title">Get the Empire Pulse in your inbox.</h2>
+      <p class="section-sub">
+        Weekly dispatch: what shipped across the empire, what we learned building with AI, and the prompts that paid off.
+      </p>
+      <!-- BERT:b3rt-dev-subscribe-form
+           Replaces the old Buttondown embed form. Posts to a local /api/subscribe
+           endpoint that the Empire Hub will serve; emails land in
+           ~/AppData/Local/hermes/cache/empire_subscribers.db for later bulk export
+           to Buttondown. Interim copy: "we'll add you to the Buttondown list when we ship."
+      -->
+      <form id="b3rt-dev-subscribe-form" class="newsletter-form" data-source="b3rt-dev-homepage" novalidate>
+        <input type="email" name="email" placeholder="you@empire.com" required aria-label="Email address" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <input type="hidden" name="utm_source" value="" form="b3rt-dev-subscribe-form" />
+      <input type="hidden" name="utm_campaign" value="" form="b3rt-dev-subscribe-form" />
+      <p id="b3rt-dev-subscribe-status" class="newsletter-fine" aria-live="polite"></p>
+      <p class="newsletter-fine">
+        Captured locally for now — we'll add you to the Buttondown list the moment we ship it.
+        No spam. Unsubscribe anytime.
+      </p>
+      <script>
+      (function () {
+        var form = document.getElementById('b3rt-dev-subscribe-form');
+        if (!form) return;
+        try {
+          var sp = new URLSearchParams(window.location.search);
+          var us = form.querySelector('input[name="utm_source"]');
+          var uc = form.querySelector('input[name="utm_campaign"]');
+          if (us && sp.get('utm_source'))   us.value = sp.get('utm_source');
+          if (uc && sp.get('utm_campaign')) uc.value = sp.get('utm_campaign');
+        } catch (e) {}
+        var status = document.getElementById('b3rt-dev-subscribe-status');
+        form.addEventListener('submit', function (ev) {
+          ev.preventDefault();
+          if (!status) return;
+          status.textContent = 'Submitting…';
+          var fd = new FormData(form);
+          var body = {
+            email:        (fd.get('email') || '').toString().trim(),
+            source:       form.dataset.source || 'b3rt-dev-homepage',
+            utm_source:   (fd.get('utm_source') || '').toString() || null,
+            utm_campaign: (fd.get('utm_campaign') || '').toString() || null,
+          };
+          fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body),
+          }).then(function (r) { return r.json().then(function (j) { return {ok: r.ok, j: j}; }); })
+            .then(function (out) {
+              if (out.ok && out.j && out.j.subscriber_id) {
+                status.textContent = '✅ You\\'re on the list (id ' + out.j.subscriber_id.slice(0, 8) + '…). We\\'ll migrate you to Buttondown when it ships.';
+                form.reset();
+              } else {
+                var msg = (out.j && (out.j.detail || out.j.error)) || 'Could not subscribe. Try again?';
+                status.textContent = '⚠️ ' + msg;
+              }
+            }).catch(function () {
+              status.textContent = '⚠️ Network error. Try again?';
+            });
+        });
+      })();
+      </script>
+      <!-- /BERT:b3rt-dev-subscribe-form -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-dot"></span>
+          B3RT
+        </a>
+        <p>A multi-business empire run by Bert. Local services, AI communities, content tools — one shell.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empire</h4>
+        <ul>
+          <li><a href="http://127.0.0.1:8096/">Empire Hub</a></li>
+          <li><a href="http://127.0.0.1:8097/">AI Profit Boardroom</a></li>
+          <li><a href="http://127.0.0.1:8099/">Empire OS</a></li>
+          <li><a href="https://sparklingsolutionsboston.com">Sparkling Solutions</a></li>
+          <li><a href="https://bepaired.com">BE Repaired</a></li>
+          <li><a href="https://b3prompt.com">b3prompt</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Dashboards</h4>
+        <ul>
+          <li><a href="http://127.0.0.1:8095/">Empire Kanban</a></li>
+          <li><a href="http://127.0.0.1:8098/">Empire Health</a></li>
+          <li><a href="http://127.0.0.1:8100/">Empire Cron</a></li>
+          <li><a href="http://127.0.0.1:8101/">Empire Revenue</a></li>
+          <li><a href="http://127.0.0.1:8102/">Empire Sites Audit</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:bert@b3rt.dev">bert@b3rt.dev</a></li>
+          <li><a href="#pulse">Empire Pulse</a></li>
+          <li><a href="https://x.com/b3rtempire" target="_blank" rel="noopener">X / Twitter</a></li>
+          <li><a href="https://github.com/b3rtempire" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://buttondown.email/b3rt" target="_blank" rel="noopener">Buttondown</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 B3RT Empire. Built in the Empire OS.</div>
+      <div class="footer-social">
+        <a href="https://x.com/b3rtempire" target="_blank" rel="noopener">X</a>
+        <a href="https://github.com/b3rtempire" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:bert@b3rt.dev">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
