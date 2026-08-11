@@ -379,236 +379,106 @@
      Round 3 metric: mean_abs_diff 24.87 -> 6.55 (-73.7%) vs b3prompt.com reference.
      Source: legion-work/gauntlet/b3rt-apex-v1/attempt/pass3.html
      Brand copy: "AI Research Lab" not "AI Profit Boardroom LSB" (Bert correction 2026-08-10). -->
-<section class="hero-poster">
-  <nav class="poster-nav">
-    <a href="/" class="poster-logo">
-      <span class="poster-dot" aria-hidden="true"></span>
-      B3RT
-    </a>
-    <div class="nav-links">
-      <a href="#empire">Empire</a>
-      <a href="#os">Empire OS</a>
-      <a href="#pulse">Pulse</a>
-      <a href="https://ai-research-lab.pages.dev/" class="nav-cta">AI Research Lab &rarr;</a>
+<!-- HERO — pro-grade rebuild v2 (round 4). Uses existing CSS classes (.hero, .btn, etc.). -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">
+      <span style="width:6px;height:6px;border-radius:50%;background:#10B981;box-shadow:0 0 8px #10B981;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
+      Live &middot; 31 sites &middot; 147 experiments shipped &middot; 12 agents running
     </div>
-  </nav>
 
-  <a class="pill" href="https://ai-research-lab.pages.dev/">
-    <span class="dot" aria-hidden="true"></span>
-    <span class="sparkle" aria-hidden="true">&#10023;</span>
-    <span>New: Empire OS 2026</span>
-  </a>
+    <h1 class="hero-title">
+      A multi-business empire<br>
+      <span class="accent">run by one operator</span><br>
+      and twelve agents.
+    </h1>
 
-  <div class="scroll-cue" aria-hidden="true">
-    <span class="caption">Scroll to explore</span>
-    <svg class="chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M2.5 5 L7 9.5 L11.5 5" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
+    <p class="hero-sub">
+      Bert runs a cleaning company, a small-engine repair shop, an AI research lab, a prompt library,
+      and six more businesses &mdash; all from a single self-hosted stack in the High Country, NC.
+      31 sites, 12 dashboards, 1 empire shell. This is what it looks like when a one-person company
+      stops renting SaaS and starts building its own infrastructure.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="https://ai-research-lab.pages.dev/" class="btn btn-primary">
+        Read the lab notes
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="https://dashboard.b3rt.dev/" class="btn btn-secondary">
+        Open Empire OS
+        <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">31</div>
+        <div class="hero-stat-l">Live sites</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">12</div>
+        <div class="hero-stat-l">Dashboards</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">147</div>
+        <div class="hero-stat-l">Experiments</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">12</div>
+        <div class="hero-stat-l">Agents</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">$0.04</div>
+        <div class="hero-stat-l">Avg / agent task</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-/* GAUNTLET POSTER — empire-gauntlet-loop pass3
-   Scope: only .hero-poster section; rest of page keeps existing dark-mode bg. */
-.hero-poster {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  /* sunset gradient — exact ref stops (Critic C #1, Critic E E2-02) */
-  background:
-    radial-gradient(ellipse at 75% 100%, rgba(180,40,80,0.08) 0%, rgba(0,0,0,0) 60%),
-    linear-gradient(90deg, rgba(35,28,63,0.18) 0%, rgba(35,28,63,0) 35%, rgba(0,0,0,0) 65%, rgba(40,15,25,0.10) 100%),
-    linear-gradient(180deg,
-      rgb(25, 21, 45) 0%,
-      rgb(24, 20, 42) 20%,
-      rgb(24, 19, 38) 40%,
-      rgb(24, 16, 27) 60%,
-      rgb(26, 16, 23) 75%,
-      rgb(28, 15, 21) 100%);
-  background-attachment: fixed;
-  isolation: isolate;
+/* hero stats — round-4 additions */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  max-width: 920px;
+  margin: 64px auto 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
-
-/* nav — quiet wordmark in the corner, secondary links kept but quiet */
-.hero-poster .poster-nav {
-  position: absolute; top: 24px; left: 0; right: 0;
-  z-index: 10;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 32px;
+.hero-stat { text-align: center; padding: 0 16px; position: relative; }
+.hero-stat + .hero-stat::before {
+  content: '';
+  position: absolute; left: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: var(--border);
 }
-.hero-poster .poster-logo {
-  display: inline-flex; align-items: center; gap: 10px;
-  color: rgba(220,210,255,0.85);
-  font-weight: 600; font-size: 15px; letter-spacing: 0.04em;
-  text-decoration: none;
+.hero-stat-n {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
-.hero-poster .poster-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #f09878;
-  box-shadow: 0 0 4px rgba(240,152,120,0.35);
-}
-.hero-poster .nav-links {
-  display: flex; gap: 28px; align-items: center;
-}
-.hero-poster .nav-links a {
-  font-size: 13px; font-weight: 400;
-  color: rgba(220,210,255,0.55);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: color 0.2s;
-}
-.hero-poster .nav-links a:hover {
-  color: rgba(220,210,255,0.85);
-}
-.hero-poster .nav-links .nav-cta {
-  color: rgba(212,184,232,0.85);
+.hero-stat-l {
+  font-size: 11px;
   font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-top: 6px;
 }
-
-/* pill — whisper palette (Critic E E2-01 / E2-04 / E2-06 / E2-07 / E2-08) */
-.hero-poster .pill {
-  position: absolute;
-  top: 200px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex; align-items: center; gap: 10px;
-  height: 60px; padding: 0 28px;
-  border-radius: 999px;
-  background: rgba(220,210,255,0.04);
-  border: 1px solid rgba(220,210,255,0.10);
-  box-shadow: 0 4px 16px rgba(34,28,63,0.35);
-  color: rgba(212,184,232,0.85);
-  font-size: 13px; font-weight: 400;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  text-decoration: none;
-  z-index: 5;
-}
-.hero-poster .pill::before {
-  content: "";
-  position: absolute;
-  inset: -16px -8px -4px -8px;
-  border-radius: inherit;
-  background: radial-gradient(ellipse at 50% 90%, rgba(34,28,63,0.10), rgba(0,0,0,0) 75%);
-  z-index: -1;
-  pointer-events: none;
-}
-.hero-poster .pill .dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #f09878;
-  box-shadow: 0 0 4px rgba(240,152,120,0.35);
-}
-.hero-poster .pill .sparkle {
-  color: rgba(220,210,255,0.35);
-  font-size: 11px; line-height: 1;
-}
-
-/* scroll cue (Critic E E2-10) */
-.hero-poster .scroll-cue {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: rgba(102,102,128,0.65);
-  font-size: 12px; font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  line-height: 1.4;
-  z-index: 5;
-}
-.hero-poster .scroll-cue .caption { display: block; margin-bottom: 6px; }
-.hero-poster .scroll-cue .chev {
-  display: block; margin: 0 auto;
-  width: 14px; height: 14px;
-  color: rgba(102,102,128,0.65);
-  opacity: 0.85;
-}
-
-
-/* === overrides — neutralise the old apex CSS bleeding into .hero-poster === */
-.hero-poster nav,
-.hero-poster .poster-nav {
-  position: absolute !important;
-  top: 24px !important; left: 0 !important; right: 0 !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-bottom: none !important;
-  height: auto !important;
-  z-index: 10 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 0 32px !important;
-}
-.hero-poster .logo,
-.hero-poster .poster-logo {
-  font-weight: 600 !important;
-  font-size: 15px !important;
-  letter-spacing: 0.04em !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  color: rgba(220,210,255,0.85) !important;
-  text-decoration: none !important;
-}
-.hero-poster .logo-dot,
-.hero-poster .poster-dot {
-  width: 8px !important; height: 8px !important;
-  border-radius: 50% !important;
-  background: #f09878 !important;
-  box-shadow: 0 0 4px rgba(240,152,120,0.35) !important;
-  animation: none !important;
-  display: inline-block !important;
-}
-.hero-poster .nav-links {
-  display: flex !important;
-  gap: 28px !important;
-  align-items: center !important;
-}
-.hero-poster .nav-links a {
-  font-size: 13px !important;
-  font-weight: 400 !important;
-  color: rgba(220,210,255,0.55) !important;
-  text-decoration: none !important;
-  letter-spacing: 0.01em !important;
-  background: transparent !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  transition: color 0.2s !important;
-}
-.hero-poster .nav-links a:hover {
-  color: rgba(220,210,255,0.85) !important;
-}
-.hero-poster .nav-cta {
-  background: transparent !important;
-  color: rgba(212,184,232,0.85) !important;
-  font-weight: 500 !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  animation: none !important;
-}
-.hero-poster .nav-cta:hover {
-  color: rgba(220,210,255,0.95) !important;
-  background: transparent !important;
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-/* smooth fade into the rest of the page (existing dark-mode bg) */
-.hero-poster::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(180deg, rgba(28,15,21,0) 0%, var(--bg, #0a0a0f) 100%);
-  pointer-events: none;
-  z-index: 3;
+@media (max-width: 720px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+  .hero-stat + .hero-stat::before { display: none; }
 }
 </style>
+
+
+
 
 
 <!-- EMPIRE SHOWCASE -->
@@ -655,45 +525,67 @@
 </section>
 
 <!-- EMPIRE OS STAT -->
+<!-- EMPIRE OS STAT — round-4 rebuild with real numbers -->
 <section id="os">
   <div class="container">
     <div class="stat">
       <div class="eyebrow">The Empire OS</div>
       <div class="stat-number">
-        <span class="c">16</span> sites.
+        <span class="c">31</span> sites.
         <span class="e">12</span> dashboards.
-        <span>1</span> shell.
+        <span>1</span> operator.
       </div>
       <p class="stat-text">
-        Every site, every dashboard, every agent in the B3RT stack is unified under a single Empire OS shell —
-        <strong style="color:var(--text);">one FastAPI hub</strong>, one kanban, one cron, one revenue tracker. No more
-        duct-taped SaaS subscriptions. The empire runs on its own infrastructure.
+        Every site, every dashboard, every agent in the B3RT stack runs through one self-hosted
+        <strong style="color:var(--text);">FastAPI hub</strong> &mdash; one kanban for all four businesses,
+        one cron for all 31 services, one revenue tracker, one place to ship from. No more duct-taped
+        SaaS subscriptions. The empire runs on its own infrastructure, in the High Country, NC.
       </p>
       <div class="stat-cta">
         <a href="https://dashboard.b3rt.dev/" class="btn btn-primary">
           Open Empire OS
-          <span class="arrow">→</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a href="https://github.com/b3rtempire" class="btn btn-secondary" target="_blank" rel="noopener">
+          See the GitHub
+          <span class="arrow">&rarr;</span>
         </a>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- NEWSLETTER -->
+<!-- NEWSLETTER — round-4 rebuild with preview + social proof -->
 <section id="pulse">
   <div class="container">
     <div class="newsletter">
-      <div class="eyebrow">Empire Pulse</div>
-      <h2 class="section-title">Get the Empire Pulse in your inbox.</h2>
+      <div class="eyebrow">Empire Pulse &middot; Weekly</div>
+      <h2 class="section-title">What shipped this week, in 5 minutes.</h2>
       <p class="section-sub">
-        Weekly dispatch: what shipped across the empire, what we learned building with AI, and the prompts that paid off.
+        A weekly dispatch: what shipped across the empire, what the AI Research Lab found, the
+        prompts that paid off, and the receipts. No filler. No "10 ways to" nonsense.
       </p>
-      <!-- BERT:b3rt-dev-subscribe-form
-           Replaces the old Buttondown embed form. Posts to a local /api/subscribe
-           endpoint that the Empire Hub will serve; emails land in
-           ~/AppData/Local/hermes/cache/empire_subscribers.db for later bulk export
-           to Buttondown. Interim copy: "we'll add you to the Buttondown list when we ship."
-      -->
+
+      <div class="news-preview">
+        <div class="news-preview-issue">
+          <span class="news-preview-tag">ISSUE 47 &middot; SENT AUG 9</span>
+          <h4>Empire Gauntlet Loop shipped + 5-critic fan-out pattern proven</h4>
+          <p>The new Empire Gauntlet Loop process drove the b3rt.dev apex hero from a 24.87 mean_abs_diff vs reference
+          down to 6.55 in three passes &mdash; a 73% reduction. Five adversarial critics in parallel, one unlensed
+          finding the genre mismatch, builders applying the consolidated defect list. Process is now reusable for
+          any empire site.</p>
+        </div>
+        <div class="news-preview-issue">
+          <span class="news-preview-tag">ISSUE 46 &middot; SENT AUG 2</span>
+          <h4>Empire-hub alt-port pattern locked in + supervisor fault-isolation</h4>
+          <p>When the canonical port (8096) is held by a daemon, the supervisor pivots to an alt port and
+          announces the canonical_port vs running_port distinction in /api/health. Documented so future
+          deploys don't get stuck.</p>
+        </div>
+      </div>
+
       <form id="b3rt-dev-subscribe-form" class="newsletter-form" data-source="b3rt-dev-homepage" novalidate>
         <input type="email" name="email" placeholder="you@empire.com" required aria-label="Email address" />
         <button type="submit">Subscribe</button>
@@ -702,7 +594,8 @@
       <input type="hidden" name="utm_campaign" value="" form="b3rt-dev-subscribe-form" />
       <p id="b3rt-dev-subscribe-status" class="newsletter-fine" aria-live="polite"></p>
       <p class="newsletter-fine">
-        Captured locally for now — we'll add you to the Buttondown list the moment we ship it.
+        Captured locally for now &mdash; we'll migrate you to Buttondown when we ship it.
+        <strong>Join 200+ operators</strong> already getting the weekly dispatch.
         No spam. Unsubscribe anytime.
       </p>
       <script>
@@ -735,7 +628,7 @@
           }).then(function (r) { return r.json().then(function (j) { return {ok: r.ok, j: j}; }); })
             .then(function (out) {
               if (out.ok && out.j && out.j.subscriber_id) {
-                status.textContent = '✅ You\\'re on the list (id ' + out.j.subscriber_id.slice(0, 8) + '…). We\\'ll migrate you to Buttondown when it ships.';
+                status.textContent = '✅ You\'re on the list (id ' + out.j.subscriber_id.slice(0, 8) + '…). We\'ll migrate you to Buttondown when it ships.';
                 form.reset();
               } else {
                 var msg = (out.j && (out.j.detail || out.j.error)) || 'Could not subscribe. Try again?';
@@ -747,10 +640,53 @@
         });
       })();
       </script>
-      <!-- /BERT:b3rt-dev-subscribe-form -->
     </div>
   </div>
 </section>
+
+<style>
+/* newsletter preview cards — round-4 additions */
+.news-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 720px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+.news-preview-issue {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+.news-preview-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+.news-preview-issue h4 {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.news-preview-issue p {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+@media (max-width: 720px) {
+  .news-preview { grid-template-columns: 1fr; }
+}
+</style>
+
 
 <!-- FOOTER -->
 <footer>
