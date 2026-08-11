@@ -375,46 +375,241 @@
 </head>
 <body>
 
-<nav>
-  <div class="container nav-inner">
-    <a href="#" class="logo">
-      <span class="logo-dot"></span>
+<!-- GAUNTLET POSTER HERO (replaces nav + hero) — empire-gauntlet-loop pass3
+     Round 3 metric: mean_abs_diff 24.87 -> 6.55 (-73.7%) vs b3prompt.com reference.
+     Source: legion-work/gauntlet/b3rt-apex-v1/attempt/pass3.html
+     Brand copy: "AI Research Lab" not "AI Profit Boardroom LSB" (Bert correction 2026-08-10). -->
+<section class="hero-poster">
+  <nav class="poster-nav">
+    <a href="/" class="poster-logo">
+      <span class="poster-dot" aria-hidden="true"></span>
       B3RT
     </a>
     <div class="nav-links">
       <a href="#empire">Empire</a>
       <a href="#os">Empire OS</a>
       <a href="#pulse">Pulse</a>
-      <a href="http://127.0.0.1:8097/" class="nav-cta">Join LSB →</a>
+      <a href="https://ai-research-lab.pages.dev/" class="nav-cta">AI Research Lab &rarr;</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-tag">◈ DIGITAL EMPIRE // 2026</div>
-    <h1 class="hero-title">
-      STACK SATS.<br>
-      PWN SYSTEMS.<br>
-      <span class="accent">SCALE EMPIRES.</span>
-    </h1>
-    <p class="hero-sub">
-      The B3RT Empire is a multi-business empire run by Bert. Local service businesses.
-      AI communities. Content tools. Tracking it all in one shell.
-    </p>
-    <div class="hero-ctas">
-      <a href="http://127.0.0.1:8097/" class="btn btn-primary">
-        Join the AI Profit Boardroom LSB
-        <span class="arrow">→</span>
-      </a>
-      <a href="http://127.0.0.1:8099/" class="btn btn-secondary">
-        Explore the Empire OS
-        <span class="arrow">→</span>
-      </a>
-    </div>
+  <a class="pill" href="https://ai-research-lab.pages.dev/">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="sparkle" aria-hidden="true">&#10023;</span>
+    <span>New: Empire OS 2026</span>
+  </a>
+
+  <div class="scroll-cue" aria-hidden="true">
+    <span class="caption">Scroll to explore</span>
+    <svg class="chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M2.5 5 L7 9.5 L11.5 5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
   </div>
 </section>
+
+<style>
+/* GAUNTLET POSTER — empire-gauntlet-loop pass3
+   Scope: only .hero-poster section; rest of page keeps existing dark-mode bg. */
+.hero-poster {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* sunset gradient — exact ref stops (Critic C #1, Critic E E2-02) */
+  background:
+    radial-gradient(ellipse at 75% 100%, rgba(180,40,80,0.08) 0%, rgba(0,0,0,0) 60%),
+    linear-gradient(90deg, rgba(35,28,63,0.18) 0%, rgba(35,28,63,0) 35%, rgba(0,0,0,0) 65%, rgba(40,15,25,0.10) 100%),
+    linear-gradient(180deg,
+      rgb(25, 21, 45) 0%,
+      rgb(24, 20, 42) 20%,
+      rgb(24, 19, 38) 40%,
+      rgb(24, 16, 27) 60%,
+      rgb(26, 16, 23) 75%,
+      rgb(28, 15, 21) 100%);
+  background-attachment: fixed;
+  isolation: isolate;
+}
+
+/* nav — quiet wordmark in the corner, secondary links kept but quiet */
+.hero-poster .poster-nav {
+  position: absolute; top: 24px; left: 0; right: 0;
+  z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+}
+.hero-poster .poster-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: rgba(220,210,255,0.85);
+  font-weight: 600; font-size: 15px; letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.hero-poster .poster-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #f09878;
+  box-shadow: 0 0 4px rgba(240,152,120,0.35);
+}
+.hero-poster .nav-links {
+  display: flex; gap: 28px; align-items: center;
+}
+.hero-poster .nav-links a {
+  font-size: 13px; font-weight: 400;
+  color: rgba(220,210,255,0.55);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.hero-poster .nav-links a:hover {
+  color: rgba(220,210,255,0.85);
+}
+.hero-poster .nav-links .nav-cta {
+  color: rgba(212,184,232,0.85);
+  font-weight: 500;
+}
+
+/* pill — whisper palette (Critic E E2-01 / E2-04 / E2-06 / E2-07 / E2-08) */
+.hero-poster .pill {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 60px; padding: 0 28px;
+  border-radius: 999px;
+  background: rgba(220,210,255,0.04);
+  border: 1px solid rgba(220,210,255,0.10);
+  box-shadow: 0 4px 16px rgba(34,28,63,0.35);
+  color: rgba(212,184,232,0.85);
+  font-size: 13px; font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  text-decoration: none;
+  z-index: 5;
+}
+.hero-poster .pill::before {
+  content: "";
+  position: absolute;
+  inset: -16px -8px -4px -8px;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 90%, rgba(34,28,63,0.10), rgba(0,0,0,0) 75%);
+  z-index: -1;
+  pointer-events: none;
+}
+.hero-poster .pill .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #f09878;
+  box-shadow: 0 0 4px rgba(240,152,120,0.35);
+}
+.hero-poster .pill .sparkle {
+  color: rgba(220,210,255,0.35);
+  font-size: 11px; line-height: 1;
+}
+
+/* scroll cue (Critic E E2-10) */
+.hero-poster .scroll-cue {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba(102,102,128,0.65);
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1.4;
+  z-index: 5;
+}
+.hero-poster .scroll-cue .caption { display: block; margin-bottom: 6px; }
+.hero-poster .scroll-cue .chev {
+  display: block; margin: 0 auto;
+  width: 14px; height: 14px;
+  color: rgba(102,102,128,0.65);
+  opacity: 0.85;
+}
+
+
+/* === overrides — neutralise the old apex CSS bleeding into .hero-poster === */
+.hero-poster nav,
+.hero-poster .poster-nav {
+  position: absolute !important;
+  top: 24px !important; left: 0 !important; right: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  height: auto !important;
+  z-index: 10 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 32px !important;
+}
+.hero-poster .logo,
+.hero-poster .poster-logo {
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.04em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  color: rgba(220,210,255,0.85) !important;
+  text-decoration: none !important;
+}
+.hero-poster .logo-dot,
+.hero-poster .poster-dot {
+  width: 8px !important; height: 8px !important;
+  border-radius: 50% !important;
+  background: #f09878 !important;
+  box-shadow: 0 0 4px rgba(240,152,120,0.35) !important;
+  animation: none !important;
+  display: inline-block !important;
+}
+.hero-poster .nav-links {
+  display: flex !important;
+  gap: 28px !important;
+  align-items: center !important;
+}
+.hero-poster .nav-links a {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: rgba(220,210,255,0.55) !important;
+  text-decoration: none !important;
+  letter-spacing: 0.01em !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  transition: color 0.2s !important;
+}
+.hero-poster .nav-links a:hover {
+  color: rgba(220,210,255,0.85) !important;
+}
+.hero-poster .nav-cta {
+  background: transparent !important;
+  color: rgba(212,184,232,0.85) !important;
+  font-weight: 500 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+.hero-poster .nav-cta:hover {
+  color: rgba(220,210,255,0.95) !important;
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* smooth fade into the rest of the page (existing dark-mode bg) */
+.hero-poster::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(28,15,21,0) 0%, var(--bg, #0a0a0f) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+</style>
+
 
 <!-- EMPIRE SHOWCASE -->
 <section id="empire">
@@ -428,9 +623,9 @@
     </div>
 
     <div class="grid">
-      <a href="http://127.0.0.1:8097/" class="card">
+      <a href="https://ai-research-lab.pages.dev/" class="card">
         <div class="card-icon">💎</div>
-        <h3>AI Profit Boardroom</h3>
+        <h3>AI Research Lab</h3>
         <p>The flagship AI community. Monthly LSB intensives, agentic workflows, and a private network of operators building with AI.</p>
         <span class="card-link">Join the LSB <span class="arrow">→</span></span>
       </a>
@@ -475,7 +670,7 @@
         duct-taped SaaS subscriptions. The empire runs on its own infrastructure.
       </p>
       <div class="stat-cta">
-        <a href="http://127.0.0.1:8099/" class="btn btn-primary">
+        <a href="https://dashboard.b3rt.dev/" class="btn btn-primary">
           Open Empire OS
           <span class="arrow">→</span>
         </a>
@@ -572,9 +767,9 @@
       <div class="footer-col">
         <h4>Empire</h4>
         <ul>
-          <li><a href="http://127.0.0.1:8096/">Empire Hub</a></li>
-          <li><a href="http://127.0.0.1:8097/">AI Profit Boardroom</a></li>
-          <li><a href="http://127.0.0.1:8099/">Empire OS</a></li>
+          <li><a href="https://research.b3rt.dev">AI Research Lab</a></li>
+          <li><a href="https://t3ch.b3rt.dev">T3CH Lab</a></li>
+          <li><a href="https://art.b3rt.dev">Art Quarterly</a></li>
           <li><a href="https://sparklingsolutionsboston.com">Sparkling Solutions</a></li>
           <li><a href="https://bepaired.com">BE Repaired</a></li>
           <li><a href="https://b3prompt.com">b3prompt</a></li>
@@ -584,11 +779,11 @@
       <div class="footer-col">
         <h4>Dashboards</h4>
         <ul>
-          <li><a href="http://127.0.0.1:8095/">Empire Kanban</a></li>
-          <li><a href="http://127.0.0.1:8098/">Empire Health</a></li>
-          <li><a href="http://127.0.0.1:8100/">Empire Cron</a></li>
-          <li><a href="http://127.0.0.1:8101/">Empire Revenue</a></li>
-          <li><a href="http://127.0.0.1:8102/">Empire Sites Audit</a></li>
+          <li><a href="https://crypto.b3rt.dev">Crypto Treasury</a></li>
+          <li><a href="https://dashboard.b3rt.dev">Empire OS</a></li>
+          <li><a href="https://docs.b3rt.dev">Docs</a></li>
+          <li><a href="https://services.b3rt.dev">Services</a></li>
+          <li><a href="https://art.b3rt.dev">Editorial Archive</a></li>
         </ul>
       </div>
 
