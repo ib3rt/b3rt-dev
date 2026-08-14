@@ -139,6 +139,37 @@
   .hero-ctas {
     display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
   }
+  .hero-edge-badges {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .edge-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px;
+    background: rgba(192, 138, 46, 0.08);
+    color: #c08a2e;
+    border: 1px solid rgba(192, 138, 46, 0.35);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .edge-badge:hover {
+    background: rgba(192, 138, 46, 0.16);
+    border-color: rgba(192, 138, 46, 0.6);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(192, 138, 46, 0.15);
+  }
+  .edge-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #c08a2e;
+    box-shadow: 0 0 8px #c08a2e;
+  }
+  .edge-badge .ext {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-left: 2px;
+  }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 14px 26px;
@@ -408,6 +439,17 @@
       <a href="https://dashboard.b3rt.dev/" class="btn btn-secondary">
         Open Empire OS
         <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="hero-edge-badges">
+      <a href="http://127.0.0.1:8320" class="edge-badge" target="_blank" rel="noopener">
+        <span class="dot"></span>
+        Empire Edge <span class="ext">&#8599;</span>
+      </a>
+      <a href="http://127.0.0.1:8097" class="edge-badge" target="_blank" rel="noopener">
+        <span class="dot"></span>
+        Empire Pulse <span class="ext">&#8599;</span>
       </a>
     </div>
 
