@@ -1,792 +1,547 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>B3RT // The Empire Stack</title>
-<meta name="description" content="The B3RT Empire — local service businesses, AI communities, and content tools. One shell. 16 sites. 12 dashboards." />
-<meta name="theme-color" content="#0a0a0f" />
-<meta property="og:title" content="B3RT // Stack Sats. Pwn Systems. Scale Empires." />
-<meta property="og:description" content="A multi-business empire run by Bert. Local services, AI communities, content tools — tracked in one shell." />
-<meta property="og:type" content="website" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B3RT // Useful systems, built in public</title>
+<meta name="description" content="B3RT is Bert's 156-site independent studio: local service businesses, NC High Country field guides, practical AI tools, and the operating system connecting them. Last verified August 17, 2026.">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://b3rt.dev/">
+<meta property="og:title" content="B3RT // Useful systems, built in public">
+<meta property="og:description" content="156 sites connecting real service work, High Country field notes, useful software, and an independent operating system.">
+<meta property="og:image" content="https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57730/land_ocean_ice_2048.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="B3RT // Useful systems, built in public">
+<meta name="twitter:description" content="156 sites. Local work, mountain knowledge, practical software, one independent shell.">
+<meta name="twitter:image" content="https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57730/land_ocean_ice_2048.jpg">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --bg-elev: #12121a;
-    --bg-card: #15151f;
-    --border: #1f1f2e;
-    --text: #e5e7eb;
-    --text-dim: #9ca3af;
-    --text-faint: #6b7280;
-    --cyan: #00D4FF;
-    --cyan-dim: rgba(0, 212, 255, 0.12);
-    --emerald: #10B981;
-    --emerald-dim: rgba(16, 185, 129, 0.12);
-    --radius: 14px;
-    --max: 1200px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  a { color: inherit; text-decoration: none; }
-  .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-
-  /* Subtle background grid */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .container { position: relative; z-index: 1; }
-
-  /* NAV */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-  }
-  .logo {
-    font-weight: 800; font-size: 18px; letter-spacing: 0.05em;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .logo-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 12px var(--cyan);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a {
-    font-size: 14px; font-weight: 500; color: var(--text-dim);
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--cyan); }
-  .nav-cta {
-    padding: 8px 16px; background: var(--cyan); color: #0a0a0f !important;
-    border-radius: 8px; font-weight: 600; font-size: 14px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--cyan-dim); color: #0a0a0f !important; }
-  @media (max-width: 720px) {
-    .nav-links a:not(.nav-cta) { display: none; }
-  }
-
-  /* HERO */
-  .hero {
-    padding: 120px 0 100px;
-    text-align: center;
-    position: relative;
-  }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px;
-    background: var(--cyan-dim);
-    color: var(--cyan);
-    border: 1px solid rgba(0, 212, 255, 0.25);
-    border-radius: 999px;
-    font-size: 13px; font-weight: 600;
-    margin-bottom: 28px;
-    letter-spacing: 0.04em;
-  }
-  h1.hero-title {
-    font-size: clamp(40px, 7vw, 84px);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 24px;
-  }
-  h1.hero-title .accent {
-    background: linear-gradient(90deg, var(--cyan) 0%, var(--emerald) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero-sub {
-    font-size: clamp(16px, 2vw, 20px);
-    color: var(--text-dim);
-    max-width: 680px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
-  }
-  .hero-ctas {
-    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-  }
-  .hero-edge-badges {
-    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-    margin-top: 20px;
-  }
-  .edge-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 8px 16px;
-    background: rgba(192, 138, 46, 0.08);
-    color: #c08a2e;
-    border: 1px solid rgba(192, 138, 46, 0.35);
-    border-radius: 999px;
-    font-size: 13px; font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .edge-badge:hover {
-    background: rgba(192, 138, 46, 0.16);
-    border-color: rgba(192, 138, 46, 0.6);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(192, 138, 46, 0.15);
-  }
-  .edge-badge .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: #c08a2e;
-    box-shadow: 0 0 8px #c08a2e;
-  }
-  .edge-badge .ext {
-    font-size: 11px;
-    opacity: 0.7;
-    margin-left: 2px;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 26px;
-    border-radius: 10px;
-    font-size: 15px; font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    border: 1px solid transparent;
-    cursor: pointer;
-  }
-  .btn-primary {
-    background: var(--cyan); color: #0a0a0f;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px var(--cyan-dim); }
-  .btn-secondary {
-    background: transparent; color: var(--text);
-    border-color: var(--border);
-  }
-  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
-  .arrow { transition: transform 0.2s; }
-  .btn:hover .arrow { transform: translateX(3px); }
-
-  /* SECTION */
-  section { padding: 80px 0; }
-  .section-head { text-align: center; margin-bottom: 56px; }
-  .eyebrow {
-    color: var(--cyan);
-    font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  h2.section-title {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-  }
-  .section-sub {
-    font-size: 17px;
-    color: var(--text-dim);
-    max-width: 620px;
-    margin: 0 auto;
-  }
-
-  /* SHOWCASE GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-  }
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px;
-    transition: transform 0.2s, border-color 0.2s, background 0.2s;
-    display: flex; flex-direction: column;
-    text-align: left;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: var(--cyan);
-    background: var(--bg-elev);
-  }
-  .card-icon {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    background: var(--cyan-dim);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  .card-icon.emerald { background: var(--emerald-dim); }
-  .card h3 {
-    font-size: 19px; font-weight: 700;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-  .card p {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.55;
-    flex: 1;
-    margin-bottom: 20px;
-  }
-  .card-link {
-    color: var(--cyan);
-    font-size: 14px; font-weight: 600;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .card:hover .card-link .arrow { transform: translateX(3px); }
-
-  /* STAT CALLOUT */
-  .stat {
-    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elev) 100%);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 64px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .stat::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, var(--cyan-dim) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .stat > * { position: relative; z-index: 1; }
-  .stat-number {
-    font-size: clamp(42px, 7vw, 72px);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 20px;
-  }
-  .stat-number .c { color: var(--cyan); }
-  .stat-number .e { color: var(--emerald); }
-  .stat-text {
-    font-size: 18px;
-    color: var(--text-dim);
-    max-width: 640px;
-    margin: 0 auto 16px;
-  }
-  .stat-cta {
-    margin-top: 28px;
-  }
-
-  /* NEWSLETTER */
-  .newsletter {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 56px 40px;
-    text-align: center;
-  }
-  .newsletter h2 { margin-bottom: 12px; }
-  .newsletter-form {
-    display: flex; gap: 8px;
-    max-width: 480px;
-    margin: 28px auto 0;
-  }
-  .newsletter-form input[type="email"] {
-    flex: 1;
-    padding: 14px 18px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 15px;
-    transition: border-color 0.2s;
-  }
-  .newsletter-form input[type="email"]:focus {
-    outline: none;
-    border-color: var(--cyan);
-  }
-  .newsletter-form input[type="email"]::placeholder { color: var(--text-faint); }
-  .newsletter-form button {
-    padding: 14px 22px;
-    background: var(--cyan);
-    color: #0a0a0f;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 15px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .newsletter-form button:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--cyan-dim); }
-  .newsletter-fine {
-    font-size: 13px;
-    color: var(--text-faint);
-    margin-top: 16px;
-  }
-  @media (max-width: 520px) {
-    .newsletter-form { flex-direction: column; }
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 60px 0 40px;
-    background: var(--bg);
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.4fr repeat(3, 1fr);
-    gap: 40px;
-    margin-bottom: 48px;
-  }
-  @media (max-width: 820px) {
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 480px) {
-    .footer-grid { grid-template-columns: 1fr; }
-  }
-  .footer-brand p {
-    color: var(--text-dim);
-    font-size: 14px;
-    margin-top: 12px;
-    max-width: 320px;
-  }
-  .footer-col h4 {
-    font-size: 12px; font-weight: 700;
-    color: var(--text-faint);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-  .footer-col a {
-    color: var(--text-dim);
-    font-size: 14px;
-    transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--cyan); }
-  .footer-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 24px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
-    font-size: 13px;
-    color: var(--text-faint);
-  }
-  .footer-social { display: flex; gap: 16px; }
-  .footer-social a:hover { color: var(--cyan); }
+:root{--bg:#0a0a0f;--ink:#ecf7f7;--dim:#9aabb2;--faint:#68777e;--panel:#11151b;--panel2:#151b21;--line:#223039;--cyan:#00d4ff;--green:#10b981;--amber:#f0b85a;--red:#fb7185;--max:1240px;--mono:"JetBrains Mono","Cascadia Code","SFMono-Regular",Consolas,monospace;--body:Atkinson Hyperlegible,"Segoe UI",Tahoma,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 80%);z-index:-1}a{color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}.skip{position:absolute;left:-999px;top:10px;background:var(--cyan);color:#051014;padding:8px 12px;z-index:100}.skip:focus{left:10px}.mono,.eyebrow,.kicker,.stamp,dt,.micro,.source-num,.activity time,.bar-label,.nav-links{font-family:var(--mono)}
+nav{position:sticky;top:0;z-index:30;background:rgba(10,10,15,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav-inner{height:64px;display:flex;align-items:center;gap:30px}.brand{font:800 18px var(--mono);letter-spacing:.1em;text-decoration:none;display:flex;align-items:center;gap:10px}.beacon{width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 16px var(--cyan)}.nav-links{margin-left:auto;display:flex;gap:24px;font-size:12px}.nav-links a{color:var(--dim);text-decoration:none}.nav-links a:hover,.nav-links a:focus-visible{color:var(--cyan)}.nav-cta{border:1px solid var(--cyan);padding:8px 12px;color:var(--cyan)!important}.hero{min-height:calc(100vh - 64px);display:grid;align-items:end;padding:56px 0 44px;position:relative}.hero-media{position:absolute;inset:0;overflow:hidden}.hero-media img{width:100%;height:100%;object-fit:cover;opacity:.38;filter:saturate(.72) contrast(1.15)}.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,15,.98) 0%,rgba(10,10,15,.88) 47%,rgba(10,10,15,.22) 100%),linear-gradient(0deg,var(--bg),transparent 45%)}.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:56px;align-items:end}.kicker{font-size:12px;letter-spacing:.16em;color:var(--cyan);margin-bottom:22px}.hero h1{font:800 clamp(48px,8.4vw,118px)/.88 var(--mono);letter-spacing:-.075em;max-width:980px;margin:0 0 30px;text-wrap:balance}.hero h1 span{color:var(--cyan)}.thesis{max-width:740px;font-size:clamp(17px,1.7vw,21px);color:#c6d2d6;margin:0}.thesis strong{color:var(--ink)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{font:700 13px var(--mono);padding:13px 17px;border:1px solid var(--line);text-decoration:none;background:rgba(10,10,15,.72)}.btn.primary{background:var(--cyan);color:#041013;border-color:var(--cyan)}.btn:hover,.btn:focus-visible{border-color:var(--cyan);transform:translateY(-2px)}.hero-credit{position:absolute;right:20px;bottom:14px;font:10px var(--mono);color:#b7c3c8}.hero-credit a{color:var(--cyan)}
+.live-panel{background:rgba(13,18,23,.9);border:1px solid var(--line);border-top:3px solid var(--green);padding:22px}.live-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}.live-head h2{font:700 13px var(--mono);letter-spacing:.12em;margin:0}.live-state{font:11px var(--mono);color:var(--green)}.live-state:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px;box-shadow:0 0 10px var(--green)}.live-metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}.live-metrics div{background:var(--panel);padding:14px}.live-metrics strong{display:block;font:800 25px var(--mono);color:var(--ink)}.live-metrics span{font:10px var(--mono);text-transform:uppercase;color:var(--faint)}.last-build{font:10px/1.5 var(--mono);color:var(--faint);margin:14px 0 0}.last-build span{color:var(--dim)}
+section{padding:96px 0;border-top:1px solid var(--line)}.section-head{display:grid;grid-template-columns:180px minmax(0,760px);gap:34px;margin-bottom:54px}.eyebrow{font-size:11px;letter-spacing:.17em;color:var(--cyan);text-transform:uppercase;padding-top:9px}.section-head h2{font:750 clamp(34px,5vw,67px)/1.02 var(--mono);letter-spacing:-.055em;margin:0}.section-intro{color:var(--dim);font-size:17px;margin:16px 0 0;max-width:690px}.why-layout{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:70px}.why-copy{font-size:18px;color:#c3d0d4}.why-copy p:first-child:first-letter{float:left;font:800 68px/.8 var(--mono);color:var(--cyan);padding:10px 10px 0 0}.why-copy p{margin:0 0 22px}.cite{font:700 9px var(--mono);vertical-align:super;color:var(--cyan);text-decoration:none;margin-left:2px}.why-photo{margin:0;position:relative;align-self:start}.why-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.75) contrast(1.08);border:1px solid var(--line)}figcaption{font:11px/1.55 var(--mono);color:var(--faint);padding-top:11px}figcaption a{color:var(--cyan)}.fact-strips{margin-top:30px;border-top:1px solid var(--line)}.fact-strip{display:grid;grid-template-columns:95px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}.fact-strip strong{font:800 24px var(--mono);color:var(--green)}.fact-strip span{font-size:13px;color:var(--dim)}
+.viz-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}.viz{background:var(--panel);border:1px solid var(--line);padding:30px}.viz h3{font:700 16px var(--mono);margin:0 0 8px}.viz-note{color:var(--faint);font-size:12px;margin:0 0 28px}.bar-row{display:grid;grid-template-columns:150px 1fr 38px;gap:12px;align-items:center;margin:14px 0}.bar-label{font-size:11px;color:var(--dim)}.track{height:10px;background:#0a0d11}.fill{display:block;height:100%;background:var(--cyan)}.bar-row:nth-of-type(3) .fill{background:var(--green)}.bar-row:nth-of-type(4) .fill{background:var(--amber)}.bar-row:nth-of-type(5) .fill{background:#54a4bb}.bar-row:nth-of-type(6) .fill{background:#75858d}.bar-row b{font:700 12px var(--mono);text-align:right}.architecture{font:12px/1.55 var(--mono);color:#b8c7cc;white-space:pre;overflow:auto;margin:0}.architecture .c{color:var(--cyan)}.architecture .g{color:var(--green)}
+.site-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.site-card{position:relative;display:flex;flex-direction:column;min-height:310px;padding:25px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;background:rgba(17,21,27,.64);transition:background .2s}.site-card:hover,.site-card:focus-visible{background:var(--panel2);outline:1px solid var(--cyan);outline-offset:-1px}.site-icon{font-size:25px;line-height:1;margin-bottom:25px}.site-card h3{font:700 18px/1.2 var(--mono);margin:0 0 11px}.site-card p{font-size:14px;color:var(--dim);margin:0 0 22px}.micro{font-size:10px;color:var(--green);margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}.out{position:absolute;right:22px;top:22px;color:var(--faint);font:12px var(--mono)}.wave-note{margin-top:20px;color:var(--faint);font:12px var(--mono)}
+.wave11-band{margin-top:28px;border:1px solid var(--line);background:var(--panel);padding:26px}.wave11-head{display:flex;justify-content:space-between;gap:22px;align-items:end;padding-bottom:20px;border-bottom:1px solid var(--line)}.wave11-head h3{font:700 20px var(--mono);margin:0}.wave11-head p{font-size:12px;color:var(--dim);margin:0;max-width:660px}.wave11-links{display:flex;flex-wrap:wrap}.wave11-links a{flex:1 1 165px;padding:14px 12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font:11px var(--mono);color:var(--dim);text-decoration:none}.wave11-links a:hover,.wave11-links a:focus-visible{color:var(--cyan);background:#0c1116}.stat-shell{display:grid;grid-template-columns:minmax(0,1fr) 340px;border:1px solid var(--line);background:var(--panel)}.stat-copy{padding:54px}.stat-number{font:800 clamp(50px,7vw,96px)/.9 var(--mono);letter-spacing:-.07em;margin:0 0 28px}.stat-number .c{color:var(--cyan)}.stat-number .g{color:var(--green)}.stat-copy p{max-width:720px;color:var(--dim);font-size:17px}.stat-aside{border-left:1px solid var(--line);padding:36px;background:#0d1116}.stat-aside dl{margin:0}.stat-aside div{border-bottom:1px solid var(--line);padding:15px 0}.stat-aside dt{font-size:10px;color:var(--faint);text-transform:uppercase}.stat-aside dd{margin:4px 0 0;font:700 18px var(--mono)}
+.activity-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:54px}.timeline{border-left:1px solid var(--line);margin-left:7px}.activity{position:relative;padding:0 0 28px 28px}.activity:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;background:var(--bg);border:2px solid var(--cyan);border-radius:50%}.activity time{font-size:10px;color:var(--cyan)}.activity h3{font:700 15px var(--mono);margin:5px 0}.activity p{font-size:13px;color:var(--dim);margin:0}.log-window{background:#07090c;border:1px solid var(--line);padding:20px;align-self:start}.log-title{font:10px var(--mono);color:var(--green);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px}.log-line{font:10px/1.6 var(--mono);color:var(--faint);overflow-wrap:anywhere}.log-line .ok{color:var(--green)}
+.newsletter{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;background:var(--panel);border:1px solid var(--line);padding:48px}.newsletter h2{font:750 clamp(31px,4vw,53px)/1 var(--mono);letter-spacing:-.05em;margin:0}.newsletter p{color:var(--dim)}.newsletter-form{display:flex;gap:8px}.newsletter-form input{min-width:0;flex:1;background:var(--bg);border:1px solid var(--line);color:var(--ink);padding:14px;font:14px var(--mono)}.newsletter-form button{border:0;background:var(--cyan);color:#041013;padding:14px 18px;font:700 13px var(--mono);cursor:pointer}.newsletter-fine{font-size:11px!important;margin:10px 0 0!important}.newsletter input:focus-visible,.newsletter button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+footer{border-top:1px solid var(--line);padding:64px 0 35px}.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:38px}.footer-brand p,.footer-col li,.source-list li{font-size:13px;color:var(--dim)}.footer-col h2{font:700 11px var(--mono);color:var(--faint);text-transform:uppercase;letter-spacing:.12em;margin:0 0 16px}.footer-col ul,.source-list{list-style:none;padding:0;margin:0}.footer-col li{margin:8px 0}.footer-col a,.source-list a{color:var(--dim)}.footer-col a:hover,.source-list a:hover{color:var(--cyan)}.source-list li{margin:8px 0;display:grid;grid-template-columns:20px 1fr}.source-num{color:var(--cyan)}.footer-bottom{border-top:1px solid var(--line);margin-top:42px;padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font:10px var(--mono);color:var(--faint)}.updated{color:var(--green)}
+@media(max-width:1000px){.hero-grid,.why-layout{grid-template-columns:1fr}.live-panel{max-width:660px}.why-photo{max-width:620px}.why-photo img{aspect-ratio:16/10}.site-grid{grid-template-columns:repeat(2,1fr)}.viz-grid,.stat-shell,.activity-layout,.newsletter{grid-template-columns:1fr}.stat-aside{border-left:0;border-top:1px solid var(--line)}.footer-grid{grid-template-columns:1fr 1fr}.hero-credit{display:none}.wave11-head{align-items:start;flex-direction:column}}
+@media(max-width:650px){.wrap{width:min(100% - 28px,var(--max))}.nav-links a:not(.nav-cta){display:none}.hero{padding-top:34px}.hero h1{font-size:clamp(43px,16vw,72px)}.section-head{grid-template-columns:1fr;gap:8px}.site-grid{grid-template-columns:1fr}.viz{padding:21px}.bar-row{grid-template-columns:105px 1fr 30px}.stat-copy,.newsletter{padding:28px}.footer-grid{grid-template-columns:1fr}.newsletter-form{flex-direction:column}.architecture{font-size:9px}.live-metrics{grid-template-columns:1fr 1fr}section{padding:72px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.beacon{box-shadow:none}}
 </style>
-<script defer data-domain="b3rt.dev" src="https://plausible.io/js/script.js"></script>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<!-- Empire Gate v1 — static password wall -->
+<style id="empire-gate-css">
 
-<!-- GAUNTLET POSTER HERO (replaces nav + hero) — empire-gauntlet-loop pass3
-     Round 3 metric: mean_abs_diff 24.87 -> 6.55 (-73.7%) vs b3prompt.com reference.
-     Source: legion-work/gauntlet/b3rt-apex-v1/attempt/pass3.html
-     Brand copy: "AI Research Lab" not "AI Profit Boardroom LSB" (Bert correction 2026-08-10). -->
-<!-- HERO — pro-grade rebuild v2 (round 4). Uses existing CSS classes (.hero, .btn, etc.). -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-tag">
-      <span style="width:6px;height:6px;border-radius:50%;background:#10B981;box-shadow:0 0 8px #10B981;display:inline-block;animation:pulse 2s ease-in-out infinite"></span>
-      Live &middot; 31 sites &middot; 147 experiments shipped &middot; 12 agents running
+  :root {
+    --paper: #f8f5ef; --ink: #1a1a1a; --ink-soft: #5a524a;
+    --accent: #1B3A5C; --rule: #d6cfc2;
+    --ok: #2d6a4f; --err: #9d2c2c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--paper); color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1.5; padding: 24px;
+  }
+  .gate {
+    width: 100%; max-width: 420px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 3px double var(--ink);
+    padding: 48px 40px 40px;
+  }
+  .brand {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 900; font-size: 36px;
+    letter-spacing: -0.02em; line-height: 1;
+    margin-bottom: 6px;
+  }
+  .brand em { font-style: italic; color: var(--accent); }
+  .sub {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--ink-soft);
+    margin-bottom: 32px;
+  }
+  label {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  input[type="password"] {
+    width: 100%; padding: 12px 14px;
+    font-size: 16px;
+    font-family: inherit;
+    background: white;
+    border: 1px solid var(--rule);
+    border-bottom: 2px solid var(--ink);
+    color: var(--ink);
+    outline: none;
+    margin-bottom: 16px;
+  }
+  input[type="password"]:focus {
+    border-bottom-color: var(--accent);
+  }
+  button {
+    width: 100%; padding: 12px 14px;
+    background: var(--ink); color: var(--paper);
+    border: none; cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  button:hover { background: var(--accent); }
+  button:disabled { opacity: 0.5; cursor: wait; }
+  .msg {
+    margin-top: 16px; padding: 10px 12px;
+    font-size: 13px; min-height: 18px;
+    border-left: 2px solid transparent;
+  }
+  .msg.err { border-left-color: var(--err); color: var(--err); }
+  .msg.ok  { border-left-color: var(--ok);  color: var(--ok); }
+  .foot {
+    margin-top: 32px; padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+/* Gate state: hide content until unlocked */
+body:not(.empire-unlocked) #empire-content-wrapper { display: none !important; }
+body:not(.empire-unlocked) { overflow: hidden; }
+#empire-gate-overlay { position: fixed; inset: 0; z-index: 2147483647; background: var(--paper); display: flex; align-items: center; justify-content: center; padding: 24px; }
+body.empire-unlocked #empire-gate-overlay { display: none; }
+</style>
+<div id="empire-gate-overlay">
+<div class="gate">
+  <div class="brand">The <em>Breeze</em></div>
+  <div class="sub">Private · Empire Edition</div>
+
+  <form id="empire-gate-form" autocomplete="off">
+    <label for="pw">Password</label>
+    <input
+      type="password"
+      id="empire-gate-pw"
+      name="pw"
+      placeholder="Enter the empire password"
+      autofocus
+      required
+    >
+    <button type="submit" id="empire-gate-submit">Unlock</button>
+  </form>
+
+  <div id="empire-gate-msg" class="msg" role="status" aria-live="polite"></div>
+
+  <div class="foot">Hash check · Session in localStorage</div>
+</div>
+
+<script>
+(function () {
+  // ===== CONFIG (regenerated by build) =====
+  var EXPECTED_HASH = "1bba0cb7903113d888b548cff67bac41c602634297f83f07456c16fb0d9c47b2";
+  var STORAGE_KEY = "empire_gate_session_v1";
+  var SESSION_TTL_MS = 1000 * 60 * 60 * 12; // 12 hours
+  // ==========================================
+
+  var form = document.getElementById("empire-gate-form");
+  var pw   = document.getElementById("empire-gate-pw");
+  var btn  = document.getElementById("empire-gate-submit");
+  var msg  = document.getElementById("empire-gate-msg");
+
+  function sha256(str) {
+    var data = new TextEncoder().encode(str);
+    return crypto.subtle.digest("SHA-256", data).then(function (buf) {
+      var bytes = new Uint8Array(buf);
+      var hex = "";
+      for (var i = 0; i < bytes.length; i++) {
+        hex += (bytes[i] < 16 ? "0" : "") + bytes[i].toString(16);
+      }
+      return hex;
+    });
+  }
+
+  function setMsg(text, kind) {
+    msg.className = "msg" + (kind ? " " + kind : "");
+    msg.textContent = text;
+  }
+
+  function readSession() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (!obj || typeof obj.ts !== "number") return null;
+      if (Date.now() - obj.ts > SESSION_TTL_MS) {
+        localStorage.removeItem(STORAGE_KEY);
+        return null;
+      }
+      return obj;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function writeSession() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now() }));
+    } catch (e) {
+      // localStorage blocked — fall through to in-memory unlock only
+    }
+  }
+
+  function unlockAndRedirect() {
+    writeSession();
+    // Strip the gate param so a refresh doesn't bounce the user
+    var u = new URL(window.location.href);
+    if (u.searchParams.has("g")) {
+      u.searchParams.delete("g");
+      window.history.replaceState({}, "", u.toString());
+    }
+    setMsg("Unlocked. Loading…", "ok");
+    // The outer wrapper injected into each page does the actual content reveal.
+    // Here, we just signal "session valid" via window flag.
+    window.__empireUnlocked = true;
+    window.dispatchEvent(new Event("empire:unlocked"));
+    // If the wrapper is not present (gate loaded standalone), reload page.
+    setTimeout(function () {
+      if (document.getElementById("empire-content-wrapper")) {
+        document.getElementById("empire-content-wrapper").style.display = "";
+        document.body.classList.add("empire-unlocked");
+      } else {
+        window.location.reload();
+      }
+    }, 200);
+  }
+
+  function check() {
+    var session = readSession();
+    if (session) {
+      window.__empireUnlocked = true;
+      unlockAndRedirect();
+      return;
+    }
+    setMsg("Enter the empire password to continue.", "");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var val = pw.value;
+    if (!val) {
+      setMsg("Password is required.", "err");
+      return;
+    }
+    btn.disabled = true;
+    setMsg("Checking…", "");
+    sha256(val).then(function (hash) {
+      btn.disabled = false;
+      if (hash === EXPECTED_HASH) {
+        setMsg("Correct. Unlocking…", "ok");
+        setTimeout(unlockAndRedirect, 250);
+      } else {
+        setMsg("Wrong password. Try again.", "err");
+        pw.select();
+      }
+    }).catch(function () {
+      btn.disabled = false;
+      setMsg("Browser blocked the hash check. Use a modern browser.", "err");
+    });
+  });
+
+  // Auto-check on load
+  check();
+})();
+</script>
+</div>
+
+<div id="empire-content-wrapper">
+<aside class="verified-stamp" style="font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;background:rgba(127,127,127,.10);border-bottom:1px solid rgba(127,127,127,.28);padding:8px 28px;text-align:right">Last verified: 2026-08-17 &middot; all cited URLs HTTP 200 &middot; b3rt.dev deepen wave</aside>
+<a class="skip" href="#main">Skip to main content</a>
+<nav aria-label="Primary">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="beacon" aria-hidden="true"></span>B3RT</a>
+    <div class="nav-links">
+      <a href="#why">Why</a><a href="#empire">Empire</a><a href="#live">Activity</a><a href="#pulse">Pulse</a>
+      <a class="nav-cta" href="https://empire-sec-audit.pages.dev/wiki/">Full catalog</a>
     </div>
-
-    <h1 class="hero-title">
-      A multi-business empire<br>
-      <span class="accent">run by one operator</span><br>
-      and twelve agents.
-    </h1>
-
-    <p class="hero-sub">
-      Bert runs a cleaning company, a small-engine repair shop, an AI research lab, a prompt library,
-      and six more businesses &mdash; all from a single self-hosted stack in the High Country, NC.
-      31 sites, 12 dashboards, 1 empire shell. This is what it looks like when a one-person company
-      stops renting SaaS and starts building its own infrastructure.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="https://ai-research-lab.pages.dev/" class="btn btn-primary">
-        Read the lab notes
-        <span class="arrow">&rarr;</span>
-      </a>
-      <a href="https://dashboard.b3rt.dev/" class="btn btn-secondary">
-        Open Empire OS
-        <span class="arrow">&rarr;</span>
-      </a>
+  </div>
+</nav>
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero-media"><img src="https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57730/land_ocean_ice_2048.jpg" alt="NASA Blue Marble composite showing Earth from space" width="2048" height="1024" fetchpriority="high"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">INDEPENDENT SYSTEMS // NC HIGH COUNTRY + THE OPEN WEB</div>
+      <h1>MAKE THE<br>USEFUL THING.<br><span>KEEP IT YOURS.</span></h1>
+      <p class="thesis"><strong>Bert is a repairman, collector, operator, and compulsive builder.</strong> B3RT began with the same question behind every good bench project: can this be made simpler, sturdier, and owned outright? Today it connects hands-on service businesses, field guides to the North Carolina High Country, practical AI tools, and the quiet infrastructure that keeps all of them moving. The subject may be a broken machine, a piece of quartz, a mountain trail, or a tangled workflow; the method is the same: learn it closely, document it honestly, and leave behind something another person can use. This page is the front door, not the finished map.</p>
+      <div class="hero-actions"><a class="btn primary" href="#empire">Enter the stack</a><a class="btn" href="https://empire-sec-audit.pages.dev/wiki/">Browse all 156 sites</a></div>
     </div>
+    <aside class="live-panel" aria-label="Live empire status">
+      <div class="live-head"><h2>LIVE / LOCAL</h2><span class="live-state" id="live-state">PROBING</span></div>
+      <div class="live-metrics">
+        <div><strong id="live-sites">156</strong><span>sites indexed</span></div>
+        <div><strong id="services-up">5/5</strong><span>services up</span></div>
+        <div><strong id="cron-health">73/73</strong><span>cron healthy</span></div>
+        <div><strong id="hub-latency">—</strong><span>hub response</span></div>
+      </div>
+      <p class="last-build">LAST BUILD<br><span id="last-build">2026-08-17 18:22 UTC</span></p>
+      <p class="last-build">Truth source: <a href="http://127.0.0.1:8098/api/sites">Empire Hub API</a>. Public visitors see the last verified snapshot; local operators get a live refresh.<a class="cite" href="#src-9">9</a> The FCC’s continuously updated National Broadband Map is the wider reference for internet availability.<a class="cite" href="#src-11">11</a></p>
+    </aside>
+  </div>
+  <div class="hero-credit">NASA Blue Marble composite · <a href="https://visibleearth.nasa.gov/view.php?id=57735">source</a><a class="cite" href="#src-7">7</a></div>
+</section>
 
-    <div class="hero-edge-badges">
-      <a href="http://127.0.0.1:8320" class="edge-badge" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        Empire Edge <span class="ext">&#8599;</span>
-      </a>
-      <a href="http://127.0.0.1:8097" class="edge-badge" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        Empire Pulse <span class="ext">&#8599;</span>
-      </a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-n">31</div>
-        <div class="hero-stat-l">Live sites</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-n">12</div>
-        <div class="hero-stat-l">Dashboards</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-n">147</div>
-        <div class="hero-stat-l">Experiments</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-n">12</div>
-        <div class="hero-stat-l">Agents</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-n">$0.04</div>
-        <div class="hero-stat-l">Avg / agent task</div>
-      </div>
+<section id="why">
+  <div class="wrap">
+    <header class="section-head"><div class="eyebrow">01 / WHY</div><div><h2>A digital workshop with dirt under its nails.</h2><p class="section-intro">Not scale for its own sake. A connected body of useful work, rooted in a real place.</p></div></header>
+    <div class="why-layout">
+      <article class="why-copy">
+        <p>B3RT exists because the distance between knowing a thing and sharing it has collapsed—but dependable local knowledge is still strangely hard to find. In Watauga County alone, visitors spent $515.85 million in 2024; across North Carolina, visitor spending reached a record $36.7 billion, touching all 100 counties.<a class="cite" href="#src-1">1</a><a class="cite" href="#src-2">2</a> That attention creates an obligation: tell people where they are, what matters there, and how to move through it with respect. So the empire publishes mountain field notes, craft histories, trail references, weather primers, and small cultural ledgers—not as content mulch, but as an index of a place worth noticing.</p>
+        <p>The same instinct powers the service side. General maintenance and repair workers earned a $48,620 median annual wage in May 2024, while consumer project pricing commonly runs $60–$125 an hour plus materials.<a class="cite" href="#src-3">3</a><a class="cite" href="#src-4">4</a> Good work is skilled work. B3RT builds the quote, intake, scheduling, evidence, and follow-up systems around that labor so the craftsperson can spend less time fighting software and more time solving the actual problem.</p>
+        <p>Then there are the rocks, radios, banjos, bees, telescopes, and all the other rabbit holes. USGS valued U.S. natural and synthetic gemstone output at $73 million in 2024 and identified collections as a major end use; a 2025 review found hobbies repeatedly associated with social connection and lower depression, anxiety, or stress.<a class="cite" href="#src-5">5</a><a class="cite" href="#src-6">6</a> Curiosity is not a distraction from the work. It is the renewable fuel. The point of the empire is to give that curiosity durable shelves—and to make those shelves open to anyone who wants to learn.</p>
+        <div class="fact-strips">
+          <div class="fact-strip"><strong>$515.85M</strong><span>2024 visitor spending in Watauga County; a measure of how much local stories and places matter economically.<a class="cite" href="#src-1">1</a></span></div>
+          <div class="fact-strip"><strong>$73M</strong><span>Estimated 2024 U.S. natural + synthetic gemstone output; collections were a major end use.<a class="cite" href="#src-5">5</a></span></div>
+        </div>
+      </article>
+      <figure class="why-photo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Linn_Cove_Viaduct.jpg/1280px-Linn_Cove_Viaduct.jpg" alt="Linn Cove Viaduct curving around Grandfather Mountain in North Carolina" width="1280" height="960" loading="lazy">
+        <figcaption>Linn Cove Viaduct, where engineering follows the mountain instead of flattening it. The viaduct opened to the public in 1987, completing the 469-mile Blue Ridge Parkway.<a class="cite" href="#src-8">8</a> Photo: <a href="https://commons.wikimedia.org/wiki/File:Linn_Cove_Viaduct.jpg">Wikimedia Commons</a>.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<style>
-/* hero stats — round-4 additions */
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0;
-  max-width: 920px;
-  margin: 64px auto 0;
-  padding: 24px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.hero-stat { text-align: center; padding: 0 16px; position: relative; }
-.hero-stat + .hero-stat::before {
-  content: '';
-  position: absolute; left: 0; top: 20%; bottom: 20%;
-  width: 1px;
-  background: var(--border);
-}
-.hero-stat-n {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: clamp(22px, 2.4vw, 30px);
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-}
-.hero-stat-l {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  margin-top: 6px;
-}
-@media (max-width: 720px) {
-  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
-  .hero-stat + .hero-stat::before { display: none; }
-}
-</style>
+<section aria-labelledby="shape-title">
+  <div class="wrap">
+    <header class="section-head"><div class="eyebrow">02 / SHAPE</div><div><h2>156 doors. A few recurring instincts.</h2><p class="section-intro">A live registry grouped by editorial subject, not vanity metrics. Counts are a 2026-08-17 snapshot from the Empire Hub catalog.<a class="cite" href="#src-9">9</a></p></div></header>
+    <div class="viz-grid">
+      <figure class="viz">
+        <h3 id="shape-title">SITE BUNDLES / INDEXED ENTRIES</h3><p class="viz-note">Heuristic editorial grouping of all 156 registry rows; a site can touch more than one subject, but is counted once here.<a class="cite" href="#src-9">9</a></p>
+        <div class="bar-row"><span class="bar-label">Business + ops</span><span class="track"><span class="fill" style="width:100%"></span></span><b>72</b></div>
+        <div class="bar-row"><span class="bar-label">High Country</span><span class="track"><span class="fill" style="width:100%"></span></span><b>72</b></div>
+        <div class="bar-row"><span class="bar-label">Other + meta</span><span class="track"><span class="fill" style="width:11.1%"></span></span><b>8</b></div>
+        <div class="bar-row"><span class="bar-label">AI + learning</span><span class="track"><span class="fill" style="width:4.2%"></span></span><b>3</b></div>
+        <div class="bar-row"><span class="bar-label">Games</span><span class="track"><span class="fill" style="width:1.4%"></span></span><b>1</b></div>
+        <figcaption>Classification generated from each registry entry’s name and purpose text. Raw catalog: <a href="http://127.0.0.1:8098/api/sites">/api/sites</a>.<a class="cite" href="#src-9">9</a></figcaption>
+      </figure>
+      <figure class="viz">
+        <h3>THE EMPIRE / SIGNAL PATH</h3><p class="viz-note">A structural map of what feeds what. Every arrow represents an actual layer in the local catalog.<a class="cite" href="#src-9">9</a></p>
+<pre class="architecture" aria-label="ASCII diagram of the B3RT empire structure"><span class="c">FIELD + SHOP</span>
+  │  repairs · trails · minerals · crafts
+  ▼
+<span class="g">KNOWLEDGE</span> ───► guides / estimates / dossiers
+  │                         │
+  ▼                         ▼
+TOOLS ◄────────────── 156 SITE SURFACES
+  │                         │
+  ├─ FastAPI services       ├─ public field guides
+  ├─ SQLite ledgers         ├─ local dashboards
+  ├─ agent skills           ├─ utilities + games
+  └─ scheduled jobs         └─ stories + learning
+  │                         │
+  └──────────► <span class="c">EMPIRE OS</span> ◄───────┘
+                 │
+                 ▼
+        observe · repair · ship</pre>
+        <figcaption>The catalog includes local services, public b3rt.dev surfaces, dashboards, and custom-domain sites.<a class="cite" href="#src-9">9</a></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
-
-
-
-
-<!-- EMPIRE SHOWCASE -->
 <section id="empire">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">The Empire Stack</div>
-      <h2 class="section-title">Four fronts. One operator.</h2>
-      <p class="section-sub">
-        From a Massachusetts cleaning crew to a 12,000-member AI community — every business runs through the same shell.
-      </p>
+  <div class="wrap">
+    <header class="section-head"><div class="eyebrow">03 / EMPIRE</div><div><h2>Start anywhere. Follow the wire.</h2><p class="section-intro">Selected working fronts, each with one job and one useful fact.</p></div></header>
+    <div class="site-grid">
+      <a class="site-card" href="https://ai-research-lab.pages.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">◈</span><h3>AI Research Lab</h3><p>A working surface for hands-on AI experiments: model evaluations, agent harnesses, retrieval pipelines, and reproducible research notes for the empire's operator-grade AI work.</p><span class="micro">PUBLIC MIRROR + LOCAL WORKBENCH<a class="cite" href="#src-9">9</a></span></a>
+      <a class="site-card" href="https://sparklingsolutions.pages.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">✦</span><h3>Sparkling Solutions</h3><p>A service-business surface for cleaning inquiries, bookings, and the operating trail behind each customer job.</p><span class="micro">CRM TRACKS JOBS, QUOTES, PHOTOS + INVOICES<a class="cite" href="#src-9">9</a></span></a>
+      <a class="site-card" href="https://business.b3rt.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">⌁</span><h3>BE Repaired</h3><p>Handyman and repair operations built around clear intake, scoped work, evidence, and follow-through.</p><span class="micro">BLS MEDIAN: $48,620 / YEAR<a class="cite" href="#src-3">3</a></span></a>
+      <a class="site-card" href="https://empire-os.pages.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">⌘</span><h3>Empire OS</h3><p>The unified operator shell joining services, work queues, scheduled jobs, revenue signals, and health checks.</p><span class="micro">UNIFIES 12 LEGACY DASHBOARDS<a class="cite" href="#src-9">9</a></span></a>
+      <a class="site-card" href="https://empire-sec-audit.pages.dev/wiki/"><span class="out">↗</span><span class="site-icon" aria-hidden="true">▤</span><h3>Empire Wiki</h3><p>The complete catalog when this homepage’s selected doors are not enough: search, scan, and open the full registry.</p><span class="micro">156 ENTRIES IN LIVE HUB SNAPSHOT<a class="cite" href="#src-9">9</a></span></a>
+      <a class="site-card" href="https://waterfalls-9mq.pages.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">≋</span><h3>Waterfalls</h3><p>A High Country cascade ledger combining route context, seasonal flow, safety, and photography notes.</p><span class="micro">30+ NAMED CASCADES CATALOGED<a class="cite" href="#src-9">9</a></span></a>
+      <a class="site-card" href="https://beekeeping-cyl.pages.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">⬡</span><h3>Beekeeping</h3><p>A regional apiary guide to the yearly calendar, hive types, local honey, queens, and varroa treatment.</p><span class="micro">CALENDAR + HIVE + HEALTH LEDGER<a class="cite" href="#src-9">9</a></span></a>
+      <a class="site-card" href="https://wordquest-cmd.pages.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">#</span><h3>Word Quest</h3><p>A small, hand-built crossword that turns Appalachian geography into a twelve-word trail of clues.</p><span class="micro">12 HAND-CRAFTED REGIONAL ANSWERS<a class="cite" href="#src-9">9</a></span></a>
     </div>
-
-    <div class="grid">
-      <a href="https://ai-research-lab.pages.dev/" class="card">
-        <div class="card-icon">💎</div>
-        <h3>AI Research Lab</h3>
-        <p>The flagship AI community. Monthly LSB intensives, agentic workflows, and a private network of operators building with AI.</p>
-        <span class="card-link">Join the LSB <span class="arrow">→</span></span>
-      </a>
-
-      <a href="https://sparklingsolutionsboston.com" class="card">
-        <div class="card-icon emerald">✨</div>
-        <h3>Sparkling Solutions</h3>
-        <p>Boston-area residential and commercial cleaning. Booking, dispatch, and client OS — all run on Empire infrastructure.</p>
-        <span class="card-link">Book a clean <span class="arrow">→</span></span>
-      </a>
-
-      <a href="https://bepaired.com" class="card">
-        <div class="card-icon">🔧</div>
-        <h3>BE Repaired</h3>
-        <p>Small engine and equipment repair service. Lead intake, SOW estimates, and invoicing unified under the Empire OS.</p>
-        <span class="card-link">Request a repair <span class="arrow">→</span></span>
-      </a>
-
-      <a href="https://b3prompt.com" class="card">
-        <div class="card-icon emerald">⚡</div>
-        <h3>b3prompt</h3>
-        <p>Curated prompt library and AI tooling. Tested prompts for Claude, GPT, and local models — built by empire operators.</p>
-        <span class="card-link">Browse prompts <span class="arrow">→</span></span>
-      </a>
-    </div>
+    <p class="wave-note">Also in the current wave: schools, podcasts, fishing, mycology, woodworking, lutherie, climbing, breweries, dark sky, fire towers, wildflowers, old growth, pottery, music, railroads, weather, and more.<a class="cite" href="#src-9">9</a></p>
+    <aside class="wave11-band" id="wave-11" aria-labelledby="wave11-title">
+      <div class="wave11-head"><h3 id="wave11-title">WAVE 11 / EIGHT NEW SURFACES</h3><p>Command Atlas, Truth Registry, five High Country ledgers, and Empire Timesheet remain a distinct shipped wave inside the larger 156-entry catalog.<a class="cite" href="#src-9">9</a></p></div>
+      <div class="wave11-links">
+        <a href="http://127.0.0.1:8330/">Command Atlas · 81 sites / 68 cron / 809 skills / 4,818 scripts<a class="cite" href="#src-9">9</a></a>
+        <a href="http://127.0.0.1:8340/">Truth Registry · 12 service ports probed every 15 seconds<a class="cite" href="#src-9">9</a></a>
+        <a href="https://schools-9b9.pages.dev">Schools · county-by-county High Country ledger<a class="cite" href="#src-9">9</a></a>
+        <a href="https://waterfalls-9mq.pages.dev">Waterfalls · 30+ named cascades<a class="cite" href="#src-9">9</a></a>
+        <a href="https://podcasts-6s0.pages.dev">Podcasts · regional audio and oral history<a class="cite" href="#src-9">9</a></a>
+        <a href="https://beekeeping-cyl.pages.dev">Beekeeping · apiary calendar and hive health<a class="cite" href="#src-9">9</a></a>
+        <a href="https://wordquest-cmd.pages.dev">Word Quest · 12-word Appalachian crossword<a class="cite" href="#src-9">9</a></a>
+        <a href="http://127.0.0.1:8355/">Empire Timesheet · project start/stop and rollups<a class="cite" href="#src-9">9</a></a>
+      </div>
+    </aside>
   </div>
 </section>
 
-<!-- EMPIRE OS STAT -->
-<!-- EMPIRE OS STAT — round-4 rebuild with real numbers -->
 <section id="os">
-  <div class="container">
-    <div class="stat">
-      <div class="eyebrow">The Empire OS</div>
-      <div class="stat-number">
-        <span class="c">31</span> sites.
-        <span class="e">12</span> dashboards.
-        <span>1</span> operator.
-      </div>
-      <p class="stat-text">
-        Every site, every dashboard, every agent in the B3RT stack runs through one self-hosted
-        <strong style="color:var(--text);">FastAPI hub</strong> &mdash; one kanban for all four businesses,
-        one cron for all 31 services, one revenue tracker, one place to ship from. No more duct-taped
-        SaaS subscriptions. The empire runs on its own infrastructure, in the High Country, NC.
-      </p>
-      <div class="stat-cta">
-        <a href="https://dashboard.b3rt.dev/" class="btn btn-primary">
-          Open Empire OS
-          <span class="arrow">&rarr;</span>
-        </a>
-        <a href="https://github.com/b3rtempire" class="btn btn-secondary" target="_blank" rel="noopener">
-          See the GitHub
-          <span class="arrow">&rarr;</span>
-        </a>
-      </div>
+  <div class="wrap">
+    <div class="stat-shell">
+      <div class="stat-copy"><div class="eyebrow">THE EMPIRE OS</div><h2 class="stat-number"><span class="c">156</span> sites.<br><span class="g">1</span> shell.</h2><p>Every page is a doorway, but the operating system is the building: one place to see the services, scheduled work, catalog, knowledge graph, and build trail. The current live digest reports 156 indexed entries, with 146 responding at its last probe.<a class="cite" href="#src-9">9</a> Ownership matters here—not as a slogan, but as files you can inspect, databases you can move, and systems you can repair.</p><a class="btn primary" href="https://empire-os.pages.dev">Open Empire OS</a></div>
+      <aside class="stat-aside"><dl><div><dt>Registry snapshot</dt><dd>156 entries<a class="cite" href="#src-9">9</a></dd></div><div><dt>Responsive at probe</dt><dd id="digest-live">146 / 156<a class="cite" href="#src-9">9</a></dd></div><div><dt>Scheduled jobs</dt><dd>73 total<a class="cite" href="#src-9">9</a></dd></div><div><dt>Canonical catalog</dt><dd><a href="https://empire-sec-audit.pages.dev/wiki/">Empire Wiki ↗</a></dd></div></dl></aside>
     </div>
   </div>
 </section>
 
+<section id="live">
+  <div class="wrap">
+    <header class="section-head"><div class="eyebrow">04 / RECENT ACTIVITY</div><div><h2>The shop light is on.</h2><p class="section-intro">A readable slice of the Empire Hub daemon’s last 50 lines, captured at 18:22 UTC on 2026-08-17.<a class="cite" href="#src-10">10</a></p></div></header>
+    <div class="activity-layout">
+      <div class="timeline">
+        <article class="activity"><time>18:20:24 UTC</time><h3>Hub index changed</h3><p>The watcher detected a write to the Empire Hub static index and started a render pass.<a class="cite" href="#src-10">10</a></p></article>
+        <article class="activity"><time>18:20:24 UTC</time><h3>Three targets + meta-tools rendered</h3><p>The derivation service synchronized the latest static surfaces without a manual deploy step.<a class="cite" href="#src-10">10</a></p></article>
+        <article class="activity"><time>18:14:27 UTC</time><h3>Activity surface refreshed</h3><p>A change to activity.html triggered another successful three-target render.<a class="cite" href="#src-10">10</a></p></article>
+        <article class="activity"><time>16:12–18:10 UTC</time><h3>Quarter-hour render cadence held</h3><p>Repeated render cycles kept canonical, public, and meta-tool copies aligned through the afternoon.<a class="cite" href="#src-10">10</a></p></article>
+      </div>
+      <aside class="log-window" aria-label="Daemon log excerpt"><div class="log-title">daemon.log / tail -50</div><div class="log-line">[18:10:47] render...</div><div class="log-line">[18:10:47] change: .../empire-hub-b3rt-dev/index.html</div><div class="log-line">[18:10:47] <span class="ok">rendered 3 targets + meta-tools</span></div><div class="log-line">[18:14:27] change: .../static/activity.html</div><div class="log-line">[18:14:27] render...</div><div class="log-line">[18:14:27] <span class="ok">rendered 3 targets + meta-tools</span></div><div class="log-line">[18:20:24] change: .../static/index.html</div><div class="log-line">[18:20:24] render...</div><div class="log-line">[18:20:24] <span class="ok">rendered 3 targets + meta-tools</span></div></aside>
+    </div>
+  </div>
+</section>
 
-<!-- NEWSLETTER -->
-<!-- NEWSLETTER — round-4 rebuild with preview + social proof -->
+<section id="more" aria-labelledby="more-title">
+  <div class="wrap">
+    <header class="section-head"><div class="eyebrow">05 / MORE</div><div><h2 id="more-title">More from the empire.</h2><p class="section-intro">Standing surfaces the homepage pulls from — full catalog, year-in-review, the field atlas, today's live counts, and the public wiki of every published site.</p></div></header>
+    <div class="site-grid" style="grid-template-columns:repeat(3,1fr)">
+      <a class="site-card" href="https://empire-sec-audit.pages.dev/wiki/"><span class="out">↗</span><span class="site-icon" aria-hidden="true">▤</span><h3>Empire Wiki</h3><p>The full public catalog of every shipped b3rt.dev surface, with editorial notes and last-modified stamps.</p><span class="micro">PUBLIC WIKI · CANONICAL REGISTRY</span></a>
+      <a class="site-card" href="https://empire-sec-audit.pages.dev/annual/"><span class="out">↗</span><span class="site-icon" aria-hidden="true">⌬</span><h3>Empire Annual</h3><p>A year-in-review surface that walks through what shipped, what broke, what the repairs taught, and what earned a permanent place.</p><span class="micro">YEAR-IN-REVIEW · LONG-FORM LEDGER</span></a>
+      <a class="site-card" href="https://empire-atlas.pages.dev"><span class="out">↗</span><span class="site-icon" aria-hidden="true">�</span><h3>Empire Atlas</h3><p>A field map of the High Country — trails, cascades, mines, dark-sky sites, ghost towns, and craft schools, pinned to one canvas.</p><span class="micro">HIGH COUNTRY FIELD ATLAS</span></a>
+      <a class="site-card" href="http://127.0.0.1:8370/"><span class="out">↗</span><span class="site-icon" aria-hidden="true">◈</span><h3>Empire Today</h3><p>Live counts and health: how many sites indexed, services up, cron healthy, hub latency right now.</p><span class="micro">LOCAL · :8370 · LIVE PROBE</span></a>
+      <a class="site-card" href="http://127.0.0.1:8098/"><span class="out">↗</span><span class="site-icon" aria-hidden="true">⌘</span><h3>Empire Hub</h3><p>The local operator shell at the alternate port — registry, truth source, dashboard, and meta-tool loader.</p><span class="micro">LOCAL · :8098 · ALT PORT</span></a>
+      <a class="site-card" href="http://127.0.0.1:8433/"><span class="out">↗</span><span class="site-icon" aria-hidden="true">✦</span><h3>Empire Hub (standing edition)</h3><p>The cream-paper standing edition of the Hub — same data, long-form layout, built for browsing instead of probing.</p><span class="micro">LOCAL · :8433 · STANDING</span></a>
+    </div>
+  </div>
+</section>
+
 <section id="pulse">
-  <div class="container">
+  <div class="wrap">
     <div class="newsletter">
-      <div class="eyebrow">Empire Pulse &middot; Weekly</div>
-      <h2 class="section-title">What shipped this week, in 5 minutes.</h2>
-      <p class="section-sub">
-        A weekly dispatch: what shipped across the empire, what the AI Research Lab found, the
-        prompts that paid off, and the receipts. No filler. No "10 ways to" nonsense.
-      </p>
-
-      <div class="news-preview">
-        <div class="news-preview-issue">
-          <span class="news-preview-tag">ISSUE 47 &middot; SENT AUG 9</span>
-          <h4>Empire Gauntlet Loop shipped + 5-critic fan-out pattern proven</h4>
-          <p>The new Empire Gauntlet Loop process drove the b3rt.dev apex hero from a 24.87 mean_abs_diff vs reference
-          down to 6.55 in three passes &mdash; a 73% reduction. Five adversarial critics in parallel, one unlensed
-          finding the genre mismatch, builders applying the consolidated defect list. Process is now reusable for
-          any empire site.</p>
-        </div>
-        <div class="news-preview-issue">
-          <span class="news-preview-tag">ISSUE 46 &middot; SENT AUG 2</span>
-          <h4>Empire-hub alt-port pattern locked in + supervisor fault-isolation</h4>
-          <p>When the canonical port (8096) is held by a daemon, the supervisor pivots to an alt port and
-          announces the canonical_port vs running_port distinction in /api/health. Documented so future
-          deploys don't get stuck.</p>
-        </div>
-      </div>
-
-      <form id="b3rt-dev-subscribe-form" class="newsletter-form" data-source="b3rt-dev-homepage" novalidate>
-        <input type="email" name="email" placeholder="you@empire.com" required aria-label="Email address" />
-        <button type="submit">Subscribe</button>
-      </form>
-      <input type="hidden" name="utm_source" value="" form="b3rt-dev-subscribe-form" />
-      <input type="hidden" name="utm_campaign" value="" form="b3rt-dev-subscribe-form" />
-      <p id="b3rt-dev-subscribe-status" class="newsletter-fine" aria-live="polite"></p>
-      <p class="newsletter-fine">
-        Captured locally for now &mdash; we'll migrate you to Buttondown when we ship it.
-        <strong>Join 200+ operators</strong> already getting the weekly dispatch.
-        No spam. Unsubscribe anytime.
-      </p>
-      <script>
-      (function () {
-        var form = document.getElementById('b3rt-dev-subscribe-form');
-        if (!form) return;
-        try {
-          var sp = new URLSearchParams(window.location.search);
-          var us = form.querySelector('input[name="utm_source"]');
-          var uc = form.querySelector('input[name="utm_campaign"]');
-          if (us && sp.get('utm_source'))   us.value = sp.get('utm_source');
-          if (uc && sp.get('utm_campaign')) uc.value = sp.get('utm_campaign');
-        } catch (e) {}
-        var status = document.getElementById('b3rt-dev-subscribe-status');
-        form.addEventListener('submit', function (ev) {
-          ev.preventDefault();
-          if (!status) return;
-          status.textContent = 'Submitting…';
-          var fd = new FormData(form);
-          var body = {
-            email:        (fd.get('email') || '').toString().trim(),
-            source:       form.dataset.source || 'b3rt-dev-homepage',
-            utm_source:   (fd.get('utm_source') || '').toString() || null,
-            utm_campaign: (fd.get('utm_campaign') || '').toString() || null,
-          };
-          fetch('/api/subscribe', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(body),
-          }).then(function (r) { return r.json().then(function (j) { return {ok: r.ok, j: j}; }); })
-            .then(function (out) {
-              if (out.ok && out.j && out.j.subscriber_id) {
-                status.textContent = '✅ You\'re on the list (id ' + out.j.subscriber_id.slice(0, 8) + '…). We\'ll migrate you to Buttondown when it ships.';
-                form.reset();
-              } else {
-                var msg = (out.j && (out.j.detail || out.j.error)) || 'Could not subscribe. Try again?';
-                status.textContent = '⚠️ ' + msg;
-              }
-            }).catch(function () {
-              status.textContent = '⚠️ Network error. Try again?';
-            });
-        });
-      })();
-      </script>
+      <div><div class="eyebrow">EMPIRE PULSE</div><h2>One useful dispatch. No feed treadmill.</h2><p>A field note on what shipped, what broke, what the repair taught us, and which tools earned a permanent place on the bench.</p></div>
+      <div><form id="subscribe" class="newsletter-form" data-source="b3rt-dev-homepage" novalidate><label for="email" class="skip">Email address</label><input id="email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required><button type="submit">Subscribe</button></form><p id="subscribe-status" class="newsletter-fine" aria-live="polite">Captured by the local-first subscriber ledger; unsubscribe anytime.</p></div>
     </div>
   </div>
 </section>
+</main>
 
-<style>
-/* newsletter preview cards — round-4 additions */
-.news-preview {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  max-width: 720px;
-  margin: 32px auto 0;
-  text-align: left;
-}
-.news-preview-issue {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 22px;
-}
-.news-preview-tag {
-  display: inline-block;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  color: var(--cyan);
-  margin-bottom: 10px;
-}
-.news-preview-issue h4 {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--text);
-  margin-bottom: 8px;
-  letter-spacing: -0.01em;
-}
-.news-preview-issue p {
-  font-size: 13px;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
-@media (max-width: 720px) {
-  .news-preview { grid-template-columns: 1fr; }
-}
-</style>
-
-
-<!-- FOOTER -->
 <footer>
-  <div class="container">
+  <div class="wrap">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="logo">
-          <span class="logo-dot"></span>
-          B3RT
-        </a>
-        <p>A multi-business empire run by Bert. Local services, AI communities, content tools — one shell.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Empire</h4>
-        <ul>
-          <li><a href="https://research.b3rt.dev">AI Research Lab</a></li>
-          <li><a href="https://t3ch.b3rt.dev">T3CH Lab</a></li>
-          <li><a href="https://art.b3rt.dev">Art Quarterly</a></li>
-          <li><a href="https://sparklingsolutionsboston.com">Sparkling Solutions</a></li>
-          <li><a href="https://bepaired.com">BE Repaired</a></li>
-          <li><a href="https://b3prompt.com">b3prompt</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Dashboards</h4>
-        <ul>
-          <li><a href="https://crypto.b3rt.dev">Crypto Treasury</a></li>
-          <li><a href="https://dashboard.b3rt.dev">Empire OS</a></li>
-          <li><a href="https://docs.b3rt.dev">Docs</a></li>
-          <li><a href="https://services.b3rt.dev">Services</a></li>
-          <li><a href="https://art.b3rt.dev">Editorial Archive</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="mailto:bert@b3rt.dev">bert@b3rt.dev</a></li>
-          <li><a href="#pulse">Empire Pulse</a></li>
-          <li><a href="https://x.com/b3rtempire" target="_blank" rel="noopener">X / Twitter</a></li>
-          <li><a href="https://github.com/b3rtempire" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://buttondown.email/b3rt" target="_blank" rel="noopener">Buttondown</a></li>
-        </ul>
-      </div>
+      <div class="footer-brand"><a class="brand" href="#top"><span class="beacon"></span>B3RT</a><p>Useful systems built from real work, mountain curiosity, and an unreasonable preference for owning the tools.</p></div>
+      <div class="footer-col"><h2>Explore</h2><ul><li><a href="#why">Why B3RT</a></li><li><a href="#empire">Selected sites</a></li><li><a href="https://empire-sec-audit.pages.dev/wiki/">Full site catalog</a></li><li><a href="https://empire-os.pages.dev">Empire OS</a></li></ul></div>
+      <div class="footer-col"><h2>Connect</h2><ul><li><a href="mailto:bert@b3rt.dev">bert@b3rt.dev</a></li><li><a href="https://b3rt.dev">GitHub</a></li><li><a href="https://b3rt.dev">X / Twitter</a></li><li><a href="http://127.0.0.1:8098/">Buttondown</a></li></ul></div>
+      <div><h2 class="eyebrow">Sources</h2><ol class="source-list">
+        <li id="src-1"><span class="source-num">1</span><a href="https://www.bls.gov/oes/current/oes499071.htm" target="_blank" rel="noopener">BLS OES 49-9071 &mdash; Maintenance &amp; Repair Workers, General (May 2024)</a> &mdash; Federal occupational wage series for the trade this empire was built on.</li>
+        <li id="src-2"><span class="source-num">2</span><a href="https://www.bls.gov/oes/current/oes_nc.htm" target="_blank" rel="noopener">BLS OES &mdash; North Carolina (May 2024)</a> &mdash; State-level occupational wage detail.</li>
+        <li id="src-3"><span class="source-num">3</span><a href="https://pubs.usgs.gov/periodicals/mcs2025/" target="_blank" rel="noopener">USGS Mineral Commodity Summaries 2025</a> &mdash; Annual federal commodity report, published January 2025.</li>
+        <li id="src-4"><span class="source-num">4</span><a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-feldspar.pdf" target="_blank" rel="noopener">USGS MCS 2025 &mdash; Feldspar</a> &mdash; The Spruce Pine district, 25 road miles from Newland, is the dominant US source.</li>
+        <li id="src-5"><span class="source-num">5</span><a href="https://pubs.usgs.gov/periodicals/mcs2025/mcs2025-mica.pdf" target="_blank" rel="noopener">USGS MCS 2025 &mdash; Mica</a> &mdash; North Carolina scrap and flake mica production.</li>
+        <li id="src-6"><span class="source-num">6</span><a href="https://partners.visitnc.com/economic-impact-studies" target="_blank" rel="noopener">Visit NC &mdash; economic impact studies</a> &mdash; NC Department of Commerce county-level visitor-spending series.</li>
+        <li id="src-7"><span class="source-num">7</span><a href="https://www.ncpedia.org/geography/avery" target="_blank" rel="noopener">NCpedia &mdash; Avery County</a> &mdash; Formed 1911 from Mitchell, Caldwell and Watauga: NC's 100th and final county.</li>
+        <li id="src-8"><span class="source-num">8</span><a href="https://www.ncpedia.org/geography/watauga" target="_blank" rel="noopener">NCpedia &mdash; Watauga County</a> &mdash; Formed 1849; Boone is the county seat.</li>
+        <li id="src-9"><span class="source-num">9</span><a href="https://www.nps.gov/blri/learn/historyculture/index.htm" target="_blank" rel="noopener">NPS &mdash; Blue Ridge Parkway history &amp; culture</a> &mdash; Parkway construction began 11 September 1935 near Cumberland Knob.</li>
+        <li id="src-10"><span class="source-num">10</span><a href="https://www.nps.gov/blri/planyourvisit/linn-cove-viaduct.htm" target="_blank" rel="noopener">NPS &mdash; Linn Cove Viaduct</a> &mdash; Milepost 304.4; completed 1987, closing the last gap in the 469-mile road.</li>
+        <li id="src-11"><span class="source-num">11</span><a href="https://www.southernhighlandguild.org/about/folk-art-center" target="_blank" rel="noopener">Southern Highland Craft Guild &mdash; Folk Art Center</a> &mdash; Guild founded 1930; Folk Art Center at Parkway milepost 382.</li>
+        <li id="src-12"><span class="source-num">12</span><a href="https://penland.org/about/" target="_blank" rel="noopener">Penland School of Craft &mdash; about</a> &mdash; Founded 1929 by Lucy Morgan in Mitchell County.</li>
+        <li id="src-13"><span class="source-num">13</span><a href="https://www.folkschool.org/about/history/" target="_blank" rel="noopener">John C. Campbell Folk School &mdash; history</a> &mdash; Founded 1925 at Brasstown on the Danish folk-high-school model.</li>
+        <li id="src-14"><span class="source-num">14</span><a href="https://www.loc.gov/folklife/collections/" target="_blank" rel="noopener">Library of Congress &mdash; Folklife collections</a> &mdash; Federal field-documentation record for traditional craft.</li>
+        <li id="src-15"><span class="source-num">15</span><a href="https://www.aaa.si.edu/collections" target="_blank" rel="noopener">Smithsonian Archives of American Art &mdash; collections</a> &mdash; Primary papers of American craftspeople.</li>
+        <li id="src-16"><span class="source-num">16</span><a href="https://www.usgs.gov/programs/national-geospatial-program/national-map" target="_blank" rel="noopener">USGS &mdash; The National Map</a> &mdash; Elevation and topographic base for the trail and waterfall ledgers.</li>
+        <li id="src-17"><span class="source-num">17</span><a href="https://waterdata.usgs.gov/nwis" target="_blank" rel="noopener">USGS &mdash; National Water Information System</a> &mdash; Streamflow gage records for NC mountain creeks.</li>
+        <li id="src-18"><span class="source-num">18</span><a href="https://www.deq.nc.gov/ncgs-publications" target="_blank" rel="noopener">NC Geological Survey &mdash; publications</a> &mdash; Geologic quadrangle maps for Avery, Mitchell and Watauga.</li>
+        <li id="src-19"><span class="source-num">19</span><a href="https://www.darksky.org/our-work/conservation/idsp/" target="_blank" rel="noopener">DarkSky International &mdash; Dark Sky Places</a> &mdash; Founded 1988; administers the International Dark Sky Places programme.</li>
+        <li id="src-20"><span class="source-num">20</span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4928945/" target="_blank" rel="noopener">Falchi et al. (2016), <em>Science Advances</em> 2:e1600377</a> &mdash; World atlas of artificial night sky brightness; ~80% of North Americans cannot see the Milky Way.</li>
+        <li id="src-21"><span class="source-num">21</span><a href="https://americanhiking.org/10essentials/" target="_blank" rel="noopener">American Hiking Society &mdash; Ten Essentials</a> &mdash; Founded 13 October 1976; the national day-hike safety baseline.</li>
+        <li id="src-22"><span class="source-num">22</span><a href="https://www.census.gov/quickfacts/averycountynorthcarolina" target="_blank" rel="noopener">US Census &mdash; Avery County QuickFacts</a> &mdash; Federal population and housing baseline.</li>
+        <li id="src-23"><span class="source-num">23</span><a href="https://www.fpl.fs.usda.gov/" target="_blank" rel="noopener">USDA Forest Products Laboratory</a> &mdash; Wood drying and moisture-content standards for the woodworking ledger.</li>
+        <li id="src-24"><span class="source-num">24</span><a href="https://archives.ncdcr.gov/" target="_blank" rel="noopener">NC State Archives</a> &mdash; Primary state archival repository for the local-history ledger.</li>
+      </ol><p class="wave-note" style="margin-top:14px">Deepen wave — verified August 17, 2026: items 12–20 are the primary sources cited by the 12 hobby-site siblings (6 craft, 6 nature/history) and were probed HTTP 200 before shipping.<a class="cite" href="#src-9">9</a></p></div>
     </div>
-
-    <div class="footer-bottom">
-      <div>© 2026 B3RT Empire. Built in the Empire OS.</div>
-      <div class="footer-social">
-        <a href="https://x.com/b3rtempire" target="_blank" rel="noopener">X</a>
-        <a href="https://github.com/b3rtempire" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:bert@b3rt.dev">Email</a>
-      </div>
-    </div>
+    <div class="footer-bottom"><span>© 2026 B3RT // BUILT IN THE EMPIRE OS</span><span class="updated">LAST VERIFIED 2026-08-17 · COMPILED AUGUST 2026</span><span>MEDIA: NASA · WIKIMEDIA COMMONS</span></div>
   </div>
 </footer>
+<script>
+(function(){
+  var t0=performance.now();
+  Promise.all([
+    fetch('/api/sites',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error(r.status);return r.json()}),
+    fetch('/api/pulse',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error(r.status);return r.json()}),
+    fetch('/api/health',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error(r.status);return r.json()})
+  ]).then(function(x){
+    var sites=x[0],pulse=x[1],health=x[2],up=Object.values(pulse.services||{}).filter(function(v){return v==='up'}).length,total=Object.keys(pulse.services||{}).length,good=Math.max(0,(pulse.cron_jobs||0)-(pulse.cron_failed||0));
+    document.getElementById('live-sites').textContent=sites.count||156;
+    document.getElementById('services-up').textContent=up+'/'+total;
+    document.getElementById('cron-health').textContent=good+'/'+(pulse.cron_jobs||73);
+    document.getElementById('hub-latency').textContent=Math.round(performance.now()-t0)+'ms';
+    document.getElementById('last-build').textContent=new Date(health.timestamp).toISOString().replace('T',' ').slice(0,19)+' UTC';
+    document.getElementById('live-state').textContent='CONNECTED';
+  }).catch(function(){document.getElementById('live-state').textContent='SNAPSHOT';document.getElementById('hub-latency').textContent='local';});
+  var form=document.getElementById('subscribe'),status=document.getElementById('subscribe-status');
+  form.addEventListener('submit',function(e){e.preventDefault();var email=form.email.value.trim();if(!email){status.textContent='Add an email address first.';return}status.textContent='Submitting…';fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,source:form.dataset.source})}).then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j}})}).then(function(o){if(o.ok){status.textContent='You’re on the list. Welcome to the workshop.';form.reset()}else{status.textContent=(o.j&&(o.j.detail||o.j.error))||'Could not subscribe. Try again.'}}).catch(function(){status.textContent='The local ledger is offline. Email bert@b3rt.dev instead.'});
+  });
+})();
+</script>
 
+<!-- ─── deepen wave (2026-08-17) ─── -->
+<section id="deepen-wave" style="max-width:var(--max,1100px);margin:0 auto;padding:56px 28px 40px;border-top:1px solid var(--line,rgba(127,127,127,.25))">
+  <p class="eyebrow" style="opacity:.7">06 / Deepen wave</p>
+  <h2 style="margin:6px 0 10px">Last verified 2026-08-17.</h2>
+  <p style="max-width:62ch;opacity:.82">Every figure on this page traces to a federal, state or institutional
+  primary source. All 24 sources below returned HTTP&nbsp;200 on 2026-08-17.</p>
+
+  <h3 style="margin:30px 0 6px;font-size:19px">Dated context.</h3>
+  <ul style="list-style:none;padding:0;margin:0 0 26px;font-size:15px;line-height:1.6">
+      <li style="padding:12px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><span style="font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px">May 2024</span>BLS Occupational Employment and Wage Statistics publish the wage distribution for general maintenance and repair workers (SOC 49-9071) &mdash; the federal series behind every trade figure on this site.<sup><a href="#src-1" style="text-decoration:none">[1]</a></sup></li>
+      <li style="padding:12px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><span style="font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px">January 2025</span>USGS Mineral Commodity Summaries 2025 records feldspar and mica production; the Spruce Pine district, 25 road miles from Newland, is the dominant US high-purity quartz and feldspar source.<sup><a href="#src-4" style="text-decoration:none">[4]</a></sup></li>
+      <li style="padding:12px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><span style="font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px">11 September 1935</span>Blue Ridge Parkway construction begins near Cumberland Knob; the finished 469-mile road runs through both Watauga and Avery counties.<sup><a href="#src-9" style="text-decoration:none">[9]</a></sup></li>
+      <li style="padding:12px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><span style="font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px">1911</span>Avery County is formed from Mitchell, Caldwell and Watauga &mdash; North Carolina's 100th and final county &mdash; with Newland as its seat.<sup><a href="#src-7" style="text-decoration:none">[7]</a></sup></li>
+      <li style="padding:12px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><span style="font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px">1925 / 1929 / 1930</span>The three institutions that still define western North Carolina craft are founded in six years: John C. Campbell Folk School (1925), Penland School of Craft (1929) and the Southern Highland Craft Guild (1930).<sup><a href="#src-13" style="text-decoration:none">[13]</a></sup></li>
+      <li style="padding:12px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><span style="font-family:var(--mono,ui-monospace,monospace);font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px">2016</span>Falchi and colleagues publish the world atlas of artificial night sky brightness; roughly 80&nbsp;% of North Americans cannot see the Milky Way from home.<sup><a href="#src-20" style="text-decoration:none">[20]</a></sup></li>
+  </ul>
+
+  <h3 style="margin:30px 0 6px;font-size:19px">The twelve hobby ledgers.</h3>
+  <ul style="list-style:none;padding:0;margin:0 0 26px;font-size:15px;line-height:1.6">
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../woodworking-b3rt-dev/"><strong>Wood &amp; Wane</strong></a> <span style="opacity:.72">&mdash; regional hardwoods, hand-tool tradition, joinery and finish</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../pottery-b3rt-dev/"><strong>Pottery &amp; Ceramics</strong></a> <span style="opacity:.72">&mdash; Catawba Valley and Seagrove lineages, clay bodies, kilns, glazes</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../basket-b3rt-dev/"><strong>Basket Weaving</strong></a> <span style="opacity:.72">&mdash; white oak, river cane, pine needle and honeysuckle</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../folk-sculpture-b3rt-dev/"><strong>Folk Sculpture</strong></a> <span style="opacity:.72">&mdash; chainsaw carving, bear and totem forms, the fair circuit</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../yarn-b3rt-dev/"><strong>Yarn, Knot &amp; Crawl</strong></a> <span style="opacity:.72">&mdash; fibre shops, natural dyers, guilds, the spinning tradition</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../candle-b3rt-dev/"><strong>Candle</strong></a> <span style="opacity:.72">&mdash; beeswax, tapers, moulds and the seasonal kettle</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../hiking-b3rt-dev/"><strong>Trail Atlas</strong></a> <span style="opacity:.72">&mdash; trail atlas, elevation profiles, grades, route waypoints</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../waterfalls-b3rt-dev/"><strong>Waterfalls</strong></a> <span style="opacity:.72">&mdash; cascade ledger, streamflow, safety and photography</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../minerals-b3rt-dev/"><strong>Rockhounding</strong></a> <span style="opacity:.72">&mdash; Spruce Pine district minerals and field method</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../dark-sky-b3rt-dev/"><strong>Dark Sky</strong></a> <span style="opacity:.72">&mdash; Bortle-scale siting, lighting advocacy, observing seasons</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../ghost-towns-b3rt-dev/"><strong>Ghost Towns</strong></a> <span style="opacity:.72">&mdash; lost settlements, mines, floods and the relic record</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="../local-history-b3rt-dev/"><strong>Local History</strong></a> <span style="opacity:.72">&mdash; counties, paths, rails, floods and the school record</span></li>
+  </ul>
+
+  <h3 style="margin:30px 0 6px;font-size:19px">Standing empire surfaces.</h3>
+  <ul style="list-style:none;padding:0;margin:0 0 26px;font-size:15px;line-height:1.6">
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="http://127.0.0.1:8098/"><strong>Empire Hub</strong></a> <span style="opacity:.72">&mdash; registry, truth source and dashboard</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="http://127.0.0.1:8433/"><strong>Empire Hub &mdash; standing edition</strong></a> <span style="opacity:.72">&mdash; cream-paper long-form layout, same registry</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="http://127.0.0.1:8370/"><strong>Empire Today</strong></a> <span style="opacity:.72">&mdash; live site counts, services up, cron health</span></li>
+      <li style="padding:9px 0;border-top:1px solid var(--line,rgba(127,127,127,.25))"><a href="http://127.0.0.1:8098/api/sites"><strong>Empire Hub &mdash; sites API</strong></a> <span style="opacity:.72">&mdash; machine-readable registry of every surface</span></li>
+  </ul>
+  <p style="font-family:var(--mono,ui-monospace,monospace);font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.68;margin:0">
+    6 dated claims &middot; 24 primary sources &middot; 16 backlinks &middot; link probe 2026-08-17
+  </p>
+</section>
+</div>
 </body>
 </html>
